@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naga ERP – Đánh giá KPI (Bộ đánh giá Hiệu suất)</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;color:#212529;background:#fff}
+.nav{background:#1a6b41;height:44px;display:flex;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.nav-home{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0}
+.nav-menu{display:flex;align-items:stretch;flex:1;overflow-x:auto}.nav-menu::-webkit-scrollbar{display:none}
+.nm{display:flex;align-items:center;padding:0 13px;color:rgba(255,255,255,.82);font-size:12.5px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.15s}
+.nm:hover{color:#fff;background:rgba(255,255,255,.08)}.nm.on{color:#fff;font-weight:500;border-bottom-color:rgba(255,255,255,.9)}
+.nav-r{display:flex;align-items:center;padding:0 10px;gap:4px;border-left:1px solid rgba(255,255,255,.15)}
+.av{width:28px;height:28px;border-radius:4px;background:#155534;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.rolebar{display:flex;align-items:center;gap:8px;padding:5px 14px;background:#fff8e1;border-bottom:1px solid #ffe082;font-size:11.5px;color:#5d4037;flex-wrap:wrap;min-height:34px}
+.rt{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;cursor:pointer;border:2px solid transparent}
+.rt.on{border-color:#1a6b41}
+.cp{background:#fff;border-bottom:1px solid #dee2e6;padding:6px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:46px}
+.bc{display:flex;align-items:center;gap:6px;flex:1;font-size:13px}
+.bcl{color:#1a6b41;cursor:pointer;font-weight:500}.bcl:hover{text-decoration:underline}
+.bcs{color:#6c757d}.bcc{color:#212529;font-weight:500}
+.tb{background:#fff;border-bottom:1px solid #dee2e6;padding:4px 12px;display:flex;align-items:center;gap:6px;min-height:38px;flex-wrap:wrap}
+.btn-n{background:#1a6b41;color:#fff;border:none;padding:4px 14px;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer}
+.btn-n:hover{background:#155534}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:4px;font-size:12.5px;font-weight:400;cursor:pointer;border:1px solid transparent;transition:.12s;font-family:inherit;line-height:1.4;white-space:nowrap}
+.bg{background:#1a6b41;color:#fff}.bg:hover{background:#155534}
+.bw{background:#fff;color:#212529;border-color:#dee2e6}.bw:hover{background:#f8f9fa}
+.bd{background:#dc3545;color:#fff}
+.btn-sm{padding:3px 9px;font-size:11.5px}
+.btn-lk{background:none;border:none;color:#1a6b41;font-size:12.5px;cursor:pointer;padding:2px 4px}
+.btn-lk:hover{text-decoration:underline}
+.bgrp{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.sb{display:flex;justify-content:flex-end;padding:6px 16px;background:#f8f9fa;border-bottom:1px solid #dee2e6}
+.si{padding:4px 18px 4px 24px;font-size:12px;font-weight:500;background:#fff;color:#6c757d;border:1px solid #dee2e6;white-space:nowrap;margin-right:-1px;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%,9px 50%)}
+.si:first-child{clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%);padding-left:12px}
+.si.on{background:#1a6b41;color:#fff;border-color:#1a6b41}
+.si.done{background:#d1e7dd;color:#0a3622;border-color:#badbcc}
+.wf{display:flex;align-items:center;gap:4px;padding:5px 14px;background:#fff8e1;border-bottom:1px solid #ffe082;overflow-x:auto;font-size:11px;flex-wrap:wrap}
+.wf::-webkit-scrollbar{display:none}
+.ws{padding:2px 8px;border-radius:10px;white-space:nowrap;font-weight:600}
+.wd{background:#d1e7dd;color:#0a3622}.wc{background:#1a6b41;color:#fff}.wp{background:#e9ecef;color:#6c757d}
+.wa{color:#adb5bd;font-size:10px}
+.pg{display:none}.pg.on{display:block}
+.srch{display:flex;align-items:center;border:1px solid #dee2e6;border-radius:4px;overflow:hidden;flex:1;max-width:400px;min-width:160px}
+.srch-i{padding:0 9px;color:#6c757d;font-size:14px;border-right:1px solid #dee2e6;height:30px;display:flex;align-items:center}
+.srch input{border:none;outline:none;padding:4px 9px;font-size:13px;flex:1}
+table{width:100%;border-collapse:collapse}
+th{padding:8px 10px;text-align:left;font-size:12.5px;font-weight:400;color:#212529;border-bottom:1px solid #dee2e6;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid #f0f0f0;font-size:12.5px;vertical-align:middle}
+tr.or:hover td{background:#f0f9f4}
+tr.or{cursor:pointer}
+.ocb{width:14px;height:14px;accent-color:#1a6b41;cursor:pointer}
+.ol{color:#1a6b41;cursor:pointer}.ol:hover{text-decoration:underline}
+.tog{width:36px;height:20px;background:#1a6b41;border-radius:10px;display:inline-flex;align-items:center;padding:2px;cursor:pointer}
+.togd{width:16px;height:16px;background:#fff;border-radius:50%;margin-left:auto}
+.oform{padding:16px 20px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.fl{display:flex;align-items:baseline;padding:5px 0;gap:10px;border-bottom:1px solid #f5f5f5}
+.fll{font-size:12.5px;color:#6c757d;min-width:150px;flex-shrink:0}
+.flv{font-size:13px;flex:1}
+.fi{width:100%;border:none;border-bottom:1px solid #dee2e6;outline:none;padding:3px 0;font-size:13px;color:#212529;background:transparent;font-family:inherit}
+.fi:focus{border-bottom-color:#1a6b41}
+.fib{width:100%;border:1px solid #dee2e6;border-radius:4px;outline:none;padding:5px 9px;font-size:13px;color:#212529;background:#fff;font-family:inherit}
+.fib:focus{border-color:#1a6b41;box-shadow:0 0 0 2px rgba(26,107,65,.1)}
+.fis{width:100%;border:none;border-bottom:1px solid #dee2e6;outline:none;padding:3px 0;font-size:13px;background:transparent;font-family:inherit;cursor:pointer;-webkit-appearance:none}
+.onb{margin-top:14px}
+.otabs{display:flex;border-bottom:1px solid #dee2e6;overflow-x:auto}
+.otabs::-webkit-scrollbar{display:none}
+.otab{padding:8px 16px;font-size:12.5px;color:#6c757d;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;flex-shrink:0}
+.otab:hover{color:#212529}.otab.on{color:#1a6b41;border-bottom-color:#1a6b41;font-weight:500}
+.otc{display:none;padding:12px 0}.otc.on{display:block}
+.o2m th{padding:5px 9px;font-size:12px;color:#6c757d;font-weight:400;border-bottom:1px solid #dee2e6;text-align:left}
+.o2m td{padding:5px 9px;font-size:12px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
+.o2m tr:hover td{background:#f0f9f4}
+.o2m tr:last-child td{border-bottom:none}
+.o2a{color:#1a6b41;font-size:13px;cursor:pointer;padding:7px 9px;display:block}.o2a:hover{text-decoration:underline}
+.kg{padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.kc{border:1px solid #dee2e6;border-radius:6px;background:#fff;overflow:hidden;cursor:pointer;transition:.12s}
+.kc:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.kcb{padding:12px}
+.kct{font-weight:600;font-size:13px;margin-bottom:2px}
+.kcr{font-size:11px;color:#6c757d;margin-bottom:7px}
+.kcm{display:flex;gap:10px;font-size:11px;color:#6c757d;margin-bottom:8px;flex-wrap:wrap}
+.kcs{display:flex;align-items:center;justify-content:space-between}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:500;white-space:nowrap}
+.b0{background:#e9ecef;color:#495057}
+.b1{background:#cfe2ff;color:#084298}
+.b2{background:#d1e7dd;color:#0a3622}
+.b3{background:#fff3cd;color:#664d03}
+.b4{background:#f8d7da;color:#842029}
+.b5{background:#cff4fc;color:#055160}
+.b6{background:#e2d9f3;color:#432874}
+.sg{color:#198754;font-weight:600}.sw{color:#e67e00;font-weight:600}.sr{color:#dc3545;font-weight:600}.sm{color:#6c757d}
+/* KPI table full columns */
+.kxt{width:100%;border-collapse:collapse;font-size:11px}
+.kxt th{padding:5px 5px;border:1px solid #dee2e6;font-size:10px;font-weight:600;text-align:center;white-space:nowrap;background:#f8f9fa}
+.kxt td{padding:4px 5px;border:1px solid #dee2e6;vertical-align:middle;font-size:10.5px}
+.kxt .gr td{background:#e8f5f0;font-weight:700;color:#0a3622}
+.kxt .tot{background:#dc3545;color:#fff;font-weight:700}
+.kxt .ki{width:100%;border:none;background:transparent;outline:none;font-size:10px;text-align:center;padding:1px 2px;font-family:inherit}
+.kxt .ki:focus{background:#fff3cd;border-radius:2px}
+.n08{background:#ffeaea;color:#8b0000;font-weight:700;text-align:center}
+.n09{background:#fff7e6;color:#7a3800;font-weight:700;text-align:center}
+.n10{background:#e8f5e9;color:#1b5e20;font-weight:700;text-align:center}
+.n105{background:#e3f2fd;color:#0d47a1;font-weight:700;text-align:center}
+.n11{background:#ede7f6;color:#4a148c;font-weight:700;text-align:center}
+.n12{background:#e0f2f1;color:#004d40;font-weight:700;text-align:center}
+.ntt{background:#fffbe6;text-align:center}
+.nha{background:#e3f2fd;text-align:center}
+.nttk{background:#e8f0fe;text-align:center;color:#1a237e}
+.nttq{background:#e8f0fe;text-align:center;color:#1a237e}
+.nttn{background:#e8f0fe;text-align:center}
+.nkq{background:#ede7f6;color:#4a148c;font-weight:700;text-align:center}
+.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;padding:14px}
+.db-c{background:#fff;border:1px solid #dee2e6;border-radius:6px;padding:13px;text-align:center}
+.db-n{font-size:26px;font-weight:700;line-height:1;margin-bottom:4px}
+.db-l{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#6c757d;font-weight:600}
+.sbar{background:#e9ecef;border-radius:10px;height:8px;overflow:hidden;min-width:60px}
+.sbar-f{height:100%;border-radius:10px}
+.dtbl th{background:#1a6b41;color:#fff;padding:7px 10px;font-size:11.5px;font-weight:500;text-align:center;border:1px solid #155534}
+.dtbl td{padding:7px 10px;border:1px solid #dee2e6;font-size:12.5px;vertical-align:middle}
+.al{display:flex;align-items:flex-start;gap:9px;padding:10px 14px;border-radius:4px;font-size:12.5px;margin-bottom:10px}
+.ai{background:#cfe2ff;color:#084298;border:1px solid #b6d4fe}
+.aw{background:#fff3cd;color:#664d03;border:1px solid #ffecb5}
+.aok{background:#d1e7dd;color:#0a3622;border:1px solid #badbcc}
+.ae{background:#f8d7da;color:#842029;border:1px solid #f5c2c7}
+.mbg{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:9000;display:none;align-items:center;justify-content:center}
+.mbg.show{display:flex}
+.mbox{background:#fff;border-radius:6px;max-width:92vw;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.mh{padding:12px 16px;border-bottom:1px solid #dee2e6;display:flex;align-items:center;justify-content:space-between;background:#f8f9fa}
+.mt2{font-size:14px;font-weight:600}.mx{cursor:pointer;font-size:18px;color:#6c757d}
+.mb{padding:16px}.mf{padding:10px 16px;border-top:1px solid #dee2e6;display:flex;gap:8px;justify-content:flex-end;background:#f8f9fa}
+.card{background:#fff;border:1px solid #dee2e6;border-radius:6px;overflow:hidden}
+.cardh{padding:9px 14px;border-bottom:1px solid #dee2e6;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.cardb{padding:14px}
+.upbox{border:2px dashed #dee2e6;border-radius:4px;padding:22px 16px;text-align:center;background:#f8f9fa;cursor:pointer;transition:.15s}
+.upbox:hover{border-color:#1a6b41;background:#f0f9f4}
+.hr{height:1px;background:#dee2e6;margin:12px 0}
+.fw6{font-weight:600}.tg{color:#1a6b41}.tm2{color:#6c757d}
+.empty-s{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;color:#6c757d;text-align:center}
+@media(max-width:768px){.r2{grid-template-columns:1fr}}
+@media print{.nav,.rolebar,.cp,.tb,.sb,.wf,.btn,.bgrp,.otabs,.al{display:none!important}.pg{display:block!important}.pg:not(.on){display:none!important}}</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-home" onclick="go('dashboard')">🏠</div>
+  <div class="nav-menu">
+    <div class="nm on" onclick="nav(this,'dashboard')">📊 Dashboard</div>
+    <div class="nm" onclick="nav(this,'list')">Bộ đánh giá Hiệu suất</div>
+    <div class="nm" onclick="nav(this,'chiso')">Chỉ số KPI</div>
+    <div class="nm" onclick="nav(this,'loinhac')">Các Lời nhắc đánh giá KPI</div>
+    <div class="nm" onclick="nav(this,'baocao')">Báo cáo</div>
+    <div class="nm" style="border-left:1px solid rgba(255,255,255,.15)" onclick="nav(this,'ky-list')">📅 Kỳ KPI</div>
+    <div class="nm" onclick="nav(this,'phanquyen')">🔐 Phân quyền</div>
+  </div>
+  <div class="nav-r"><div class="av" id="cur-av" onclick="go('phanquyen')">HC</div></div>
+</nav>
+
+<div class="rolebar">
+  <span style="font-weight:600">🎭 Vai trò:</span>
+  <div class="rt on" style="background:#d1e7dd;color:#0a3622" onclick="setRole(this,'HCNS','HC','#0a3622','#d1e7dd')">HCNS</div>
+  <div class="rt" style="background:#e2d9f3;color:#432874" onclick="setRole(this,'TCKT','TC','#432874','#e2d9f3')">TCKT</div>
+  <div class="rt" style="background:#e2d9f3;color:#432874" onclick="setRole(this,'KT_Ng','KT','#432874','#e2d9f3')">KT Ngành</div>
+  <div class="rt" style="background:#cfe2ff;color:#084298" onclick="setRole(this,'DMS','DM','#084298','#cfe2ff')">DMS/ĐVKD</div>
+  <div class="rt" style="background:#fff3cd;color:#664d03" onclick="setRole(this,'KSNB','KS','#664d03','#fff3cd')">KSNB</div>
+  <div class="rt" style="background:#cff4fc;color:#055160" onclick="setRole(this,'DVKH','DV','#055160','#cff4fc')">DVKH</div>
+  <div class="rt" style="background:#e9ecef;color:#212529" onclick="setRole(this,'GD','GĐ','#212529','#e9ecef')">GĐ Đơn vị</div>
+  <div class="rt" style="background:#fff8e1;color:#5d4037" onclick="setRole(this,'BLD','BL','#5d4037','#fff8e1')">Ban LĐ</div>
+  <div class="rt" style="background:#f5f5f5;color:#616161" onclick="setRole(this,'NV','NV','#616161','#f5f5f5')">Nhân viên</div>
+  <span id="role-info" style="font-size:11.5px;font-style:italic;color:#795548;margin-left:6px">→ <strong>HCNS</strong>: Xem tất cả · Tạo/Quản lý kỳ KPI · Import/tạo thủ công bộ KPI (B1) · ✏️ Chỉnh sửa chỉ số KPI · Chốt kỳ</span>
+</div>
+
+
+<div class="pg on" id="pg-dashboard">
+<div class="cp"><div class="bc"><span class="bcc">📊 Dashboard KPI – Tháng 04/2026</span></div>
+<div class="bgrp">
+  <select class="fi" style="width:auto;border:1px solid #dee2e6;border-radius:4px;padding:4px 8px"><option>T04/2026</option><option>T03/2026</option><option>Q1/2026</option></select>
+  <button class="btn bw btn-sm" onclick="doPrint('db')">🖨️ In/PDF</button>
+  <button class="btn bw btn-sm" onclick="doCSV('db')">📥 Xuất CSV</button>
+</div></div>
+<div class="db-grid">
+  <div class="db-c" style="border-top:3px solid #1a6b41"><div class="db-n" style="color:#1a6b41">13</div><div class="db-l">Bộ KPI T04</div></div>
+  <div class="db-c" style="border-top:3px solid #198754"><div class="db-n" style="color:#198754">7</div><div class="db-l">Đã hoàn thành</div></div>
+  <div class="db-c" style="border-top:3px solid #ffc107"><div class="db-n" style="color:#e67e00">4</div><div class="db-l">Đã nộp / Chờ duyệt</div></div>
+  <div class="db-c" style="border-top:3px solid #dc3545"><div class="db-n" style="color:#dc3545">2</div><div class="db-l">Dự thảo / Chưa đủ SL</div></div>
+  <div class="db-c" style="border-top:3px solid #6f42c1"><div class="db-n" style="color:#6f42c1">0.893</div><div class="db-l">Điểm TB toàn CTY</div></div>
+</div>
+<div style="padding:0 14px 14px">
+<div class="card" id="db-tbl">
+<div class="cardh">Kết quả KPI toàn đơn vị – T04/2026 <span style="font-size:11.5px;font-weight:400;color:#6c757d">Click tên → xem chi tiết</span></div>
+<div style="overflow-x:auto">
+<table class="dtbl" style="min-width:820px">
+<thead><tr><th style="text-align:left;min-width:220px">Đơn vị / Người phụ trách</th><th>Cấp</th><th style="min-width:80px">Tổng điểm</th><th>Xếp loại</th><th style="min-width:120px">Biểu đồ (max 1.2)</th><th>DTT (% KH)</th><th>LNST (% KH)</th><th>Trạng thái</th><th></th></tr></thead>
+<tbody>
+<tr><td style="font-weight:600;padding:7px 10px" onclick="go('tgd')" class="tg" style="cursor:pointer">🏢 TGĐ – Tổng Giám đốc</td><td style="text-align:center"><span class="badge b6">C1</span></td><td style="text-align:center;font-size:15px" class="sg fw6">1.108</td><td style="text-align:center"><span class="badge b2">Xuất sắc</span></td><td><div class="sbar"><div class="sbar-f" style="width:92.3%;background:#198754"></div></div></td><td style="text-align:center" class="sg">125.7%</td><td style="text-align:center" class="sg">183.9%</td><td style="text-align:center"><span class="badge b2">✓ Chốt</span></td><td><button class="btn-lk" onclick="go('tgd')">→</button></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px" onclick="go('ptgd')" class="tg" style="cursor:pointer">🏢 PTGĐ TC</td><td style="text-align:center"><span class="badge b6">C1</span></td><td style="text-align:center;font-size:15px" class="sg fw6">1.168</td><td style="text-align:center"><span class="badge b2">Xuất sắc</span></td><td><div class="sbar"><div class="sbar-f" style="width:97.3%;background:#198754"></div></div></td><td style="text-align:center" class="sg">125.7%</td><td style="text-align:center" class="sg">183.9%</td><td style="text-align:center"><span class="badge b2">✓ Chốt</span></td><td><button class="btn-lk" onclick="go('ptgd')">→</button></td></tr>
+<tr style="background:#f8fff8"><td style="font-weight:600;padding:7px 10px" onclick="go('dl')" class="tg" style="cursor:pointer">🌿 NHĐL – PTGĐ kiêm GĐNH ĐL</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sg fw6">1.069</td><td style="text-align:center"><span class="badge b2">Xuất sắc</span></td><td><div class="sbar"><div class="sbar-f" style="width:89.1%;background:#1a6b41"></div></div></td><td style="text-align:center" class="sg">128.7%</td><td style="text-align:center" class="sg">93.7%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('dl')">→</button></td></tr>
+<tr style="background:#f8fff8"><td style="font-weight:600;padding:7px 10px" onclick="go('nah')" class="tg" style="cursor:pointer">📦 NAH – Nguyễn Minh Tân</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sg fw6">1.205</td><td style="text-align:center"><span class="badge b2">Xuất sắc</span></td><td><div class="sbar"><div class="sbar-f" style="width:100%;background:#198754"></div></div></td><td style="text-align:center" class="sg">110.7%</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b2">✓ Chốt</span></td><td><button class="btn-lk" onclick="go('nah')">→</button></td></tr>
+<tr style="background:#f8fff8"><td style="font-weight:600;padding:7px 10px" onclick="go('nae')" class="tg" style="cursor:pointer">📦 NAE – GĐ Đơn vị (C2)</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sg fw6">0.847</td><td style="text-align:center"><span class="badge b3">Gần đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:70.6%;background:#ffc107"></div></div></td><td style="text-align:center" class="sw">90.7%</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('nae')">→</button></td></tr>
+<tr style="background:#f8fff8"><td style="font-weight:600;padding:7px 10px" onclick="go('naec3')" class="tg" style="cursor:pointer">📦 NAE – TKKD (C3)</td><td style="text-align:center"><span class="badge b5">C3</span></td><td style="text-align:center;font-size:15px" class="sg fw6">0.912</td><td style="text-align:center"><span class="badge b3">Gần đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:76%;background:#ffc107"></div></div></td><td style="text-align:center" class="sw">84.5%</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('naec3')">→</button></td></tr>
+<tr style="background:#f8fff8"><td style="font-weight:600;padding:7px 10px" onclick="go('naeasm')" class="tg" style="cursor:pointer">📦 NAE – ASM (C3, 5 người)</td><td style="text-align:center"><span class="badge b5">C3</span></td><td style="text-align:center;font-size:15px" class="sw fw6">0.669 TB</td><td style="text-align:center"><span class="badge b3">Đang xử lý</span></td><td><div class="sbar"><div class="sbar-f" style="width:55.8%;background:#fd7e14"></div></div></td><td style="text-align:center" class="sm">—</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('naeasm')">→</button></td></tr>
+<tr style="background:#fff9f0"><td style="font-weight:600;padding:7px 10px" onclick="go('nao')" class="sw" style="cursor:pointer">🛒 NAO – GĐ KD C2</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sw fw6">0.693</td><td style="text-align:center"><span class="badge b3">Chưa đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:57.8%;background:#fd7e14"></div></div></td><td style="text-align:center" class="sw">94.3%</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('nao')">→</button></td></tr>
+<tr style="background:#fff5f5"><td style="font-weight:600;padding:7px 10px" onclick="go('idt')" class="sr" style="cursor:pointer">⚠️ IDT – Đào Duy Tiến</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sr fw6">0.171</td><td style="text-align:center"><span class="badge b4">Không đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:14.3%;background:#dc3545"></div></div></td><td style="text-align:center" class="sr">42.5%</td><td style="text-align:center" class="sr">−59.4%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td><td><button class="btn-lk" onclick="go('idt')">→</button></td></tr>
+<tr style="background:#fff5f5"><td style="font-weight:600;padding:7px 10px" onclick="go('naa')" class="sr" style="cursor:pointer">⚠️ NAA – GĐ/PGĐ NAA</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sr fw6">0.060</td><td style="text-align:center"><span class="badge b4">Chưa đủ SL</span></td><td><div class="sbar"><div class="sbar-f" style="width:5%;background:#dc3545"></div></div></td><td style="text-align:center" class="sr">—</td><td style="text-align:center" class="sr">—</td><td style="text-align:center"><span class="badge b0">Dự thảo</span></td><td><button class="btn-lk" onclick="go('naa')">→</button></td></tr>
+<tr style="background:#fff5f5"><td style="font-weight:600;padding:7px 10px" onclick="go('nam')" class="sr" style="cursor:pointer">⚠️ NAM – Thái Thị Giang</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center;font-size:15px" class="sr fw6">0.171</td><td style="text-align:center"><span class="badge b4">Không đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:14.3%;background:#dc3545"></div></div></td><td style="text-align:center" class="sr">−29.4%</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b0">Dự thảo</span></td><td><button class="btn-lk" onclick="go('nam')">→</button></td></tr>
+<tr style="background:#f0f9fc"><td style="font-weight:600;padding:7px 10px" onclick="go('admBH')" style="color:#055160;cursor:pointer">🔧 TT DVKH – Admin BH</td><td style="text-align:center"><span class="badge b5">NV</span></td><td style="text-align:center;font-size:15px" class="sg fw6">1.000</td><td style="text-align:center"><span class="badge b2">Đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:83.3%;background:#0dcaf0"></div></div></td><td style="text-align:center" class="sm">—</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b2">✓ Chốt</span></td><td><button class="btn-lk" onclick="go('admBH')">→</button></td></tr>
+<tr style="background:#f0f9fc"><td style="font-weight:600;padding:7px 10px" onclick="go('cskh')" style="color:#055160;cursor:pointer">📞 TT DVKH – TP/TN CSKH</td><td style="text-align:center"><span class="badge b5">NV</span></td><td style="text-align:center;font-size:15px" class="sg fw6">0.950</td><td style="text-align:center"><span class="badge b3">Gần đạt</span></td><td><div class="sbar"><div class="sbar-f" style="width:79.2%;background:#0dcaf0"></div></div></td><td style="text-align:center" class="sm">—</td><td style="text-align:center" class="sm">—</td><td style="text-align:center"><span class="badge b2">✓ Chốt</span></td><td><button class="btn-lk" onclick="go('cskh')">→</button></td></tr>
+<tr style="font-weight:700;background:#e8f5f0"><td style="padding:7px 10px">📊 Tổng / Trung bình</td><td style="text-align:center">13</td><td style="text-align:center;font-size:15px" class="sg">0.893 TB</td><td style="text-align:center"><span class="badge b3">⏳ 72%</span></td><td><div class="sbar"><div class="sbar-f" style="width:74.4%;background:#1a6b41"></div></div></td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center"><span class="badge b3">10/13 xong</span></td><td></td></tr>
+</tbody></table>
+</div></div></div></div>
+
+<div class="pg" id="pg-list">
+<div class="cp"><div class="bc"><span class="bcc">Đánh giá Hiệu suất</span></div>
+<div class="bgrp"><div class="srch"><div class="srch-i">🔍</div><input placeholder="Tìm kiếm..."></div>
+<div style="display:flex;gap:2px"><div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;border-radius:3px;cursor:pointer;background:#1a6b41;color:#fff;font-size:15px">⊞</div><div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #dee2e6;border-radius:3px;cursor:pointer;color:#6c757d;font-size:15px;background:#fff">☰</div></div>
+</div></div>
+<div class="tb"><button class="btn-n" onclick="go('form-new')">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="kg"><div class="kc" onclick="go('tgd')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">Tổng Giám đốc – T04/2026</div><div class="kcr">KPI/04.26/TĐ/001 · TĐ NAG · TGĐ</div>
+<div class="kcm"><span>👤 TGĐ</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b2">Đã chấp thuận</span><span class="sg fw6" style="font-size:16px">1.108</span></div>
+</div></div>
+<div class="kc" onclick="go('ptgd')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">P.TGĐ Tài chính – T04/2026</div><div class="kcr">KPI/04.26/TĐ/002 · TĐ NAG · P.TGĐ TC</div>
+<div class="kcm"><span>👤 P.TGĐ TC</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b2">Đã chấp thuận</span><span class="sg fw6" style="font-size:16px">1.168</span></div>
+</div></div>
+<div class="kc" onclick="go('dl')" style="border-top:3px solid #17a589">
+<div class="kcb"><div class="kct">GĐNH Điện lạnh – T04/2026</div><div class="kcr">KPI/04.26/NHĐL/001 · NH ĐL · PTGĐ kiêm GĐNH ĐL</div>
+<div class="kcm"><span>👤 PTGĐ kiêm GĐNH ĐL</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sg fw6" style="font-size:16px">1.069</span></div>
+</div></div>
+<div class="kc" onclick="go('nah')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">GĐ NAH – T04/2026</div><div class="kcr">KPI/04.26/NAH/C2 · NAH · Nguyễn Minh Tân</div>
+<div class="kcm"><span>👤 Nguyễn Minh Tân</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b2">Đã chấp thuận</span><span class="sg fw6" style="font-size:16px">1.205</span></div>
+</div></div>
+<div class="kc" onclick="go('nae')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">GĐ NAE – T04/2026</div><div class="kcr">KPI/04.26/NAE/C2 · NAE · GĐ Đơn vị</div>
+<div class="kcm"><span>👤 GĐ Đơn vị</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sg fw6" style="font-size:16px">0.847</span></div>
+</div></div>
+<div class="kc" onclick="go('naec3')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">TKKD NAE – T04/2026</div><div class="kcr">KPI/04.26/NAE/C3 · NAE · Thư ký Kinh doanh</div>
+<div class="kcm"><span>👤 Thư ký Kinh doanh</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sg fw6" style="font-size:16px">0.912</span></div>
+</div></div>
+<div class="kc" onclick="go('naeasm')" style="border-top:3px solid #1a6b41">
+<div class="kcb"><div class="kct">NAE ASM – T04/2026 (5 người)</div><div class="kcr">KPI/04.26/NAE/ASM · NAE · ASM KV5-KV6</div>
+<div class="kcm"><span>👤 ASM KV5-KV6</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sw fw6" style="font-size:16px">0.669 TB</span></div>
+</div></div>
+<div class="kc" onclick="go('nao')" style="border-top:3px solid #e67e00">
+<div class="kcb"><div class="kct">GĐ KD NAO – T04/2026</div><div class="kcr">KPI/04.26/NAO/C2 · NAO · GĐ Kinh doanh TMĐT</div>
+<div class="kcm"><span>👤 GĐ Kinh doanh TMĐT</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sw fw6" style="font-size:16px">0.693</span></div>
+</div></div>
+<div class="kc" onclick="go('idt')" style="border-top:3px solid #dc3545">
+<div class="kcb"><div class="kct">GĐ IDT – T04/2026</div><div class="kcr">KPI/04.26/IDT/001 · IDT · Đào Duy Tiến</div>
+<div class="kcm"><span>👤 Đào Duy Tiến</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b1">Đã nộp đánh giá KPI</span><span class="sr fw6" style="font-size:16px">0.171</span></div>
+</div></div>
+<div class="kc" onclick="go('naa')" style="border-top:3px solid #f39c12">
+<div class="kcb"><div class="kct">GĐ/PGĐ NAA – T04/2026</div><div class="kcr">KPI/04.26/NAA/C2 · NAA · GĐ/PGĐ</div>
+<div class="kcm"><span>👤 GĐ/PGĐ</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b0">Dự thảo</span><span class="sr fw6" style="font-size:16px">0.060</span></div>
+</div></div>
+<div class="kc" onclick="go('nam')" style="border-top:3px solid #f39c12">
+<div class="kcb"><div class="kct">GĐ BH NAM – T04/2026</div><div class="kcr">KPI/04.26/NAM/C2 · NAM · Thái Thị Giang</div>
+<div class="kcm"><span>👤 Thái Thị Giang</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b0">Dự thảo</span><span class="sr fw6" style="font-size:16px">0.171</span></div>
+</div></div>
+<div class="kc" onclick="go('admBH')" style="border-top:3px solid #0dcaf0">
+<div class="kcb"><div class="kct">Admin BH NAD – T04/2026</div><div class="kcr">KPI/04.26/DVKH/001 · TT DVKH · Phạm Thị Tường Vy</div>
+<div class="kcm"><span>👤 Phạm Thị Tường Vy</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b2">Đã chấp thuận</span><span class="sg fw6" style="font-size:16px">1.000</span></div>
+</div></div>
+<div class="kc" onclick="go('cskh')" style="border-top:3px solid #0dcaf0">
+<div class="kcb"><div class="kct">TP/TN CSKH – T04/2026</div><div class="kcr">KPI/04.26/DVKH/CSKH · TT DVKH · Trần Thị Hương</div>
+<div class="kcm"><span>👤 Trần Thị Hương</span><span>📅 T04/2026</span></div>
+<div class="kcs"><span class="badge b2">Đã chấp thuận</span><span class="sg fw6" style="font-size:16px">0.950</span></div>
+</div></div>
+</div></div>
+
+<div class="pg" id="pg-form-new">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">Mới</span></div>
+<div class="bgrp"><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="go('list')">Bỏ qua</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất · Mới</span></div>
+<div class="sb"><div class="si on">Dự thảo</div><div class="si">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div>
+<div class="oform">
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" placeholder="(tự động sinh)"></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" placeholder="Chọn nhân viên..."></div>
+<div class="fl"><label class="fll">Vị trí công việc</label><input class="fi" placeholder=""></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option><option>Hàng Quý</option><option>Bán niên</option><option>Năm</option></select></div>
+<div class="fl"><label class="fll">Chỉ số KPI</label><input class="fi" placeholder="Chọn bộ KPI..."></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Người quản lý</label><input class="fi"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi"></div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sm">0,00</span></div>
+</div>
+</div>
+<div class="hr"></div>
+<div style="font-weight:600;margin-bottom:12px">Lập bảng tính KPI (B1) – Chọn cách tạo:</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="card"><div class="cardh">📥 Import từ file Excel</div>
+<div class="cardb">
+<div class="upbox" onclick="this.style.borderColor='#1a6b41'"><div style="font-size:28px;margin-bottom:6px">📥</div><div class="fw6" style="margin-bottom:3px">Kéo thả file hoặc click chọn</div><div class="tm2" style="font-size:12px;margin-bottom:8px">.xlsx · Theo mẫu HCNS quy định (21 cột)</div><button class="btn bw btn-sm" onclick="event.stopPropagation()">Chọn file</button></div>
+<div style="margin-top:8px;font-size:12px;color:#6c757d">File mẫu gồm 21 cột: TT · KPI · ĐVT · 0.8x→1.2x · Thực tế · Hệ số A · TT tháng · TT quý · TT năm · Kết quả · Định nghĩa · Cách tính · Tần suất · ĐVCCDL · KH/Mẫu số · TH/Tử số</div>
+<button class="btn bw btn-sm" style="margin-top:6px">📄 Tải file mẫu</button>
+</div></div>
+<div class="card"><div class="cardh">✏️ Tạo thủ công</div>
+<div class="cardb">
+<div style="font-size:12.5px;color:#6c757d;margin-bottom:10px">Tạo từng tiêu chí KPI trực tiếp. Phù hợp khi điều chỉnh nhỏ.</div>
+<table class="o2m"><thead><tr><th>KPI</th><th>ĐVT</th><th>1x (MT)</th><th>TT tháng</th><th>ĐVCCDL</th><th></th></tr></thead>
+<tbody id="manual-kpi-tbl"></tbody></table>
+<a class="o2a" onclick="addManualRow()" style="font-size:12.5px">+ Thêm chỉ tiêu KPI</a>
+</div></div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on">Các tiêu chí đánh giá KPI</div></div>
+<div class="otc on"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">Trọng số</th><th style="text-align:right">Nhân viên Tự đánh giá</th><th style="text-align:right">Điểm KPI cuối cùng</th></tr></thead><tbody></tbody></table><a class="o2a">Thêm một dòng</a></div></div>
+</div></div>
+
+<div class="pg" id="pg-tgd">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/TĐ/001 – Tổng Giám đốc</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button><button class="btn bw btn-sm" onclick="doPrint('tgd')">🖨️ In/PDF</button><button class="btn bw btn-sm" onclick="doCSV('tgd')">📥 Xuất CSV</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si done">Đã nộp đánh giá KPI</div><div class="si on">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wd">✓ B6 HCNS XN</span><span class="wa">›</span><span class="ws wd">✓ B7 Phê duyệt</span><span class="wa">›</span><span class="ws wc">● B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>TGĐ T04/2026: DTT <strong>125.7%</strong> · LNST <strong>183.9%</strong> · Ngân sách <strong>87.7%</strong> · ĐMX <strong>Hạng 1</strong>. Tổng điểm: <strong>1.108</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/TĐ/001" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Tổng Giám đốc"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="Tập đoàn Nagakawa (NAG)"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">1.108</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tctgd0')">Các tiêu chí đánh giá KPI</div><div class="otab" onclick="stab(this,'tctgd1')">📊 Bảng tính KPI đầy đủ</div><div class="otab" onclick="stab(this,'tctgd2')">📋 Lịch sử</div></div><div class="otc on" id="tctgd0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT theo KH</td><td>TCKT · 360.2/286.5 tỷ · 125.7%</td><td style="text-align:right">46.15%</td><td style="text-align:right">30.77%</td><td style="text-align:right">30%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.554</td></tr><tr><td>DTT Ngành mới</td><td>TCKT · 6.3% KH</td><td style="text-align:right">7.69%</td><td style="text-align:right">7.69%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sr">0</td><td style="text-align:right" class="sr fw6">0</td></tr><tr><td>LNST theo KH</td><td>TCKT · 14.0/7.6 tỷ · 184%</td><td style="text-align:right">30.77%</td><td style="text-align:right">23.08%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.369</td></tr><tr><td>Ngân sách TĐ</td><td>TCKT · 87.7% (giảm=tốt)</td><td style="text-align:right">7.69%</td><td style="text-align:right">7.69%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.092</td></tr><tr><td>Xếp hạng ĐMX</td><td>NH · Hạng 1</td><td style="text-align:right">7.69%</td><td style="text-align:right">0%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.092</td></tr><tr><td>KPI theo Quý/BN</td><td>DVKH · KSNB · HCNS</td><td style="text-align:right">0%</td><td style="text-align:right">30.77%</td><td style="text-align:right">35%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">1.108</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">1.108</span></div></div><div class="otc" id="tctgd1"><div style="overflow-x:auto"><table class="kxt" style="min-width:1500px">
+<thead>
+<tr>
+  <th rowspan="2" style="width:28px">TT</th>
+  <th rowspan="2" style="min-width:200px;text-align:left;background:#fff">KPI</th>
+  <th rowspan="2" style="width:42px">ĐVT</th>
+  <th class="n08">Dưới ngưỡng (0.8x)</th>
+  <th class="n09">Dưới ngưỡng (0.9x)</th>
+  <th class="n10">Mục tiêu (1x)</th>
+  <th class="n105">Vượt ngưỡng (1.05x)</th>
+  <th class="n11">Vượt ngưỡng (1.1x)</th>
+  <th class="n12">Vượt ngưỡng (1.2x)</th>
+  <th class="ntt" rowspan="2" style="min-width:60px">Thực tế</th>
+  <th class="nha" rowspan="2" style="min-width:50px">Hệ số kết quả (A)</th>
+  <th class="nttk" rowspan="2" style="min-width:55px">Tỷ trọng theo tháng</th>
+  <th class="nttq" rowspan="2" style="min-width:52px">Tỷ trọng theo quý</th>
+  <th class="nttn" rowspan="2" style="min-width:52px">Tỷ trọng theo năm</th>
+  <th class="nkq" rowspan="2" style="min-width:60px">Kết quả (A*B)</th>
+  <th rowspan="2" style="min-width:160px;background:#fff">Định nghĩa</th>
+  <th rowspan="2" style="min-width:130px;background:#fff">Cách tính</th>
+  <th rowspan="2" style="width:58px;background:#fff">Tần suất</th>
+  <th rowspan="2" style="width:65px;background:#fff">ĐV cung cấp dữ liệu</th>
+  <th rowspan="2" style="min-width:90px;background:#fff">Kế hoạch/Mẫu số</th>
+  <th rowspan="2" style="min-width:90px;background:#fff">Thực hiện/Tử số</th>
+</tr>
+<tr style="font-size:9px">
+  <th class="n08"></th><th class="n09"></th><th class="n10"></th>
+  <th class="n105"></th><th class="n11"></th><th class="n12"></th>
+</tr>
+</thead><tbody><tr class="gr"><td colspan="9" style="font-size:11px">I. Tài chính</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">100%</td><td class="nttq" style="color:#1a6b41;font-size:10px">76.9%</td><td class="nttn" style="color:#1a6b41;font-size:10px">60%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">1</td><td>Tỷ lệ hoàn thành DTT theo kế hoạch</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sg"><b>125.7%</b></td>
+<td class="nha"><input class="ki" value="1.2"></td>
+<td class="nttk"><input class="ki" value="46.15%"></td>
+<td class="nttq"><input class="ki" value="30.77%"></td>
+<td class="nttn"><input class="ki" value="30%"></td>
+<td class="nkq sg">0.554</td>
+<td style="font-size:9.5px">DTT từ hoạt động bán hàng</td><td style="font-size:9.5px">TH/KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="286,500,020,515"></td>
+<td><input class="ki" value="360,187,845,194"></td>
+</tr><tr>
+<td style="text-align:center">2</td><td>DTT Ngành mới</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sr"><b>6.3%</b></td>
+<td class="nha"><input class="ki" value="0"></td>
+<td class="nttk"><input class="ki" value="7.69%"></td>
+<td class="nttq"><input class="ki" value="7.69%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sr">0</td>
+<td style="font-size:9.5px">DTT ngành hàng mới</td><td style="font-size:9.5px">TH/KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="1,841,255,000"></td>
+<td><input class="ki" value="116,727,255"></td>
+</tr><tr>
+<td style="text-align:center">3</td><td>Tỷ lệ hoàn thành LNST</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sg"><b>184.0%</b></td>
+<td class="nha"><input class="ki" value="1.2"></td>
+<td class="nttk"><input class="ki" value="30.77%"></td>
+<td class="nttq"><input class="ki" value="23.08%"></td>
+<td class="nttn"><input class="ki" value="20%"></td>
+<td class="nkq sg">0.369</td>
+<td style="font-size:9.5px">LNST từ HĐKD</td><td style="font-size:9.5px">LNST TH/LNST KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="7,635,564,330"></td>
+<td><input class="ki" value="14,047,496,706"></td>
+</tr><tr>
+<td style="text-align:center">4</td><td>Tỷ lệ thực hiện ngân sách TĐ (giảm=tốt)</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">120</td><td class="n09" contenteditable="true">110</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">95</td>
+<td class="n11" contenteditable="true">90</td><td class="n12" contenteditable="true">80</td>
+<td class="ntt sg"><b>87.7%</b></td>
+<td class="nha"><input class="ki" value="1.2"></td>
+<td class="nttk"><input class="ki" value="7.69%"></td>
+<td class="nttq"><input class="ki" value="7.69%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sg">0.092</td>
+<td style="font-size:9.5px">Tỷ lệ chi phí/Ngân sách</td><td style="font-size:9.5px">TH/KH*100</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="12.2%"></td>
+<td><input class="ki" value="10.7%"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">II. Khách hàng</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">0%</td><td class="nttn" style="color:#1a6b41;font-size:10px">15%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">5</td><td>Xếp hạng sản lượng NAG trên ĐMX</td><td style="text-align:center">Điểm</td>
+<td class="n08" contenteditable="true">6</td><td class="n09" contenteditable="true">5</td>
+<td class="n10" contenteditable="true">4</td><td class="n105" contenteditable="true">3</td>
+<td class="n11" contenteditable="true">2</td><td class="n12" contenteditable="true">1</td>
+<td class="ntt sg"><b>Hạng 1</b></td>
+<td class="nha"><input class="ki" value="1.2"></td>
+<td class="nttk"><input class="ki" value="7.69%"></td>
+<td class="nttq"><input class="ki" value="0%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sg">0.092</td>
+<td style="font-size:9.5px">Xếp hạng thực tế trên hệ thống ĐMX</td><td style="font-size:9.5px">Hạng thực tế</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">NH</td>
+<td><input class="ki" value="Hạng 1"></td>
+<td><input class="ki" value="Hạng 1"></td>
+</tr><tr>
+<td style="text-align:center">6</td><td>Tỷ lệ hài lòng KH dịch vụ bảo hành</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">70</td><td class="n09" contenteditable="true">80</td>
+<td class="n10" contenteditable="true">90</td><td class="n105" contenteditable="true">100</td>
+<td class="n11" contenteditable="true">—</td><td class="n12" contenteditable="true">—</td>
+<td class="ntt sm"><b>Quý</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="0%"></td>
+<td class="nttn"><input class="ki" value="10%"></td>
+<td class="nkq sm">0</td>
+<td style="font-size:9.5px">Hài lòng về DVBH</td><td style="font-size:9.5px">Số KH hài lòng/Tổng KH*100</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">DVKH</td>
+<td><input class="ki" value="90%"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">III. Vận hành & QTNB</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">0%</td><td class="nttn" style="color:#1a6b41;font-size:10px">10%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">7</td><td>KQ CT Naga thay đổi</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">50</td><td class="n09" contenteditable="true">60</td>
+<td class="n10" contenteditable="true">70</td><td class="n105" contenteditable="true">80</td>
+<td class="n11" contenteditable="true">90</td><td class="n12" contenteditable="true">100</td>
+<td class="ntt sm"><b>Bán niên</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="0%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sm">0</td>
+<td style="font-size:9.5px">KQ chương trình Naga thay đổi</td><td style="font-size:9.5px">TH/KH*100</td>
+<td style="text-align:center;font-size:10.5px">Bán niên</td>
+<td style="font-size:10.5px">KSNB</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr>
+<td style="text-align:center">8</td><td>Tỷ lệ hoàn thành đợt kiểm soát</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">85</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">95</td><td class="n105" contenteditable="true">100</td>
+<td class="n11" contenteditable="true">—</td><td class="n12" contenteditable="true">—</td>
+<td class="ntt sm"><b>Quý</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="0%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sm">0</td>
+<td style="font-size:9.5px">Đợt kiểm soát định kỳ</td><td style="font-size:9.5px">TH/KH*100</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">KSNB</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">IV. Học hỏi & PTNL</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">23.08%</td><td class="nttn" style="color:#1a6b41;font-size:10px">15%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">9</td><td>Tỷ lệ CBNV hoàn thành ĐT</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">85</td>
+<td class="n10" contenteditable="true">90</td><td class="n105" contenteditable="true">100</td>
+<td class="n11" contenteditable="true">—</td><td class="n12" contenteditable="true">—</td>
+<td class="ntt sm"><b>Quý</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="5%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sm">0</td>
+<td style="font-size:9.5px">CBNV đạt TB 8đ kiểm tra</td><td style="font-size:9.5px">NS HT/Tổng NS*100</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">HCNS</td>
+<td><input class="ki" value="90%"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr>
+<td style="text-align:center">10</td><td>Tỷ lệ CBQL hoàn thành ĐT</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">60</td><td class="n09" contenteditable="true">70</td>
+<td class="n10" contenteditable="true">80</td><td class="n105" contenteditable="true">90</td>
+<td class="n11" contenteditable="true">100</td><td class="n12" contenteditable="true">—</td>
+<td class="ntt sm"><b>Quý</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="10%"></td>
+<td class="nttn"><input class="ki" value="10%"></td>
+<td class="nkq sm">0</td>
+<td style="font-size:9.5px">CBQL đạt TB 8đ kiểm tra</td><td style="font-size:9.5px">CBQL HT/Tổng CBQL*100</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">HCNS</td>
+<td><input class="ki" value="80%"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="tot"><td colspan="9" style="padding:6px 10px;text-align:right">Tổng</td><td class="ntt"></td><td class="nha"></td><td class="nttk">100%</td><td class="nttq">100%</td><td class="nttn">100%</td><td class="nkq" style="font-size:14px">1.108</td><td colspan="6"></td></tr></tbody></table></div><div style="margin-top:8px;padding:8px 12px;background:#fff8e1;border:1px solid #ffe082;border-radius:4px;font-size:11.5px;color:#5d4037"><strong>💡 HCNS:</strong> Click vào ô ngưỡng (nền màu) để chỉnh sửa trực tiếp. Nhập số liệu vào cột KH/TH. &nbsp;<button class="btn bg btn-sm" onclick="alert('✅ Đã lưu thay đổi!')">💾 Lưu</button></div></div><div class="otc" id="tctgd2"><table class="o2m"><thead><tr><th>Thời gian</th><th>Người TH</th><th>ĐVCCDL</th><th>Hành động</th><th>Ghi chú</th></tr></thead><tbody><tr><td>02/04</td><td>HCNS</td><td>HCNS</td><td><span class="badge b1">Import KH v1.0</span></td><td>Bộ KPI TGĐ T04/2026</td></tr><tr><td>05/05</td><td>TCKT</td><td>TCKT</td><td><span class="badge b2">Import SL</span></td><td>DTT=360.2 tỷ · LNST=14 tỷ</td></tr><tr><td>06/05</td><td>NH</td><td>NH</td><td><span class="badge b2">XN ĐMX</span></td><td>Hạng 1</td></tr></tbody></table></div></div>
+<div style="border-top:1px solid #dee2e6;padding:14px 20px;background:#fafbfc;margin:0 -20px -16px">
+<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#6c757d;margin-bottom:10px">Nhật ký & Trao đổi</div>
+<div style="display:flex;gap:10px;margin-bottom:10px">
+  <div style="width:30px;height:30px;border-radius:50%;background:#1a6b41;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">HC</div>
+  <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:7px 11px;flex:1">
+    <span style="font-weight:600;font-size:12px">HCNS – Nguyễn Thị A</span><span style="font-size:10.5px;color:#6c757d;margin-left:8px">02/04/2026</span>
+    <div style="font-size:12.5px;margin-top:3px">Đã import kế hoạch KPI T04/2026. Các ĐVCCDL vui lòng upload số liệu trước 30/05/2026.</div>
+  </div>
+</div>
+<div style="display:flex;gap:10px">
+  <div style="width:30px;height:30px;border-radius:50%;background:#6f42c1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">TC</div>
+  <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:7px 11px;flex:1">
+    <span style="font-weight:600;font-size:12px">TCKT – Trần Văn B</span><span style="font-size:10.5px;color:#6c757d;margin-left:8px">05/05/2026</span>
+    <div style="font-size:12.5px;margin-top:3px">Đã xác nhận số liệu tài chính T04/2026.</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="pg" id="pg-ptgd">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/TĐ/002 – P.TGĐ phụ trách TC</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si done">Đã nộp đánh giá KPI</div><div class="si on">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wd">✓ B6 HCNS XN</span><span class="wa">›</span><span class="ws wd">✓ B7 Phê duyệt</span><span class="wa">›</span><span class="ws wc">● B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>P.TGĐ TC: DTT 125.7% · LNST 183.9% · Ngân sách 87.7% · Tồn kho 98.6% · Công nợ QH 6.2%. Tổng: <strong>1.168</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/TĐ/002" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="P.TGĐ phụ trách TC"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="Tập đoàn NAG"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">1.168</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcptgd0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcptgd0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT + LNST</td><td>TCKT · 125.7% / 183.9%</td><td style="text-align:right">46%</td><td style="text-align:right">31%</td><td style="text-align:right">25%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.647</td></tr><tr><td>Ngân sách TĐ</td><td>TCKT · 87.7% (giảm=tốt)</td><td style="text-align:right">8%</td><td style="text-align:right">8%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.096</td></tr><tr><td>Tồn kho, Công nợ QH</td><td>TCKT · Đạt ngưỡng</td><td style="text-align:right">15%</td><td style="text-align:right">0%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.216</td></tr><tr><td>KPI Quý/BN</td><td>Các đơn vị · Theo chu kỳ</td><td style="text-align:right">0%</td><td style="text-align:right">23%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">1.168</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">1.168</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-dl">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NHĐL/001 – PTGĐ kiêm GĐNH Điện lạnh</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wc">● B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>NHĐL: DTT <strong>128.7%</strong> (274→352 tỷ) · Sell-out <strong>94.9%</strong> (38,842/40,949 sp) · LN gộp 93.7% · Công nợ QH 5.86% → 1.2x. Tổng: <strong>1.069</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NHĐL/001" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="PTGĐ kiêm GĐNH Điện lạnh"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NH Điện lạnh"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">1.069</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcdl0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcdl0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT NH Điện lạnh</td><td>TCKT · 128.7% · 274→352 tỷ</td><td style="text-align:right">50%</td><td style="text-align:right">0%</td><td style="text-align:right">40%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.600</td></tr><tr><td>Sell-out sản lượng</td><td>DMS · 94.9% · 38,842/40,949 sp</td><td style="text-align:right">12.5%</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.113</td></tr><tr><td>LN gộp</td><td>TCKT · 93.7% KH</td><td style="text-align:right">31.25%</td><td style="text-align:right">0%</td><td style="text-align:right">25%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.281</td></tr><tr><td>Công nợ QH</td><td>TCKT · 5.86% (KH 30%) → 1.2x</td><td style="text-align:right">6.25%</td><td style="text-align:right">0%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.075</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">1.069</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">1.069</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-nah">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAH/C2 – Nguyễn Minh Tân – GĐ NAH</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si done">Đã nộp đánh giá KPI</div><div class="si on">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wd">✓ B6 HCNS XN</span><span class="wa">›</span><span class="ws wd">✓ B7 Phê duyệt</span><span class="wa">›</span><span class="ws wc">● B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>NAH: DTT <strong>110.7%</strong> (52.2→57.8 tỷ) · Chi phí 87.7% KH → 1.2x · CSKH C2 key <strong>130%</strong> (13/10). Tổng: <strong>1.205</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAH/C2" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Nguyễn Minh Tân – GĐ NAH"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAH – Nagakawa Miền Trung GT ĐH"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">1.205</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnah0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnah0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT GT Điều hòa Sell-in</td><td>TCKT · 110.7% · 52.2→57.8 tỷ</td><td style="text-align:right">60%</td><td style="text-align:right">0%</td><td style="text-align:right">45%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.720</td></tr><tr><td>Tỷ lệ hoàn thành chi phí</td><td>TCKT · 87.7% KH (giảm=tốt)</td><td style="text-align:right">6.67%</td><td style="text-align:right">0%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.080</td></tr><tr><td>Chăm sóc KH C2 key</td><td>DMS/ĐVKD · 130% · 13/10 lượt</td><td style="text-align:right">20%</td><td style="text-align:right">0%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.240</td></tr><tr><td>Hàng trả thưởng / Hàng kém CL</td><td>TCKT · T+30 / Quý</td><td style="text-align:right">0%</td><td style="text-align:right">0%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr><td>Số giờ giảng dạy / CBNV ĐT</td><td>HCNS · Quý</td><td style="text-align:right">0%</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">1.205</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">1.205</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-nae">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAE/C2 – GĐ Đơn vị NAE</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wc">● B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="ai al"><span>ℹ️</span><div>NAE: DTT <strong>90.7%</strong> KH (5.33/5.88 tỷ → A=0.9) · Mở mới bao phủ <strong>112.3%</strong> (64/60 → A=1.2). Tổng: <strong>0.847</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAE/C2" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="GĐ Đơn vị NAE"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAE – Nagakawa Đông Nam Bộ"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">0.847</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnae0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnae0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT Sell-in</td><td>TCKT · 90.7% · 5.33/5.88 tỷ</td><td style="text-align:right">40%</td><td style="text-align:right">0%</td><td style="text-align:right">40%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.360</td></tr><tr><td>Mở mới bao phủ điểm bán</td><td>DMS · 112.3% · 64/60 điểm</td><td style="text-align:right">20%</td><td style="text-align:right">0%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.240</td></tr><tr><td>Số giờ đào tạo / CBNV ĐT</td><td>HCNS · Quý</td><td style="text-align:right">0%</td><td style="text-align:right">0%</td><td style="text-align:right">15%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">0.847</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">0.847</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-naec3">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAE/C3 – Thư ký Kinh doanh NAE</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wc">● B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wp">B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="ai al"><span>ℹ️</span><div>TKKD NAE: DS GD+Bếp 84.5% → A=0.8 · Công nợ QH 18.3% (KH 35%) → A=1.2 · Giao hàng 100% · Nhiệm vụ đúng hạn 91.3%. Tổng: <strong>0.912</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAE/C3" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Thư ký Kinh doanh NAE"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAE"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">0.912</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnaec30')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnaec30"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT GD+Bếp</td><td>TCKT · 84.5% KH</td><td style="text-align:right">47%</td><td style="text-align:right">40%</td><td style="text-align:right">40%</td><td style="text-align:right" class="sw">0.8</td><td style="text-align:right" class="sw fw6">0.376</td></tr><tr><td>Công nợ QH</td><td>TCKT · 18.3% (KH 35%) → 1.2x</td><td style="text-align:right">6%</td><td style="text-align:right">5%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.071</td></tr><tr><td>Giao hàng đúng hạn</td><td>Bravo · 100%</td><td style="text-align:right">23%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.235</td></tr><tr><td>Hoàn thành nhiệm vụ đúng hạn</td><td>ERP/ĐVKD · 91.3%</td><td style="text-align:right">12%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.106</td></tr><tr><td>Lỗi nghiệp vụ</td><td>ĐVKD/HCNS/TCKT · 1 lỗi</td><td style="text-align:right">12%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sg">1.05</td><td style="text-align:right" class="sg fw6">0.124</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">0.912</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">0.912</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-nao">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAO/C2 – GĐ KD NAO</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wc">● B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aw al"><span>⚠️</span><div>NAO: DTT <strong>94.3%</strong> KH (3.99/4.24 tỷ → A=0.9) · Chiến dịch BH <strong>176%</strong> (528,097/300,000 → A=1.2). Tổng: <strong>0.693</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAO/C2" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="GĐ KD NAO"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAO – Nagakawa Online"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sw" style="font-size:18px;font-weight:700">0.693</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnao0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnao0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT theo KH</td><td>TCKT · 94.3% · 3.99/4.24 tỷ</td><td style="text-align:right">46.67%</td><td style="text-align:right">40%</td><td style="text-align:right">40%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.420</td></tr><tr><td>Chiến dịch bán hàng</td><td>ĐVKD · 176% · 528,097/300,000 lượt</td><td style="text-align:right">6.67%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.080</td></tr><tr><td>Số giờ đào tạo / CBNV ĐT</td><td>HCNS · Quý</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sw fw6">0.693</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sw fw6" style="font-size:16px">0.693</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-naa">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAA/C2 – GĐ/PGĐ NAA</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si on">Dự thảo</div><div class="si">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wc">● B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wp">B3 TCKT XN</span><span class="wa">›</span><span class="ws wp">B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wp">B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aw al"><span>⚠️</span><div>NAA: DTT và LNST chưa có số liệu (chờ TCKT). Tồn kho 60 ngày. Điểm hiện tại: <strong class="sr">0.060</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAA/C2" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="GĐ/PGĐ NAA"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAA – Nagakawa Miền Bắc"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sr" style="font-size:18px;font-weight:700">0.060</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnaa0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnaa0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT Sell-in</td><td>Chờ TCKT</td><td style="text-align:right">40%</td><td style="text-align:right">40%</td><td style="text-align:right">40%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr><td>LNST</td><td>Chờ TCKT</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr><td>Tồn kho BQ (giảm=tốt)</td><td>TCKT · 60 ngày</td><td style="text-align:right">10%</td><td style="text-align:right">5%</td><td style="text-align:right">5%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.060</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sr fw6">0.060</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sr fw6" style="font-size:16px">0.060</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-nam">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAM/C2 – Thái Thị Giang – GĐ BH NAM</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si on">Dự thảo</div><div class="si">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wc">● B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wp">B3 TCKT XN</span><span class="wa">›</span><span class="ws wp">B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wp">B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aw al"><span>⚠️</span><div>NAM: DTT âm (−587 tr / KH 2 tỷ → A=0) · DTT nhóm hàng TĐ <strong>122.8%</strong> (368/300 tr → A=1.2). Tổng: <strong class="sr">0.171</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/NAM/C2" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Thái Thị Giang – GĐ BH NAM"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="NAM – Nagakawa Miền Nam"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sr" style="font-size:18px;font-weight:700">0.171</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnam0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcnam0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT Sell-in</td><td>TCKT · −29.4% KH · âm 587 tr</td><td style="text-align:right">85.71%</td><td style="text-align:right">70%</td><td style="text-align:right">70%</td><td style="text-align:right" class="sr">0</td><td style="text-align:right" class="sr fw6">0</td></tr><tr><td>DTT nhóm hàng TĐ</td><td>TCKT · 122.8% · 368/300 tr</td><td style="text-align:right">14.29%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.171</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sr fw6">0.171</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sr fw6" style="font-size:16px">0.171</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-admBH">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/DVKH/001 – Phạm Thị Tường Vy – Admin BH NAD</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si done">Đã nộp đánh giá KPI</div><div class="si on">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wd">✓ B6 HCNS XN</span><span class="wa">›</span><span class="ws wd">✓ B7 Phê duyệt</span><span class="wa">›</span><span class="ws wc">● B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>Admin BH: Ca BH đúng TC 86.2% · Đáp ứng VTLK 100% · Hoàn thành CN LK+HH 100%. Thưởng SL: 570,000 VND. Tổng: <strong>1.000</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/DVKH/001" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Phạm Thị Tường Vy – Admin BH NAD"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="TT DVKH – P.Dịch vụ Bảo hành NAD"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">1.000</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcadmBH0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tcadmBH0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>Ca BH đúng tiêu chuẩn SLA</td><td>DVKH · 3,497/4,105 · 86.2%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.188</td></tr><tr><td>Thiếu linh kiện cục bộ</td><td>DVKH · 0/119 đơn · 0%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.188</td></tr><tr><td>Đáp ứng đơn VTLK & HH BH</td><td>TCKT · 119/119 · 100%</td><td style="text-align:right">43.75%</td><td style="text-align:right">43.75%</td><td style="text-align:right">43.75%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.438</td></tr><tr><td>Hoàn thành CN LK+HH trạm BHUQ</td><td>TCKT · 100%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right">18.75%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.188</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">1.000</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">1.000</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-cskh">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/DVKH/CSKH – Trần Thị Hương / Khúc Hồng Chiên – TP/TN CSKH</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si done">Đã nộp đánh giá KPI</div><div class="si on">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wd">✓ B5 Thẩm định</span><span class="wa">›</span><span class="ws wd">✓ B6 HCNS XN</span><span class="wa">›</span><span class="ws wd">✓ B7 Phê duyệt</span><span class="wa">›</span><span class="ws wc">● B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="aok al"><span>✅</span><div>CSKH: Tiếp nhận 96.2% · Xử lý khiếu nại 88% (A=0.9) · Tư vấn 62.5% · Điểm tác phong 9.05 (A=0.9). Tổng: <strong>0.950</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/DVKH/CSKH" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Trần Thị Hương / Khúc Hồng Chiên – TP/TN CSKH"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="TT DVKH – Phòng CSKH"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sg" style="font-size:18px;font-weight:700">0.950</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tccskh0')">Các tiêu chí đánh giá KPI</div></div><div class="otc on" id="tccskh0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>Cuộc gọi tiếp nhận thành công</td><td>DVKH · 5,237/5,443 · 96.2%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.200</td></tr><tr><td>Xử lý khiếu nại đúng 4h</td><td>DVKH · 66/75 · 88%</td><td style="text-align:right">30%</td><td style="text-align:right">30%</td><td style="text-align:right">30%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.270</td></tr><tr><td>Tỷ lệ tư vấn thành công</td><td>DVKH · 192/307 · 62.5%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.200</td></tr><tr><td>Điểm tác phong CSKH</td><td>DVKH · 9.05/9.5</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right">20%</td><td style="text-align:right" class="sw">0.9</td><td style="text-align:right" class="sw fw6">0.180</td></tr><tr><td>Ca BH đúng tiêu chuẩn</td><td>DVKH · 3,497/4,105 · 85.2%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sg">1.0</td><td style="text-align:right" class="sg fw6">0.100</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sg fw6">0.950</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Điểm trung bình:</span><span class="sg fw6" style="font-size:16px">0.950</span></div></div></div>
+</div>
+</div>
+<div class="pg" id="pg-naeasm">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/NAE/ASM – Giám sát Kinh doanh NAE (5 người)</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('mapprove')">✅ Phê duyệt</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất – NAE ASM T04/2026</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wc">● B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wp">B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcnaeasm0')">Kết quả nhóm ASM</div></div><div class="otc on" id="tcnaeasm0"><div class="ai al"><span>ℹ️</span><div>NAE ASM T04/2026 – 5 ASM · 7 KPI · TT: DS GD 30% · DS TBNB 30% · SP TT 10% · Mở mới 10% · Viếng thăm 10% · CBNV HT ĐT 5% · Điểm ĐT 5%. Điểm TB: <strong class="sw">0.669</strong></div></div>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:11.5px;min-width:880px">
+<thead><tr style="background:#1a6b41;color:#fff">
+  <th style="padding:6px 8px;border:1px solid #155534">Họ & Tên</th>
+  <th style="padding:6px 8px;border:1px solid #155534">KV</th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">DS GD<br><small>(30%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">DS TBNB<br><small>(30%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">SP TT<br><small>(10%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">Mở mới<br><small>(10%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">Viếng thăm<br><small>(10%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">CBNV HT ĐT<br><small>(5%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;text-align:center">Điểm ĐT<br><small>(5%)</small></th>
+  <th style="padding:6px 8px;border:1px solid #155534;background:#d1e7dd;color:#0a3622;text-align:center">Tổng điểm</th>
+</tr></thead><tbody>
+  <tr style="border-bottom:1px solid #dee2e6"><td style="padding:5px 8px">Đoàn Bình Duy</td><td style="padding:5px 8px">KV5</td><td style="text-align:center" class="sr">A=0 (78.9%)</td><td style="text-align:center" class="sr">A=0 (47.5%)</td><td style="text-align:center" class="sr">A=0 (30.8%)</td><td style="text-align:center" class="sg">A=1.2 (133%)</td><td style="text-align:center" class="sw">A=0.9 (80%)</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center">A=1.1</td><td style="text-align:center;font-weight:700" class="sr">0.325</td></tr>
+  <tr style="border-bottom:1px solid #dee2e6"><td style="padding:5px 8px">Nguyễn Văn Khánh</td><td style="padding:5px 8px">KV6</td><td style="text-align:center" class="sw">A=0.9</td><td style="text-align:center" class="sg">A=1.2 (173%)</td><td style="text-align:center" class="sg">A=1.2 (131%)</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center">A=1.1</td><td style="text-align:center;font-weight:700" class="sg">0.985</td></tr>
+  <tr style="border-bottom:1px solid #dee2e6"><td style="padding:5px 8px">Lê Văn Sơn</td><td style="padding:5px 8px">KV6</td><td style="text-align:center" class="sg">A=1.2 (167%)</td><td style="text-align:center">A=1.1 (107%)</td><td style="text-align:center" class="sg">A=1.2 (151%)</td><td style="text-align:center" class="sg">A=1.0</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center;font-weight:700" class="sg">1.150</td></tr>
+  <tr style="border-bottom:1px solid #dee2e6"><td style="padding:5px 8px">Phạm Như Cương</td><td style="padding:5px 8px">KV6</td><td style="text-align:center" class="sw">A=0.8</td><td style="text-align:center" class="sw">A=0.8</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center" class="sg">A=1.2</td><td style="text-align:center">A=1.05</td><td style="text-align:center;font-weight:700" class="sw">0.833</td></tr>
+  <tr style="border-bottom:1px solid #dee2e6"><td style="padding:5px 8px">Vũ Việt Đức</td><td style="padding:5px 8px">KV6</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center" class="sr">A=0</td><td style="text-align:center">A=1.05</td><td style="text-align:center;font-weight:700" class="sr">0.053</td></tr>
+  <tr style="font-weight:700;background:#e8f5f0"><td colspan="9" style="padding:6px 8px;text-align:right;color:#6c757d">Điểm TB nhóm ASM:</td><td style="text-align:center;padding:6px 8px" class="sw">0.669</td></tr>
+</tbody></table></div></div></div>
+</div>
+</div>
+
+<div class="pg" id="pg-idt">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('list')">Đánh giá Hiệu suất</span><span class="bcs">›</span><span class="bcc">KPI/04.26/IDT/001 – Đào Duy Tiến</span></div>
+<div class="bgrp"><button class="btn bw" onclick="go('list')">← Quay lại</button><button class="btn bg" onclick="showM('msub')">Đã nộp đánh giá KPI</button><button class="btn bw" onclick="showM('mapprove')">✅ Phê duyệt</button><button class="btn bw" onclick="showM('mrefuse')">↩ Trả lại</button><button class="btn bw btn-sm" onclick="doPrint('idt')">🖨️ In/PDF</button><button class="btn bw btn-sm" onclick="doCSV('idt')">📥 Xuất CSV</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Đánh giá Hiệu suất</span></div>
+<div class="sb"><div class="si done">Dự thảo</div><div class="si on">Đã nộp đánh giá KPI</div><div class="si">Đã chấp thuận</div></div><div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span><span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wd">✓ B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wd">✓ B3 TCKT XN</span><span class="wa">›</span><span class="ws wd">✓ B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wc">● B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span></div>
+<div class="oform">
+<div class="ae al"><span>⚠️</span><div>IDT T04/2026: DTT chỉ <strong>42.5%</strong> KH · LNST âm <strong>−59.4%</strong> KH → A=0 cả hai. Duy nhất nợ xấu <strong>2.55%</strong> (KH 5%) → A=1.2. Tổng điểm: <strong class="sr">0.171</strong></div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tham chiếu</label><input class="fi" value="KPI/04.26/IDT/001" readonly></div>
+<div class="fl"><label class="fll">Nhân viên</label><input class="fi" value="Đào Duy Tiến – Phó Giám đốc"></div>
+<div class="fl"><label class="fll">Phòng ban đơn vị</label><input class="fi" value="IDT – Công ty ĐTPT Kỹ thuật Nagakawa"></div>
+<div class="fl"><label class="fll">Kỳ đánh giá KPI</label><select class="fis"><option>Hàng tháng</option></select></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày Bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+<div class="fl"><label class="fll">Điểm trung bình</label><span class="flv sr" style="font-size:18px;font-weight:700">0.171</span></div>
+</div>
+</div>
+<div class="onb"><div class="otabs"><div class="otab on" onclick="stab(this,'tcidt0')">Các tiêu chí đánh giá KPI</div><div class="otab" onclick="stab(this,'tcidt1')">📊 Bảng tính KPI đầy đủ [đúng chuẩn Excel]</div><div class="otab" onclick="stab(this,'tcidt2')">📋 Lịch sử</div></div><div class="otc on" id="tcidt0"><table class="o2m"><thead><tr><th>Phạm vi hiệu suất lao động cốt lõi</th><th>Mô tả</th><th style="text-align:right">TT tháng</th><th style="text-align:right">TT quý</th><th style="text-align:right">TT năm</th><th style="text-align:right">Hệ số A</th><th style="text-align:right">Kết quả (A×B)</th></tr></thead><tbody><tr><td>DTT dòng máy điều hòa</td><td>TCKT · KH=5.05 tỷ · TH=2.15 tỷ · 42.5%</td><td style="text-align:right">43%</td><td style="text-align:right">30%</td><td style="text-align:right">30%</td><td style="text-align:right" class="sr">0</td><td style="text-align:right" class="sr fw6">0</td></tr><tr><td>Tỷ lệ LNST</td><td>TCKT · KH=141.3 tr · TH=−83.9 tr · −59.4%</td><td style="text-align:right">43%</td><td style="text-align:right">30%</td><td style="text-align:right">30%</td><td style="text-align:right" class="sr">0</td><td style="text-align:right" class="sr fw6">0</td></tr><tr><td>Tỷ lệ nợ xấu <span style='color:#6c757d;font-size:10.5px'>(giảm=tốt)</span></td><td>TCKT · 2.55% (KH 5%) → vượt 1.2x</td><td style="text-align:right">14%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sg">1.2</td><td style="text-align:right" class="sg fw6">0.171</td></tr><tr><td>Phát triển KH trọng yếu</td><td>IDT/TCKT · Quý · 3 KH/100M VND</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr><td>Dự án CSKH tư vấn thiết kế</td><td>IDT · Quý · Spec-in dự án</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr><td>Số giờ giảng dạy / CBNV ĐT</td><td>HCNS · Quý</td><td style="text-align:right">0%</td><td style="text-align:right">10%</td><td style="text-align:right">10%</td><td style="text-align:right" class="sm">—</td><td style="text-align:right" class="sm fw6">0</td></tr><tr style="font-weight:700"><td colspan="6" style="text-align:right;padding-right:10px;color:#6c757d">Tổng điểm:</td><td style="text-align:right" class="sr fw6">0.171</td></tr></tbody></table><div style="padding:6px 10px;border-top:1px solid #dee2e6;display:flex;justify-content:flex-end"><span class="tm2" style="margin-right:8px">Tổng điểm:</span><span class="sr fw6" style="font-size:16px">0.171</span></div></div><div class="otc" id="tcidt1"><div style="overflow-x:auto"><table class="kxt" style="min-width:1500px">
+<thead>
+<tr>
+  <th rowspan="2" style="width:28px">TT</th>
+  <th rowspan="2" style="min-width:200px;text-align:left;background:#fff">KPI</th>
+  <th rowspan="2" style="width:42px">ĐVT</th>
+  <th class="n08">Dưới ngưỡng (0.8x)</th>
+  <th class="n09">Dưới ngưỡng (0.9x)</th>
+  <th class="n10">Mục tiêu (1x)</th>
+  <th class="n105">Vượt ngưỡng (1.05x)</th>
+  <th class="n11">Vượt ngưỡng (1.1x)</th>
+  <th class="n12">Vượt ngưỡng (1.2x)</th>
+  <th class="ntt" rowspan="2" style="min-width:60px">Thực tế</th>
+  <th class="nha" rowspan="2" style="min-width:50px">Hệ số kết quả (A)</th>
+  <th class="nttk" rowspan="2" style="min-width:55px">Tỷ trọng theo tháng</th>
+  <th class="nttq" rowspan="2" style="min-width:52px">Tỷ trọng theo quý</th>
+  <th class="nttn" rowspan="2" style="min-width:52px">Tỷ trọng theo năm</th>
+  <th class="nkq" rowspan="2" style="min-width:60px">Kết quả (A*B)</th>
+  <th rowspan="2" style="min-width:160px;background:#fff">Định nghĩa</th>
+  <th rowspan="2" style="min-width:130px;background:#fff">Cách tính</th>
+  <th rowspan="2" style="width:58px;background:#fff">Tần suất</th>
+  <th rowspan="2" style="width:65px;background:#fff">ĐV cung cấp dữ liệu</th>
+  <th rowspan="2" style="min-width:90px;background:#fff">Kế hoạch/Mẫu số</th>
+  <th rowspan="2" style="min-width:90px;background:#fff">Thực hiện/Tử số</th>
+</tr>
+<tr style="font-size:9px">
+  <th class="n08"></th><th class="n09"></th><th class="n10"></th>
+  <th class="n105"></th><th class="n11"></th><th class="n12"></th>
+</tr>
+</thead><tbody><tr class="gr"><td colspan="9" style="font-size:11px">I. Tài chính</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">100%</td><td class="nttq" style="color:#1a6b41;font-size:10px">70%</td><td class="nttn" style="color:#1a6b41;font-size:10px">70%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">1</td><td>Tỷ lệ hoàn thành DTT các dòng máy điều hòa và sản phẩm khác</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sr"><b>42.54</b></td>
+<td class="nha"><input class="ki" value="0"></td>
+<td class="nttk"><input class="ki" value="43%"></td>
+<td class="nttq"><input class="ki" value="30%"></td>
+<td class="nttn"><input class="ki" value="30%"></td>
+<td class="nkq sr">0%</td>
+<td style="font-size:9.5px">DTT từ hoạt động bán hàng</td><td style="font-size:9.5px">TH/KH*100; KH<0:(1-(TH-KH)/KH)*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="5,051,879,000"></td>
+<td><input class="ki" value="2,149,244,953"></td>
+</tr><tr>
+<td style="text-align:center">2</td><td>Tỷ lệ hoàn thành lợi nhuận sau thuế theo kế hoạch</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">80</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sr"><b>−59.43</b></td>
+<td class="nha"><input class="ki" value="0"></td>
+<td class="nttk"><input class="ki" value="43%"></td>
+<td class="nttq"><input class="ki" value="30%"></td>
+<td class="nttn"><input class="ki" value="30%"></td>
+<td class="nkq sr">0%</td>
+<td style="font-size:9.5px">LNST từ hoạt động kinh doanh</td><td style="font-size:9.5px">LNST TH/LNST KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="141,278,794"></td>
+<td><input class="ki" value="(83,961,401)"></td>
+</tr><tr>
+<td style="text-align:center">3</td><td>Tỷ lệ nợ xấu (xu hướng giảm = tốt)</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">6</td><td class="n09" contenteditable="true">5.5</td>
+<td class="n10" contenteditable="true">5</td><td class="n105" contenteditable="true">4.8</td>
+<td class="n11" contenteditable="true">4.5</td><td class="n12" contenteditable="true">4</td>
+<td class="ntt sg"><b>2.55</b></td>
+<td class="nha"><input class="ki" value="1.20"></td>
+<td class="nttk"><input class="ki" value="14%"></td>
+<td class="nttq"><input class="ki" value="10%"></td>
+<td class="nttn"><input class="ki" value="10%"></td>
+<td class="nkq sg">17.14%</td>
+<td style="font-size:9.5px">Công nợ quá hạn >90 ngày</td><td style="font-size:9.5px">(Dư Nợ>90 ngày/Tổng dư Nợ)*100; Đo năm:TB tháng</td>
+<td style="text-align:center;font-size:10.5px">Tháng</td>
+<td style="font-size:10.5px">TCKT</td>
+<td><input class="ki" value="15,388,277,264"></td>
+<td><input class="ki" value="392,072,838"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">II. Khách hàng</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">10%</td><td class="nttn" style="color:#1a6b41;font-size:10px">10%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">4</td><td>Tỷ lệ phát triển khách hàng trọng yếu</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">70</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sm"><b>—</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="10%"></td>
+<td class="nttn"><input class="ki" value="10%"></td>
+<td class="nkq sm">0%</td>
+<td style="font-size:9.5px">KH phát sinh HĐ mới ≥100M VND</td><td style="font-size:9.5px">TH/KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">IDT/TCKT</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">III. Vận hành & Quy trình nội bộ</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">10%</td><td class="nttn" style="color:#1a6b41;font-size:10px">10%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">5</td><td>Tỷ lệ hoàn thành dự án CSKH tư vấn thiết kế</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">70</td><td class="n09" contenteditable="true">90</td>
+<td class="n10" contenteditable="true">100</td><td class="n105" contenteditable="true">105</td>
+<td class="n11" contenteditable="true">110</td><td class="n12" contenteditable="true">120</td>
+<td class="ntt sm"><b>—</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="10%"></td>
+<td class="nttn"><input class="ki" value="10%"></td>
+<td class="nkq sm">0%</td>
+<td style="font-size:9.5px">Giá trị dự án spec-in</td><td style="font-size:9.5px">TH/KH*100; Đo năm:YTD</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">IDT</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="gr"><td colspan="9" style="font-size:11px">IV. Học hỏi & Phát triển nhân sự</td><td class="ntt"></td><td class="nha"></td><td class="nttk" style="color:#1a6b41;font-size:10px">0%</td><td class="nttq" style="color:#1a6b41;font-size:10px">10%</td><td class="nttn" style="color:#1a6b41;font-size:10px">10%</td><td class="nkq"></td><td colspan="6"></td></tr><tr>
+<td style="text-align:center">6</td><td>Số giờ giảng dạy</td><td style="text-align:center">Giờ</td>
+<td class="n08" contenteditable="true">2</td><td class="n09" contenteditable="true">3</td>
+<td class="n10" contenteditable="true">4</td><td class="n105" contenteditable="true">5</td>
+<td class="n11" contenteditable="true">6</td><td class="n12" contenteditable="true">7</td>
+<td class="ntt sm"><b>—</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="5%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sm">0%</td>
+<td style="font-size:9.5px">Số giờ trực tiếp đứng lớp đào tạo</td><td style="font-size:9.5px">Tổng số giờ giảng dạy trong kỳ; Đo năm:TB Quý</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">HCNS</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr>
+<td style="text-align:center">7</td><td>Tỷ lệ CBNV hoàn thành chỉ tiêu đào tạo</td><td style="text-align:center">%</td>
+<td class="n08" contenteditable="true">70</td><td class="n09" contenteditable="true">80</td>
+<td class="n10" contenteditable="true">90</td><td class="n105" contenteditable="true">93</td>
+<td class="n11" contenteditable="true">97</td><td class="n12" contenteditable="true">100</td>
+<td class="ntt sm"><b>—</b></td>
+<td class="nha"><input class="ki" value="—"></td>
+<td class="nttk"><input class="ki" value="0%"></td>
+<td class="nttq"><input class="ki" value="5%"></td>
+<td class="nttn"><input class="ki" value="5%"></td>
+<td class="nkq sm">0%</td>
+<td style="font-size:9.5px">NV hoàn thành đạt TB 8đ kiểm tra</td><td style="font-size:9.5px">NS HT/Tổng NS*100; Đo năm:TB Quý</td>
+<td style="text-align:center;font-size:10.5px">Quý</td>
+<td style="font-size:10.5px">HCNS</td>
+<td><input class="ki" value="—"></td>
+<td><input class="ki" value="—"></td>
+</tr><tr class="tot"><td colspan="9" style="padding:6px 10px;text-align:right">Tổng</td><td class="ntt"></td><td class="nha"></td><td class="nttk">100%</td><td class="nttq">100%</td><td class="nttn">100%</td><td class="nkq" style="font-size:14px">17.14%</td><td colspan="6"></td></tr></tbody></table></div><div style="margin-top:8px;padding:8px 12px;background:#fff8e1;border:1px solid #ffe082;border-radius:4px;font-size:11.5px;color:#5d4037"><strong>💡 HCNS:</strong> Click vào ô ngưỡng (nền màu) để chỉnh sửa trực tiếp. Nhập số liệu vào cột KH/TH. &nbsp;<button class="btn bg btn-sm" onclick="alert('✅ Đã lưu thay đổi!')">💾 Lưu</button></div></div><div class="otc" id="tcidt2"><table class="o2m"><thead><tr><th>Thời gian</th><th>Người TH</th><th>ĐVCCDL</th><th>Hành động</th><th>Ghi chú</th></tr></thead><tbody><tr><td>02/04</td><td>HCNS</td><td>HCNS</td><td><span class="badge b1">Import KH v1.0</span></td><td>Bộ KPI IDT C2 T04/2026</td></tr><tr><td>05/05</td><td>TCKT</td><td>TCKT</td><td><span class="badge b2">Import SL TC</span></td><td>DTT=2.15 tỷ · LNST=−83.9 tr · Nợ xấu=2.55%</td></tr></tbody></table></div></div>
+<div style="border-top:1px solid #dee2e6;padding:14px 20px;background:#fafbfc;margin:0 -20px -16px">
+<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#6c757d;margin-bottom:10px">Nhật ký & Trao đổi</div>
+<div style="display:flex;gap:10px;margin-bottom:10px">
+  <div style="width:30px;height:30px;border-radius:50%;background:#1a6b41;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">HC</div>
+  <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:7px 11px;flex:1">
+    <span style="font-weight:600;font-size:12px">HCNS – Nguyễn Thị A</span><span style="font-size:10.5px;color:#6c757d;margin-left:8px">02/04/2026</span>
+    <div style="font-size:12.5px;margin-top:3px">Đã import kế hoạch KPI T04/2026. Các ĐVCCDL vui lòng upload số liệu trước 30/05/2026.</div>
+  </div>
+</div>
+<div style="display:flex;gap:10px">
+  <div style="width:30px;height:30px;border-radius:50%;background:#6f42c1;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0">TC</div>
+  <div style="background:#fff;border:1px solid #dee2e6;border-radius:4px;padding:7px 11px;flex:1">
+    <span style="font-weight:600;font-size:12px">TCKT – Trần Văn B</span><span style="font-size:10.5px;color:#6c757d;margin-left:8px">05/05/2026</span>
+    <div style="font-size:12.5px;margin-top:3px">Đã xác nhận số liệu tài chính T04/2026.</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="pg" id="pg-ky-list">
+<div class="cp"><div class="bc"><span class="bcc">📅 Quản lý Kỳ KPI</span></div><div class="bgrp"><button class="btn bg" onclick="go('ky-new')">+ Tạo kỳ KPI mới</button></div></div>
+<div class="tb"><span style="font-size:13px;font-weight:500">Danh sách kỳ KPI</span></div>
+<table><thead><tr><th style="width:28px"><input type="checkbox" class="ocb"></th><th>Mã kỳ</th><th>Tên kỳ KPI</th><th>Loại</th><th>Bắt đầu</th><th>Kết thúc</th><th>Hạn chốt</th><th>Trạng thái</th><th>Tiến độ</th><th></th></tr></thead>
+<tbody>
+<tr class="or" onclick="go('ky-detail')"><td><input type="checkbox" class="ocb"></td><td class="ol">KPI-T04-2026</td><td class="fw6">KPI Tháng 04/2026</td><td>Tháng</td><td>01/04/2026</td><td>30/04/2026</td><td>15/06/2026</td><td><span class="badge b3">⏳ Xác nhận số liệu</span></td><td><div style="background:#e9ecef;border-radius:4px;height:7px;width:80px;overflow:hidden"><div style="background:#1a6b41;height:100%;width:72%"></div></div></td><td><button class="btn bw btn-sm" onclick="go('ky-detail');event.stopPropagation()">Xem</button></td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">KPI-T03-2026</td><td class="fw6">KPI Tháng 03/2026</td><td>Tháng</td><td>01/03/2026</td><td>31/03/2026</td><td>15/05/2026</td><td><span class="badge b2">✓ Hoàn thành</span></td><td><div style="background:#e9ecef;border-radius:4px;height:7px;width:80px;overflow:hidden"><div style="background:#198754;height:100%;width:100%"></div></div></td><td><button class="btn bw btn-sm">Xem</button></td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">KPI-Q1-2026</td><td class="fw6">KPI Quý 1/2026</td><td>Quý</td><td>01/01/2026</td><td>31/03/2026</td><td>30/04/2026</td><td><span class="badge b2">✓ Hoàn thành</span></td><td><div style="background:#e9ecef;border-radius:4px;height:7px;width:80px;overflow:hidden"><div style="background:#198754;height:100%;width:100%"></div></div></td><td><button class="btn bw btn-sm">Xem</button></td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">KPI-2026</td><td class="fw6">KPI Năm 2026</td><td>Năm</td><td>01/01/2026</td><td>31/12/2026</td><td>15/01/2027</td><td><span class="badge b1">Đang lập bảng tính</span></td><td><div style="background:#e9ecef;border-radius:4px;height:7px;width:80px;overflow:hidden"><div style="background:#0d6efd;height:100%;width:15%"></div></div></td><td><button class="btn bw btn-sm">Xem</button></td></tr>
+</tbody></table>
+</div>
+
+<div class="pg" id="pg-ky-new">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('ky-list')">Kỳ KPI</span><span class="bcs">›</span><span class="bcc">Tạo kỳ KPI mới</span></div>
+<div class="bgrp"><button class="btn bg" onclick="showM('msub');setTimeout(()=>go('ky-list'),1200)">💾 Lưu & Tạo kỳ</button><button class="btn bw" onclick="go('ky-list')">✕ Hủy</button></div></div>
+<div class="oform" style="max-width:820px">
+<div class="ai al"><span>ℹ️</span><div>Sau khi tạo kỳ, bạn có thể <strong>Import bộ KPI từ file Excel</strong> hoặc <strong>tạo thủ công từng tiêu chí</strong> ngay trong bước B1.</div></div>
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Tên kỳ KPI</label><input class="fi" placeholder="VD: KPI Tháng 05/2026"></div>
+<div class="fl"><label class="fll">Loại kỳ đánh giá</label><select class="fis"><option>Hàng tháng</option><option>Hàng Quý</option><option>Bán niên</option><option>Năm</option></select></div>
+<div class="fl"><label class="fll">Đơn vị áp dụng</label><select class="fis"><option>Toàn công ty</option><option>TĐ – TGĐ/PTGĐ</option><option>NAA</option><option>NAH</option><option>NAD</option><option>NAM</option><option>NAO</option><option>NAE</option><option>IDT</option><option>NH Điện lạnh</option><option>TT DVKH</option></select></div>
+<div class="fl"><label class="fll">Chỉ số KPI áp dụng</label><select class="fis"><option>Bộ KPI TGĐ/PTGĐ 2026</option><option>Bộ KPI GĐ ĐVKD (C2) 2026</option><option>Bộ KPI ASM/SUP (C3) 2026</option><option>Bộ KPI TT DVKH 2026</option><option>Tạo mới từ đầu</option></select></div>
+<div class="fl"><label class="fll">Ghi chú</label><textarea class="fi" style="resize:none" rows="2"></textarea></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày bắt đầu</label><input type="date" class="fi" value="2026-05-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-05-31"></div>
+<div class="fl"><label class="fll">Hạn nhập số liệu</label><input type="date" class="fi" value="2026-06-30"></div>
+<div class="fl"><label class="fll">Hạn chốt KPI</label><input type="date" class="fi" value="2026-07-15"></div>
+</div>
+</div>
+<div class="hr"></div>
+<div style="font-weight:600;margin-bottom:12px">Lập bảng tính KPI (B1) ngay sau khi tạo:</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div class="card"><div class="cardh">📥 Import từ file Excel</div>
+<div class="cardb">
+<div class="upbox" onclick="this.style.borderColor='#1a6b41'"><div style="font-size:28px;margin-bottom:6px">📥</div><div class="fw6">Kéo thả file .xlsx hoặc click chọn</div><div class="tm2" style="font-size:12px;margin-bottom:8px">Theo mẫu HCNS · 21 cột bắt buộc</div><button class="btn bw btn-sm" onclick="event.stopPropagation()">Chọn file</button></div>
+<button class="btn bw btn-sm" style="margin-top:8px">📄 Tải file mẫu 21 cột</button>
+</div></div>
+<div class="card"><div class="cardh">✏️ Tạo thủ công từng tiêu chí</div>
+<div class="cardb">
+<div style="font-size:12.5px;color:#6c757d;margin-bottom:8px">Nhập trực tiếp từng KPI. Phù hợp điều chỉnh nhỏ so với kỳ trước.</div>
+<table class="o2m"><thead><tr><th>Tên KPI</th><th>ĐVT</th><th>1x</th><th>TT tháng</th><th>ĐVCCDL</th><th></th></tr></thead>
+<tbody id="ky-kpi-tbl"></tbody></table>
+<a class="o2a" onclick="addKyRow()" style="font-size:12.5px">+ Thêm chỉ tiêu</a>
+</div></div>
+</div>
+<div style="margin-top:12px;padding:9px 14px;background:#e8f5f0;border-radius:4px;font-size:12px;color:#0a3622"><strong>Workflow:</strong> B1 Lập bảng KPI → B2 Xác nhận SL → B3 TCKT XN → B4 Trưởng ĐV PD → B5 Thẩm định → B6 HCNS XN → B7 Phê duyệt → B8 Hoàn thành</div>
+</div></div>
+
+<div class="pg" id="pg-ky-detail">
+<div class="cp"><div class="bc"><span class="bcl" onclick="go('ky-list')">Kỳ KPI</span><span class="bcs">›</span><span class="bcc">KPI-T04-2026 – Tháng 04/2026</span></div>
+<div class="bgrp">
+  <button class="btn bw" onclick="go('ky-new')" style="background:#17a2b8;border-color:#17a2b8;color:#fff">📥 Import KPI (B1)</button>
+  <button class="btn bw" onclick="showM('mimportsl')">📤 Import số liệu (B2)</button>
+  <button class="btn bw" onclick="showM('mapprove')">🔒 Chốt kỳ</button>
+</div></div>
+<div class="wf"><span style="font-weight:600;color:#5d4037;flex-shrink:0">🔶</span>
+<span class="ws wd">✓ B1 Lập bảng KPI</span><span class="wa">›</span><span class="ws wc">● B2 Xác nhận SL</span><span class="wa">›</span><span class="ws wp">B3 TCKT XN</span><span class="wa">›</span><span class="ws wp">B4 Trưởng ĐV PD</span><span class="wa">›</span><span class="ws wp">B5 Thẩm định</span><span class="wa">›</span><span class="ws wp">B6 HCNS XN</span><span class="wa">›</span><span class="ws wp">B7 Phê duyệt</span><span class="wa">›</span><span class="ws wp">B8 Hoàn thành</span>
+</div>
+<div class="oform">
+<div class="r2">
+<div>
+<div class="fl"><label class="fll">Mã kỳ</label><input class="fi" value="KPI-T04-2026" readonly></div>
+<div class="fl"><label class="fll">Tên kỳ KPI</label><input class="fi" value="KPI Tháng 04/2026"></div>
+<div class="fl"><label class="fll">Loại kỳ</label><select class="fis"><option>Hàng tháng</option></select></div>
+<div class="fl"><label class="fll">Trạng thái</label><span class="flv"><span class="badge b3">⏳ Xác nhận số liệu</span></span></div>
+</div>
+<div>
+<div class="fl"><label class="fll">Ngày bắt đầu</label><input type="date" class="fi" value="2026-04-01"></div>
+<div class="fl"><label class="fll">Ngày kết thúc</label><input type="date" class="fi" value="2026-04-30"></div>
+<div class="fl"><label class="fll">Hạn nhập SL</label><input type="date" class="fi" value="2026-05-30"></div>
+<div class="fl"><label class="fll">Hạn chốt</label><input type="date" class="fi" value="2026-06-15"></div>
+</div>
+</div>
+<div class="onb">
+<div class="otabs">
+  <div class="otab on" onclick="stab(this,'tckyd0')">📊 Tiến độ theo đơn vị</div>
+  <div class="otab" onclick="stab(this,'tckyd1')">📋 Lịch sử</div>
+</div>
+<div class="otc on" id="tckyd0">
+<table class="o2m"><thead><tr><th>Đơn vị</th><th style="text-align:right">Tổng bộ</th><th style="text-align:right">Đã nhập SL</th><th style="text-align:right">Chờ XN</th><th style="text-align:right">Đã PD</th><th style="text-align:right">Đã chốt</th><th>Tiến độ</th></tr></thead>
+<tbody>
+<tr><td class="fw6">TĐ – TGĐ/PTGĐ</td><td style="text-align:right">2</td><td style="text-align:right">2</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">2</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#198754;height:100%;width:100%"></div></div></td></tr>
+<tr><td class="fw6">NH Điện lạnh</td><td style="text-align:right">1</td><td style="text-align:right">1</td><td style="text-align:right">0</td><td style="text-align:right">1</td><td style="text-align:right">0</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#1a6b41;height:100%;width:80%"></div></div></td></tr>
+<tr><td class="fw6">NAH</td><td style="text-align:right">3</td><td style="text-align:right">3</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">3</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#198754;height:100%;width:100%"></div></div></td></tr>
+<tr><td class="fw6">NAE (C2+C3 ASM+SUP)</td><td style="text-align:right">27</td><td style="text-align:right">22</td><td style="text-align:right">3</td><td style="text-align:right">2</td><td style="text-align:right">0</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#ffc107;height:100%;width:81%"></div></div></td></tr>
+<tr><td class="fw6">NAO + IDT + NAA + NAM</td><td style="text-align:right">17</td><td style="text-align:right">12</td><td style="text-align:right">2</td><td style="text-align:right">2</td><td style="text-align:right">0</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#ffc107;height:100%;width:70%"></div></div></td></tr>
+<tr><td class="fw6">TT DVKH (Admin BH + CSKH)</td><td style="text-align:right">18</td><td style="text-align:right">16</td><td style="text-align:right">1</td><td style="text-align:right">0</td><td style="text-align:right">2</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#1a6b41;height:100%;width:89%"></div></div></td></tr>
+<tr style="font-weight:700;background:#e8f5f0"><td>Tổng</td><td style="text-align:right">68</td><td style="text-align:right">56</td><td style="text-align:right">6</td><td style="text-align:right">5</td><td style="text-align:right">7</td><td><div style="background:#e9ecef;border-radius:4px;height:6px;width:80px;overflow:hidden"><div style="background:#1a6b41;height:100%;width:72%"></div></div></td></tr>
+</tbody></table>
+</div>
+<div class="otc" id="tckyd1">
+<table class="o2m"><thead><tr><th>Thời gian</th><th>Người TH</th><th>Hành động</th><th>Ghi chú</th></tr></thead>
+<tbody>
+<tr><td>02/04/2026 08:00</td><td>HCNS – Nguyễn Thị A</td><td><span class="badge b1">Tạo kỳ KPI</span></td><td>Khởi tạo kỳ T04/2026</td></tr>
+<tr><td>02/04/2026 09:30</td><td>HCNS – Nguyễn Thị A</td><td><span class="badge b1">Import KH v1.0</span></td><td>Import toàn bộ bộ KPI cho các đơn vị</td></tr>
+<tr><td>05/05/2026 10:15</td><td>TCKT – Trần Văn B</td><td><span class="badge b2">Import SL tài chính</span></td><td>DTT TĐ 360.2 tỷ · LNST 14 tỷ</td></tr>
+<tr><td>06/05/2026 14:00</td><td>DMS/ĐVKD</td><td><span class="badge b2">Import SL Sell-out</span></td><td>NHĐL: 38,842 sp</td></tr>
+</tbody></table>
+</div>
+</div>
+</div></div>
+
+<div class="pg" id="pg-chiso">
+<div class="cp"><div class="bc"><span class="bcc">Chỉ số KPI</span></div><div class="bgrp"><div class="srch"><div class="srch-i">🔍</div><input placeholder="Tìm kiếm..."></div><button class="btn bg btn-sm" onclick="showM('meditor')">✏️ Chỉnh sửa chỉ số KPI [HCNS]</button></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Chỉ số KPI</span></div>
+<table><thead><tr><th style="width:28px"><input type="checkbox" class="ocb"></th><th>Mẫu đánh giá KPI</th><th>Vị trí công việc</th></tr></thead>
+<tbody>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI TGĐ / PTGĐ 2026</td><td>Tổng Giám đốc · P.TGĐ phụ trách TC</td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI GĐNH Điện lạnh 2026</td><td>PTGĐ kiêm GĐNH Điện lạnh</td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI GĐ ĐVKD (C2) 2026</td><td>GĐ NAA · NAH · NAD · NAM · NAO · NAE · IDT</td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI ASM / GĐBHKV (C3) 2026</td><td>Giám đốc BH Khu vực · ASM</td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI TKKD (C3) 2026</td><td>Thư ký Kinh doanh NAE · NAM</td></tr>
+<tr class="or"><td><input type="checkbox" class="ocb"></td><td class="ol">Bộ KPI Admin BH / CSKH (TT DVKH) 2026</td><td>Admin Bảo hành · TP/TN CSKH · KTV BH</td></tr>
+</tbody></table>
+</div>
+
+<div class="pg" id="pg-loinhac">
+<div class="cp"><div class="bc"><span class="bcc">Các Lời nhắc đánh giá KPI</span></div><div class="bgrp"><div class="srch"><div class="srch-i">🔍</div><input placeholder="Tìm kiếm..."></div></div></div>
+<div class="tb"><button class="btn-n">Mới</button><span style="font-size:13px;font-weight:500">Các Lời nhắc đánh giá KPI</span></div>
+<table><thead><tr><th style="width:28px"><input type="checkbox" class="ocb"></th><th>Kỳ đánh giá KPI</th><th>Ngày Bắt đầu</th><th>Ngày kết thúc</th><th>Hạn chốt</th><th>Kích hoạt</th><th></th></tr></thead>
+<tbody>
+<tr><td><input type="checkbox" class="ocb"></td><td style="background:#f8f9fa">Hàng tháng</td><td>01/01/2025</td><td>01/02/2025</td><td>20/01/2025</td><td><div class="tog"><div class="togd"></div></div></td><td><button style="background:#1a6b41;color:#fff;border:none;padding:3px 10px;border-radius:3px;font-size:12px;cursor:pointer">Gửi Email</button></td></tr>
+<tr><td><input type="checkbox" class="ocb"></td><td>Hàng Quý</td><td>01/01/2025</td><td>01/04/2025</td><td>20/03/2025</td><td><div class="tog"><div class="togd"></div></div></td><td><button style="background:#1a6b41;color:#fff;border:none;padding:3px 10px;border-radius:3px;font-size:12px;cursor:pointer">Gửi Email</button></td></tr>
+</tbody></table>
+<div style="padding:6px 12px;font-size:12px;color:#6c757d;border-top:1px solid #dee2e6">1-2 / 2</div>
+</div>
+
+<div class="pg" id="pg-baocao">
+<div class="cp"><div class="bc"><span class="bcc">Báo cáo đánh giá Hiệu suất</span></div><div class="bgrp"><div class="srch"><div class="srch-i">🔍</div><input placeholder="Tìm kiếm..."></div><button class="btn bw btn-sm" onclick="doPrint('baocao')">🖨️ In</button><button class="btn bw btn-sm" onclick="doCSV('baocao')">📥 Xuất CSV</button></div></div>
+<div style="padding:7px 12px;border-bottom:1px solid #dee2e6;display:flex;gap:8px"><button class="btn bw btn-sm">Đơn vị tính ▾</button></div>
+<div style="padding:14px;overflow-x:auto">
+<table class="dtbl" style="min-width:700px">
+<thead><tr><th style="text-align:left">Đơn vị</th><th>Cấp</th><th>Điểm TB</th><th>Số bộ</th><th>% Đạt ≥1.0</th><th>Trạng thái</th></tr></thead>
+<tbody>
+<tr><td style="font-weight:600;padding:7px 10px">TĐ – Cấp 1</td><td style="text-align:center"><span class="badge b6">C1</span></td><td style="text-align:center" class="sg fw6">1.138</td><td style="text-align:center">2</td><td style="text-align:center" class="sg">100%</td><td style="text-align:center"><span class="badge b2">Đã chốt</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">NH Điện lạnh</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center" class="sg fw6">1.069</td><td style="text-align:center">1</td><td style="text-align:center" class="sg">100%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">NAH</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center" class="sg fw6">1.205</td><td style="text-align:center">1</td><td style="text-align:center" class="sg">100%</td><td style="text-align:center"><span class="badge b2">Đã chốt</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">NAE – C2+C3</td><td style="text-align:center"><span class="badge b5">C2/C3</span></td><td style="text-align:center" class="sw fw6">0.886</td><td style="text-align:center">3</td><td style="text-align:center" class="sw">67%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">NAO</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center" class="sw fw6">0.693</td><td style="text-align:center">1</td><td style="text-align:center" class="sr">0%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">IDT</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center" class="sr fw6">0.171</td><td style="text-align:center">1</td><td style="text-align:center" class="sr">0%</td><td style="text-align:center"><span class="badge b1">Đã nộp</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">NAA + NAM</td><td style="text-align:center"><span class="badge b1">C2</span></td><td style="text-align:center" class="sr fw6">0.116</td><td style="text-align:center">2</td><td style="text-align:center" class="sr">0%</td><td style="text-align:center"><span class="badge b0">Dự thảo</span></td></tr>
+<tr><td style="font-weight:600;padding:7px 10px">TT DVKH</td><td style="text-align:center"><span class="badge b5">NV</span></td><td style="text-align:center" class="sg fw6">0.975</td><td style="text-align:center">2</td><td style="text-align:center" class="sg">50%</td><td style="text-align:center"><span class="badge b2">Đã chốt</span></td></tr>
+<tr style="font-weight:700;background:#e8f5f0"><td style="padding:7px 10px">Tổng / TB</td><td style="text-align:center">13</td><td style="text-align:center" class="sg">0.893</td><td style="text-align:center">11</td><td style="text-align:center">43%</td><td style="text-align:center"><span class="badge b3">⏳ 72%</span></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="pg" id="pg-phanquyen">
+<div class="cp"><div class="bc"><span class="bcc">🔐 Ma trận Phân quyền hệ thống KPI</span></div><div class="bgrp"><button class="btn bg" onclick="showM('meditor')">✏️ Chỉnh sửa chỉ số KPI [HCNS]</button></div></div>
+<div style="padding:14px">
+<div class="aw al"><span>⚠️</span><div>Nguyên tắc: <strong>Bộ phận nào chỉ upload và xem được KPI của bộ phận đó.</strong> HCNS và Ban LĐ xem toàn bộ. Kế toán ngành chỉ xem KPI thuộc ngành mình.</div></div>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:860px">
+<thead><tr style="background:#1a6b41;color:#fff">
+<th style="padding:7px 10px;border:1px solid #155534;text-align:left;min-width:200px">Chức năng</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">HCNS</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">TCKT</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">KT Ngành</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">DMS/ĐVKD</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">KSNB</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">DVKH</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">GĐ ĐV</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">Ban LĐ</th>
+<th style="padding:7px 10px;border:1px solid #155534;text-align:center">Nhân viên</th>
+</tr></thead>
+<tbody>
+<tr><td colspan="10" style="background:#e8f5f0;font-weight:700;color:#0a3622;padding:6px 10px;font-size:11px;text-transform:uppercase">🗂 THIẾT LẬP</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Tạo / Quản lý kỳ KPI</td><td style="text-align:center;color:#198754;font-size:16px;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Import / Tạo thủ công bộ KPI (B1)</td><td style="text-align:center;color:#198754;font-size:16px;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">✏️ Chỉnh sửa chỉ số KPI</td><td style="text-align:center;color:#198754;font-size:16px;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Chốt kỳ KPI</td><td style="text-align:center;color:#198754;font-size:16px;font-weight:700">✓ Admin</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td colspan="10" style="background:#e8f5f0;font-weight:700;color:#0a3622;padding:6px 10px;font-size:11px;text-transform:uppercase">📤 UPLOAD SỐ LIỆU</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">KPI Tài chính (DTT, LN, Tồn kho, Chi phí...)</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">Ngành mình</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">KPI Sell-out, Viếng thăm C2, Mở mới, Chiến dịch BH</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">KPI Đào tạo, Giờ giảng dạy</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">KPI Bảo hành, VTLK, Cuộc gọi CSKH</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">KPI Kiểm soát, Lỗi nghiệp vụ</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td colspan="10" style="background:#e8f5f0;font-weight:700;color:#0a3622;padding:6px 10px;font-size:11px;text-transform:uppercase">✅ PHÊ DUYỆT</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">TCKT xác nhận số liệu TC (B3)</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Trưởng ĐV/BP phê duyệt (B4)</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">HCNS thẩm định + xác nhận (B5, B6)</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px">Phê duyệt cấp cuối (B7)</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">ĐV mình</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td colspan="10" style="background:#e8f5f0;font-weight:700;color:#0a3622;padding:6px 10px;font-size:11px;text-transform:uppercase">👁 XEM DỮ LIỆU</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Xem KPI cá nhân</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#198754;font-weight:700">✓</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid #f0f0f0">Xem KPI đơn vị / phạm vi phụ trách</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">KPI TC</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">Ngành mình</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">ĐV mình</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">KPI VH</td><td style="text-align:center;color:#e67e00;font-weight:600;font-size:11.5px">KPI BH</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+<tr><td style="padding:6px 10px">Xem KPI toàn công ty + Báo cáo tổng hợp</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#dee2e6">–</td><td style="text-align:center;color:#198754;font-weight:700">✓</td><td style="text-align:center;color:#dee2e6">–</td></tr>
+</tbody></table></div>
+<div style="margin-top:8px;padding:8px 12px;background:#f8f9fa;border-radius:4px;font-size:12px;color:#6c757d">✓ = Toàn quyền · <span style="color:#e67e00;font-weight:600">Hạn chế</span> = Phạm vi được giao · – = Không có quyền<br><strong>Kế toán trưởng</strong> = quyền TCKT + xem BC TC · <strong>Kế toán ngành</strong> = chỉ upload/xem TC thuộc ngành mình</div>
+</div></div>
+
+
+<div class="mbg" id="meditor">
+<div class="mbox" style="width:900px">
+<div class="mh"><div class="mt2">✏️ Chỉnh sửa chỉ số KPI – HCNS</div><div class="mx" onclick="closeM('meditor')">✕</div></div>
+<div class="mb" style="max-height:70vh;overflow-y:auto">
+<div class="ai al" style="margin-bottom:10px"><span>ℹ️</span><div>Thêm/sửa/xóa chỉ số KPI · Điều chỉnh ngưỡng 0.8x→1.2x · <strong>Tỷ trọng theo tháng · quý · năm</strong> riêng biệt · ĐVCCDL. Validate tổng = 100% trước khi lưu.</div></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+<select class="fib" style="width:auto" id="ed-dv" onchange="loadEd(this.value)">
+  <option value="tgd">TGĐ / PTGĐ (C1)</option>
+  <option value="gd">GĐ ĐVKD (C2)</option>
+  <option value="asm">ASM/SUP (C3)</option>
+  <option value="cskh">TT DVKH – CSKH</option>
+</select>
+<div style="display:flex;gap:12px;align-items:center;font-size:12px">
+  <span>TT tháng: <strong id="tt-t" style="color:#1a6b41">100%</strong></span>
+  <span>TT quý: <strong id="tt-q" style="color:#1a6b41">100%</strong></span>
+  <span>TT năm: <strong id="tt-n" style="color:#1a6b41">100%</strong></span>
+  <button class="btn bg btn-sm" onclick="addEdRow()">+ Thêm KPI</button>
+</div>
+</div>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:11px;min-width:950px">
+<thead><tr style="background:#f8f9fa">
+  <th style="padding:4px 5px;border:1px solid #dee2e6;min-width:180px;text-align:left">Tên KPI</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:42px">ĐVT</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#ffeaea">0.8x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#fff7e6">0.9x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#e8f5e9">1x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#e3f2fd">1.05x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#ede7f6">1.1x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:44px;background:#e0f2f1">1.2x</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:62px;background:#e8f0fe">TT tháng</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:55px;background:#e8f0fe">TT quý</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:55px">TT năm</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:72px">Tần suất</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:78px">ĐVCCDL</th>
+  <th style="padding:4px 5px;border:1px solid #dee2e6;width:28px"></th>
+</tr></thead>
+<tbody id="ed-body"></tbody>
+</table>
+</div>
+</div>
+<div class="mf">
+  <button class="btn bw" onclick="closeM('meditor')">Hủy</button>
+  <button class="btn bw" onclick="alert('💾 Đã lưu nháp!')">💾 Lưu nháp</button>
+  <button class="btn bg" onclick="saveEd()">✅ Lưu & Áp dụng kỳ tiếp theo</button>
+</div>
+</div></div>
+
+<div class="mbg" id="msub"><div class="mbox" style="width:460px"><div class="mh"><div class="mt2">Đã nộp đánh giá KPI</div><div class="mx" onclick="closeM('msub')">✕</div></div><div class="mb"><div class="ai al"><span>ℹ️</span><div>Xác nhận nộp → chuyển sang <strong>TCKT xác nhận (B3)</strong>.</div></div><textarea class="fib" rows="2" placeholder="Ghi chú..." style="margin-top:8px"></textarea></div><div class="mf"><button class="btn bw" onclick="closeM('msub')">Hủy</button><button class="btn bg" onclick="closeM('msub');alert('✅ Đã nộp đánh giá KPI!')">Xác nhận</button></div></div></div>
+<div class="mbg" id="mapprove"><div class="mbox" style="width:460px"><div class="mh"><div class="mt2">Phê duyệt kết quả KPI</div><div class="mx" onclick="closeM('mapprove')">✕</div></div><div class="mb"><div class="aok al"><span>✅</span><div>Xác nhận phê duyệt → trạng thái <strong>Đã chấp thuận</strong>.</div></div><textarea class="fib" rows="2" placeholder="Nhận xét phê duyệt..." style="margin-top:8px"></textarea></div><div class="mf"><button class="btn bw" onclick="closeM('mapprove')">Hủy</button><button class="btn bg" onclick="closeM('mapprove');alert('✅ Đã phê duyệt!')">Xác nhận phê duyệt</button></div></div></div>
+<div class="mbg" id="mrefuse"><div class="mbox" style="width:460px"><div class="mh"><div class="mt2">Trả lại yêu cầu chỉnh sửa</div><div class="mx" onclick="closeM('mrefuse')">✕</div></div><div class="mb"><div class="aw al"><span>⚠️</span>KPI trả về bước trước để đơn vị chỉnh sửa số liệu.</div><textarea class="fib" rows="3" placeholder="Ghi rõ lý do..." style="margin-top:8px"></textarea></div><div class="mf"><button class="btn bw" onclick="closeM('mrefuse')">Hủy</button><button class="btn bd" onclick="closeM('mrefuse');alert('↩ Đã trả lại!')">↩ Xác nhận trả lại</button></div></div></div>
+<div class="mbg" id="mimportsl"><div class="mbox" style="width:520px"><div class="mh"><div class="mt2">📤 Import số liệu thực hiện (B2)</div><div class="mx" onclick="closeM('mimportsl')">✕</div></div><div class="mb"><div class="ai al"><span>ℹ️</span><div>Mỗi đơn vị chỉ upload KPI thuộc phạm vi mình. Hệ thống tự tính Thực tế → Hệ số A → Kết quả A×B → Tổng điểm.</div></div><select class="fib" style="margin-bottom:10px"><option>TCKT</option><option>DMS/ĐVKD</option><option>HCNS</option><option>KSNB</option><option>DVKH</option></select><div class="upbox" onclick="this.style.borderColor='#1a6b41'"><div style="font-size:26px;margin-bottom:6px">📊</div><div class="fw6" style="margin-bottom:3px">Upload file số liệu .xlsx</div><div class="tm2" style="font-size:12px;margin-bottom:8px">Chỉ KPI thuộc phạm vi đơn vị</div><button class="btn bw btn-sm" onclick="event.stopPropagation()">Chọn file</button></div></div><div class="mf"><button class="btn bw" onclick="closeM('mimportsl')">Hủy</button><button class="btn bg" onclick="closeM('mimportsl');alert('✅ Ghi nhận số liệu thành công!')">✅ Ghi nhận SL</button></div></div></div>
+
+<script>
+function go(p){
+  document.querySelectorAll('.pg').forEach(e=>e.classList.remove('on'));
+  const el=document.getElementById('pg-'+p);
+  if(el){el.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});}
+}
+function nav(el,p){
+  document.querySelectorAll('.nm').forEach(e=>e.classList.remove('on'));
+  el.classList.add('on');go(p);
+}
+function stab(el,id){
+  const nb=el.closest('.onb');
+  if(!nb)return;
+  nb.querySelectorAll('.otab').forEach(t=>t.classList.remove('on'));
+  nb.querySelectorAll('.otc').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  const c=document.getElementById(id);
+  if(c)c.classList.add('on');
+}
+function showM(id){const el=document.getElementById(id);if(el)el.classList.add('show');}
+function closeM(id){const el=document.getElementById(id);if(el)el.classList.remove('show');}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.mbg').forEach(m=>{
+    m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+  });
+  loadEd('tgd');
+});
+// ROLE
+const RD={
+  HCNS:'Xem tất cả · Tạo/Quản lý kỳ KPI · Import/tạo thủ công bộ KPI (B1) · ✏️ Chỉnh sửa chỉ số KPI · Chốt kỳ',
+  TCKT:'Upload/xem KPI tài chính (DTT, LN, Tồn kho, Công nợ, Chi phí...)',
+  KT_Ng:'Upload/xem KPI TC thuộc ngành mình phụ trách',
+  DMS:'Upload Sell-out, Viếng thăm C2, Mở mới điểm bán, Chiến dịch BH',
+  KSNB:'Upload KPI kiểm soát, Naga thay đổi, Lỗi nghiệp vụ',
+  DVKH:'Upload KPI bảo hành, VTLK, Cuộc gọi CSKH',
+  GD:'Xem KPI đơn vị mình · Phê duyệt B4 · Không upload',
+  BLD:'Xem tất cả · Phê duyệt B7 · Không upload',
+  NV:'Chỉ xem KPI cá nhân',
+};
+function setRole(el,role,abbr,color,bg){
+  document.querySelectorAll('.rt').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  const av=document.getElementById('cur-av');
+  av.textContent=abbr;av.style.color=color;av.style.background=bg;
+  document.getElementById('role-info').innerHTML='→ <strong>'+role.replace(/_/g,' ')+'</strong>: '+(RD[role]||'');
+}
+// ADD MANUAL KPI ROW
+function addManualRow(){
+  const t=document.getElementById('manual-kpi-tbl');
+  if(!t)return;
+  const r=document.createElement('tr');
+  r.innerHTML='<td><input style="width:100%;border:1px solid #dee2e6;border-radius:3px;padding:3px 6px;font-size:11.5px" placeholder="Tên KPI..."></td><td><input style="width:50px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" value="%"></td><td><input style="width:42px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" value="100"></td><td><input style="width:48px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" placeholder="0%"></td><td><select style="width:70px;border:1px solid #dee2e6;border-radius:3px;padding:2px 4px;font-size:11px"><option>TCKT</option><option>DMS</option><option>HCNS</option><option>DVKH</option></select></td><td><button onclick="this.closest(\'tr\').remove()" style="background:#dc3545;color:#fff;border:none;border-radius:3px;padding:2px 6px;cursor:pointer;font-size:11px">✕</button></td>';
+  t.appendChild(r);
+}
+function addKyRow(){
+  const t=document.getElementById('ky-kpi-tbl');
+  if(!t)return;
+  const r=document.createElement('tr');
+  r.innerHTML='<td><input style="width:100%;border:1px solid #dee2e6;border-radius:3px;padding:3px 6px;font-size:11.5px" placeholder="Tên KPI..."></td><td><input style="width:50px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" value="%"></td><td><input style="width:42px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" value="100"></td><td><input style="width:48px;border:1px solid #dee2e6;border-radius:3px;padding:3px 5px;font-size:11.5px" placeholder="0%"></td><td><select style="width:70px;border:1px solid #dee2e6;border-radius:3px;padding:2px 4px;font-size:11px"><option>TCKT</option><option>DMS</option><option>HCNS</option><option>DVKH</option></select></td><td><button onclick="this.closest(\'tr\').remove()" style="background:#dc3545;color:#fff;border:none;border-radius:3px;padding:2px 6px;cursor:pointer;font-size:11px">✕</button></td>';
+  t.appendChild(r);
+}
+// EDITOR
+const ED={
+  tgd:[['DTT theo kế hoạch','%','80','90','100','105','110','120','46.15%','30.77%','30%','Tháng','TCKT'],['DTT Ngành mới','%','80','90','100','105','110','120','7.69%','7.69%','5%','Tháng','TCKT'],['LNST theo kế hoạch','%','80','90','100','105','110','120','30.77%','23.08%','20%','Tháng','TCKT'],['Ngân sách TĐ (giảm=tốt)','%','120','110','100','95','90','80','7.69%','7.69%','5%','Tháng','TCKT'],['Xếp hạng ĐMX','Điểm','6','5','4','3','2','1','7.69%','0%','5%','Tháng','NH'],['Hài lòng KH BH','%','70','80','90','100','—','—','0%','0%','10%','Quý','DVKH'],['KQ CT Naga thay đổi','%','50','60','70','80','90','100','0%','0%','5%','Bán niên','KSNB'],['CBNV hoàn thành ĐT','%','80','85','90','100','—','—','0%','23.08%','15%','Quý','HCNS']],
+  gd:[['DTT Sell-in','%','80','90','100','105','110','120','40%','0%','40%','Tháng','TCKT'],['LNST/LN gộp','%','80','90','100','105','110','120','20%','0%','20%','Tháng','TCKT'],['Ngày tồn kho BQ','%','120','110','100','95','90','80','10%','0%','5%','Tháng','TCKT'],['Chăm sóc KH C2 key','%','80','90','100','105','110','120','15%','0%','15%','Tháng','DMS/ĐVKD'],['CBNV hoàn thành viếng thăm','%','80','90','100','105','110','120','5%','0%','10%','Tháng','DMS'],['Số giờ đào tạo TB','Giờ','2','3','4','5','6','7','0%','5%','5%','Quý','HCNS'],['CBNV hoàn thành ĐT','%','70','80','90','93','97','100','0%','5%','5%','Quý','HCNS']],
+  asm:[['DS Gia dụng','%','80','90','100','105','110','120','30%','0%','30%','Tháng','TCKT'],['DS TBNBCC','%','80','90','100','105','110','120','30%','0%','30%','Tháng','TCKT'],['DS SP trọng tâm','%','80','90','100','105','110','120','10%','0%','10%','Tháng','TCKT'],['Mở mới điểm bán','%','80','90','100','105','110','120','10%','0%','10%','Tháng','DMS/ĐVKD'],['Viếng thăm đạt chuẩn','%','60','80','100','—','—','—','10%','0%','10%','Tháng','DMS'],['CBNV hoàn thành ĐT','%','70','80','90','93','97','100','5%','0%','5%','Quý','HCNS'],['Điểm TB bài kiểm tra','Điểm','7','7.5','8','—','9','10','5%','0%','5%','Quý','HCNS']],
+  cskh:[['Ca BH đúng SLA','%','65','75','85','—','—','—','10%','10%','10%','Tháng','DVKH'],['Cuộc gọi tiếp nhận','%','90','93','95','—','—','—','20%','20%','20%','Tháng','DVKH'],['Xử lý khiếu nại 4h','%','80','85','90','—','—','—','30%','30%','30%','Tháng','DVKH'],['Tư vấn thành công','%','30','40','50','—','—','—','20%','20%','20%','Tháng','DVKH'],['Điểm tác phong','Điểm','8','9','9.5','—','—','—','20%','20%','20%','Tháng','DVKH']],
+};
+function inp3(v,bg=''){return `<input style="width:100%;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center${bg?';background:'+bg:''}" value="${v}" oninput="calcEd()">`;}
+function selOpts(opts,val){return opts.map(o=>`<option${o===val?' selected':''}>${o}</option>`).join('');}
+function loadEd(type){
+  const data=ED[type]||ED.tgd;
+  const tb=document.getElementById('ed-body');
+  if(!tb)return;
+  tb.innerHTML='';
+  data.forEach(r=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="padding:3px;border:1px solid #dee2e6"><input style="width:100%;border:1px solid #1a6b41;border-radius:3px;padding:2px 4px;font-size:10.5px" value="${r[0]}" oninput="calcEd()"></td>
+<td style="padding:3px;border:1px solid #dee2e6">${inp3(r[1])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#ffeaea">${inp3(r[2])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#fff7e6">${inp3(r[3])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#e8f5e9">${inp3(r[4])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#e3f2fd">${inp3(r[5])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#ede7f6">${inp3(r[6])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#e0f2f1">${inp3(r[7])}</td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#e8f0fe"><input class="ed-t" style="width:55px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center;background:#e8f0fe" value="${r[8]}" oninput="calcEd()"></td>
+<td style="padding:3px;border:1px solid #dee2e6;background:#e8f0fe"><input class="ed-q" style="width:50px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center;background:#e8f0fe" value="${r[9]}" oninput="calcEd()"></td>
+<td style="padding:3px;border:1px solid #dee2e6"><input class="ed-n" style="width:50px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center" value="${r[10]}" oninput="calcEd()"></td>
+<td style="padding:3px;border:1px solid #dee2e6"><select style="width:75px;border:1px solid #ccc;border-radius:3px;padding:2px 3px;font-size:10px">${selOpts(['Tháng','Quý','Bán niên','Năm'],r[11])}</select></td>
+<td style="padding:3px;border:1px solid #dee2e6"><select style="width:75px;border:1px solid #ccc;border-radius:3px;padding:2px 3px;font-size:10px">${selOpts(['TCKT','DMS/ĐVKD','DMS','HCNS','KSNB','DVKH','NH','Bravo'],r[12])}</select></td>
+<td style="padding:3px;border:1px solid #dee2e6;text-align:center"><button onclick="this.closest('tr').remove();calcEd()" style="background:#dc3545;color:#fff;border:none;border-radius:3px;padding:1px 6px;cursor:pointer;font-size:11px">✕</button></td>`;
+    tb.appendChild(tr);
+  });
+  calcEd();
+}
+function addEdRow(){
+  const tb=document.getElementById('ed-body');
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td style="padding:3px;border:1px solid #dee2e6"><input style="width:100%;border:1px solid #1a6b41;border-radius:3px;padding:2px 4px;font-size:10.5px" placeholder="Tên KPI mới..." oninput="calcEd()"></td><td style="padding:3px;border:1px solid #dee2e6">${inp3('%')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#ffeaea">${inp3('80')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#fff7e6">${inp3('90')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#e8f5e9">${inp3('100')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#e3f2fd">${inp3('105')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#ede7f6">${inp3('110')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#e0f2f1">${inp3('120')}</td><td style="padding:3px;border:1px solid #dee2e6;background:#e8f0fe"><input class="ed-t" style="width:55px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center;background:#e8f0fe" value="0%" oninput="calcEd()"></td><td style="padding:3px;border:1px solid #dee2e6;background:#e8f0fe"><input class="ed-q" style="width:50px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center;background:#e8f0fe" value="0%" oninput="calcEd()"></td><td style="padding:3px;border:1px solid #dee2e6"><input class="ed-n" style="width:50px;border:1px solid #ccc;border-radius:3px;padding:2px 4px;font-size:10.5px;text-align:center" value="0%" oninput="calcEd()"></td><td style="padding:3px;border:1px solid #dee2e6"><select style="width:75px;border:1px solid #ccc;border-radius:3px;padding:2px 3px;font-size:10px"><option>Tháng</option><option>Quý</option><option>Bán niên</option></select></td><td style="padding:3px;border:1px solid #dee2e6"><select style="width:75px;border:1px solid #ccc;border-radius:3px;padding:2px 3px;font-size:10px"><option>TCKT</option><option>DMS/ĐVKD</option><option>HCNS</option><option>KSNB</option><option>DVKH</option></select></td><td style="padding:3px;border:1px solid #dee2e6;text-align:center"><button onclick="this.closest('tr').remove();calcEd()" style="background:#dc3545;color:#fff;border:none;border-radius:3px;padding:1px 6px;cursor:pointer;font-size:11px">✕</button></td>`;
+  tb.appendChild(tr);
+  calcEd();
+}
+function pv(v){return parseFloat((v||'0').replace('%',''))||0;}
+function calcEd(){
+  let st=0,sq=0,sn=0;
+  document.querySelectorAll('.ed-t').forEach(i=>st+=pv(i.value));
+  document.querySelectorAll('.ed-q').forEach(i=>sq+=pv(i.value));
+  document.querySelectorAll('.ed-n').forEach(i=>sn+=pv(i.value));
+  const col=(v)=>Math.abs(v-100)<0.1?'#1a6b41':v>0?'#e67e00':'#dee2e6';
+  ['tt-t','tt-q','tt-n'].forEach((id,i)=>{
+    const v=[st,sq,sn][i];const el=document.getElementById(id);
+    if(el){el.textContent=v.toFixed(1)+'%';el.style.color=col(v);}
+  });
+}
+function saveEd(){
+  const st=pv(document.getElementById('tt-t').textContent);
+  const sn=pv(document.getElementById('tt-n').textContent);
+  if(Math.abs(st-100)>0.5&&st>0&&!confirm('TT tháng = '+st.toFixed(1)+'% (không bằng 100%). Vẫn lưu?'))return;
+  if(Math.abs(sn-100)>0.5&&sn>0&&!confirm('TT năm = '+sn.toFixed(1)+'% (không bằng 100%). Vẫn lưu?'))return;
+  closeM('meditor');alert('✅ Đã lưu cấu hình KPI! Áp dụng từ kỳ tiếp theo.');
+}
+// PRINT / EXPORT
+function doPrint(s){
+  const w=window.open('','_blank','width=1200,height=900');
+  let html='';
+  if(s==='idt'){const el=document.querySelector('#pg-idt .kxt');if(el)html=el.closest('div').outerHTML;}
+  else if(s==='tgd'){const el=document.querySelector('#pg-tgd .kxt');if(el)html=el.closest('div').outerHTML;}
+  else if(s==='db'){const el=document.querySelector('.dtbl');if(el)html=el.outerHTML;}
+  else if(s==='baocao'){const el=document.querySelector('#pg-baocao .dtbl');if(el)html=el.outerHTML;}
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Arial;font-size:10px;margin:16px}h2{font-size:13px;color:#dc3545;text-align:center;margin-bottom:8px}table{width:100%;border-collapse:collapse}th{background:#1a6b41;color:#fff;padding:4px 5px;border:1px solid #155534;text-align:center;font-size:9px}td{padding:3px 5px;border:1px solid #ccc;font-size:9px}.n08{background:#ffeaea;color:#8b0000;text-align:center}.n09{background:#fff7e6;color:#7a3800;text-align:center}.n10{background:#e8f5e9;color:#1b5e20;text-align:center}.n105{background:#e3f2fd;color:#0d47a1;text-align:center}.n11{background:#ede7f6;color:#4a148c;text-align:center}.n12{background:#e0f2f1;color:#004d40;text-align:center}.ntt{background:#fffbe6;text-align:center}.nha{background:#e3f2fd;text-align:center}.nttk,.nttq{background:#e8f0fe;text-align:center}.nkq{background:#ede7f6;color:#4a148c;text-align:center;font-weight:700}.gr td{background:#e8f5f0;font-weight:700}.tot{background:#dc3545;color:#fff;font-weight:700}@page{size:A3 landscape;margin:1cm}</style></head><body>`);
+  w.document.write(`<h2>Nagakawa – Báo cáo KPI T04/2026 (${s.toUpperCase()}) – ${new Date().toLocaleDateString('vi-VN')}</h2>`);
+  w.document.write('<p style="text-align:center;margin-bottom:8px"><button onclick="window.print()" style="background:#1a6b41;color:#fff;border:none;padding:5px 14px;border-radius:4px;cursor:pointer;font-size:11px">🖨️ In ngay</button></p>');
+  w.document.write(html||'<p>Không có dữ liệu.</p>');
+  w.document.write('</body></html>');
+  w.document.close();
+}
+function doCSV(s){
+  const rows=[['Nagakawa – Báo cáo KPI T04/2026 – '+s],['']];
+  if(s==='idt'){
+    rows.push(['TT','KPI','ĐVT','0.8x','0.9x','1x','1.05x','1.1x','1.2x','Thực tế','Hệ số A','TT tháng','TT quý','TT năm','Kết quả','Định nghĩa','Cách tính','Tần suất','ĐVCCDL','KH/Mẫu số','TH/Tử số']);
+    rows.push(['1','DTT dòng máy điều hòa','%','80','90','100','105','110','120','42.54','0','43%','30%','30%','0%','DTT từ HĐKD','TH/KH*100','Tháng','TCKT','5,051,879,000','2,149,244,953']);
+    rows.push(['2','Tỷ lệ LNST','%','80','90','100','105','110','120','-59.43','0','43%','30%','30%','0%','LNST từ HĐKD','LNST TH/LNST KH*100','Tháng','TCKT','141,278,794','(83,961,401)']);
+    rows.push(['3','Tỷ lệ nợ xấu','%','6','5.5','5','4.8','4.5','4','2.55','1.2','14%','10%','10%','17.14%','CN QH >90 ngày','(Nợ>90/Tổng Nợ)*100','Tháng','TCKT','15,388,277,264','392,072,838']);
+  } else {
+    rows.push(['Đơn vị','Cấp','Điểm TB','Xếp loại','DTT %KH','LNST %KH','Trạng thái']);
+    rows.push(['TGĐ','C1','1.108','Xuất sắc','125.7%','183.9%','Đã chốt']);
+    rows.push(['PTGĐ TC','C1','1.168','Xuất sắc','125.7%','183.9%','Đã chốt']);
+    rows.push(['NHĐL','C2','1.069','Xuất sắc','128.7%','93.7%','Đã nộp']);
+    rows.push(['NAH','C2','1.205','Xuất sắc','110.7%','—','Đã chốt']);
+    rows.push(['IDT','C2','0.171','Không đạt','42.5%','-59.4%','Đã nộp']);
+  }
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),download:'KPI_T04_2026_'+s+'_'+new Date().toISOString().slice(0,10)+'.csv'});
+  a.click();
+  setTimeout(()=>alert('✅ Đã xuất file CSV! Mở bằng Excel để xem.'),300);
+}
+</script>
+</body>
+</html>
