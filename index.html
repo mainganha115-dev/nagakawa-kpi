@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Naga ERP – KPI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13px;color:#212529;background:#f5f6f8}
+.nav{background:#1a6b41;height:44px;display:flex;align-items:center;position:sticky;top:0;z-index:999}
+.nlg{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer}
+.nits{display:flex;flex:1;overflow-x:auto}.nits::-webkit-scrollbar{display:none}
+.nit{display:flex;align-items:center;padding:0 14px;color:rgba(255,255,255,.8);font-size:12.5px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;height:44px}
+.nit:hover{color:#fff;background:rgba(255,255,255,.08)}.nit.on{color:#fff;border-bottom-color:#90ee90;font-weight:600}
+.nav-r{padding:0 14px;border-left:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:8px}
+.av{width:28px;height:28px;border-radius:4px;background:#155534;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pg{display:none}.pg.on{display:block}
+.cp{background:#fff;border-bottom:1px solid #dee2e6;padding:7px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:48px;position:sticky;top:44px;z-index:90}
+.bcr{display:flex;align-items:center;gap:6px;font-size:13px;flex:1}
+.bl{color:#1a6b41;cursor:pointer;font-weight:500}.bl:hover{text-decoration:underline}
+.bsep{color:#adb5bd}.btt{font-weight:700}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.wrap{padding:16px 20px 60px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:4px;font-size:12.5px;cursor:pointer;border:1px solid transparent;font-family:inherit;line-height:1.4;white-space:nowrap}
+.bg{background:#1a6b41;color:#fff}.bg:hover{background:#155534}
+.bw{background:#fff;color:#212529;border-color:#ced4da}.bw:hover{background:#f0f0f0}
+.btn-sm{padding:3px 9px;font-size:11.5px}
+.card{background:#fff;border:1px solid #dee2e6;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.chd{padding:10px 16px;border-bottom:1px solid #dee2e6;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.sc{background:#fff;border:1px solid #dee2e6;border-radius:6px;padding:11px;text-align:center;border-top:3px solid transparent}
+.sn{font-size:24px;font-weight:700;line-height:1;margin-bottom:3px}
+.sl{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:#6c757d;font-weight:600}
+.sg{color:#198754;font-weight:700}.sw{color:#e67e00;font-weight:700}.sr{color:#dc3545;font-weight:700}.sm{color:#6c757d}
+.wfbar{display:flex;overflow-x:auto;background:#f8f9fa;border-bottom:1px solid #dee2e6}
+.wfbar::-webkit-scrollbar{display:none}
+.wfs{display:flex;align-items:center;padding:8px 10px;font-size:11px;white-space:nowrap;border-bottom:3px solid transparent;gap:5px}
+.wfn{width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.wf-done{color:#1a6b41;border-bottom-color:#1a6b41}.wf-done .wfn{background:#1a6b41;color:#fff}
+.wf-cur{color:#dc3545;border-bottom-color:#dc3545;font-weight:600}.wf-cur .wfn{background:#dc3545;color:#fff}
+.wf-pend{color:#6c757d}.wf-pend .wfn{background:#dee2e6;color:#6c757d}
+.wfarr{color:#adb5bd;font-size:10px;padding:0 2px}
+.ptabs{display:flex;overflow-x:auto;background:#fff;border-bottom:2px solid #dee2e6}
+.ptabs::-webkit-scrollbar{height:3px}.ptabs::-webkit-scrollbar-thumb{background:#dee2e6}
+.ptab{display:flex;align-items:center;gap:6px;padding:9px 14px;font-size:12.5px;color:#6c757d;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.ptab:hover{color:#1a6b41}.ptab.on{color:#1a6b41;border-bottom-color:#1a6b41;font-weight:600}
+.ptsc{font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700}
+.ptc{display:none}.ptc.on{display:block}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:500}
+.b0{background:#e9ecef;color:#495057}.b1{background:#cfe2ff;color:#084298}
+.b2{background:#d1e7dd;color:#0a3622}.b3{background:#fff3cd;color:#664d03}.b4{background:#f8d7da;color:#842029}
+.pbar{background:#e9ecef;border-radius:10px;height:6px;overflow:hidden}
+.pbf{height:100%;border-radius:10px}
+.kxt{border-collapse:collapse;width:100%;min-width:1820px}
+.kxt th,.kxt td{border:1px solid #dee2e6;padding:4px 6px;font-size:11px;vertical-align:middle}
+.kxt th{font-size:10px;font-weight:600;text-align:center;white-space:nowrap;background:#f8f9fa}
+.thn{text-align:left!important;min-width:200px}
+.kxt .gr td{background:#e8f5f0;font-weight:700;color:#0a3622}
+.kxt .tot td{background:#1a6b41;color:#fff;font-weight:700;font-size:12px;padding:7px 8px}
+.c08{background:#ffeaea;color:#8b0000;font-weight:700;text-align:center}
+.c09{background:#fff4e6;color:#7a3800;font-weight:700;text-align:center}
+.c10{background:#e8f5e9;color:#1b5e20;font-weight:700;text-align:center}
+.c105{background:#e3f2fd;color:#0d47a1;font-weight:700;text-align:center}
+.c11{background:#ede7f6;color:#4a148c;font-weight:700;text-align:center}
+.c12{background:#e0f2f1;color:#004d40;font-weight:700;text-align:center}
+.ckh{background:#fffde7}.cth{background:#fff3e0}
+.kxt input[type=number]{width:100%;border:1px solid #ccc;border-radius:3px;padding:3px 5px;font-size:11px;font-family:inherit;outline:none;background:inherit}
+.kxt input:focus{border-color:#1a6b41;background:#fffff0}
+.ctt{background:#f0fdf4;color:#1a6b41;font-weight:700;text-align:center}
+.cha{background:#e8f0fe;color:#1a237e;font-weight:700;text-align:center}
+.ctk{background:#e8f0fe;text-align:center;color:#1a237e}
+.ctq{background:#e8f0fe;text-align:center;color:#1a237e}
+.ctn{background:#e8f0fe;text-align:center}
+.ckq{background:#fff3cd;color:#7a3800;font-weight:700;text-align:center}
+.pmeta{padding:10px 20px;background:#fff;border-bottom:1px solid #dee2e6;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:12.5px}
+.pm-r{display:flex;align-items:center;gap:12px;margin-left:auto}
+.hint{padding:7px 20px;background:#fffde7;border-bottom:1px solid #ffe082;font-size:12px;color:#664d03}
+.wfact{padding:9px 20px;background:#e8f5f0;border-bottom:1px solid #badbcc;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px}
+.rpt{border-collapse:collapse;width:100%;min-width:1000px}
+.rpt th{border:1px solid #8b7536;padding:6px 8px;font-size:11px;font-weight:700;text-align:center;color:#fff;background:#4e6b28}
+.rpt th.left{text-align:left}
+.rpt td{border:1px solid #c8c800;padding:5px 8px;font-size:11.5px;text-align:center;vertical-align:middle}
+.rpt td.left{text-align:left}
+.rpt .rg-row td{background:#b8860b;color:#fff;font-weight:700;text-align:left;padding:6px 10px;font-size:12.5px}
+.rpt .rtot td{background:#4e6b28;color:#fff;font-weight:700}
+.rpt .rgtot td{background:#1a6b41;color:#fff;font-weight:700;font-size:12px}
+.rg2{color:#198754;font-weight:700}.rb2{color:#dc3545;font-weight:700}
+.rpt tr.rdata:hover td{background:#fffde7;cursor:pointer}
+.dtbl{width:100%;border-collapse:collapse}
+.dtbl th{padding:8px 10px;background:#1a6b41;color:#fff;font-size:11.5px;font-weight:600;border:1px solid #155534;text-align:center;white-space:nowrap}
+.dtbl td{padding:7px 10px;border:1px solid #dee2e6;font-size:12px;vertical-align:middle}
+.dtbl .ug td{background:#e8f5f0;font-weight:700;color:#0a3622;font-size:13px;padding:8px 12px}
+.dtbl tr.or:hover td{background:#f0fdf4;cursor:pointer}
+.ugrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.ucard{background:#fff;border:1px solid #dee2e6;border-radius:8px;cursor:pointer;overflow:hidden;transition:.12s}
+.ucard:hover{box-shadow:0 4px 12px rgba(0,0,0,.12);transform:translateY(-1px)}
+.uch{padding:12px 14px;border-bottom:1px solid #dee2e6;display:flex;justify-content:space-between;align-items:center}
+.ucb{padding:12px 14px}
+.mbg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;display:none;align-items:center;justify-content:center}
+.mbg.show{display:flex}
+.mbox{background:#fff;border-radius:8px;max-width:94vw;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.mh{padding:13px 18px;border-bottom:1px solid #dee2e6;display:flex;align-items:center;justify-content:space-between;background:#f8f9fa;border-radius:8px 8px 0 0;flex-shrink:0}
+.mt2{font-size:15px;font-weight:700}.mx2{cursor:pointer;font-size:22px;color:#6c757d}
+.mb{overflow-y:auto;flex:1;padding:16px}
+.mf{padding:12px 18px;border-top:1px solid #dee2e6;display:flex;gap:8px;justify-content:flex-end;background:#f8f9fa;border-radius:0 0 8px 8px;flex-shrink:0}
+.frow{display:flex;align-items:baseline;padding:6px 0;border-bottom:1px solid #f5f5f5;gap:12px}
+.fl{font-size:12.5px;color:#6c757d;min-width:140px;flex-shrink:0}
+.fi{width:100%;border:none;border-bottom:1px solid #dee2e6;outline:none;padding:3px 0;font-size:13px;background:transparent;font-family:inherit}
+.fi:focus{border-bottom-color:#1a6b41}
+.fsel{width:100%;border:none;border-bottom:1px solid #dee2e6;outline:none;padding:3px 0;font-size:13px;background:transparent;cursor:pointer;font-family:inherit}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.al{display:flex;gap:10px;padding:10px 14px;border-radius:4px;font-size:12.5px;margin-bottom:12px;border:1px solid}
+.ai{background:#cfe2ff;color:#084298;border-color:#b6d4fe}
+.upbox{border:2px dashed #dee2e6;border-radius:8px;padding:30px 20px;text-align:center;background:#f8f9fa;cursor:pointer}
+.upbox:hover{border-color:#1a6b41;background:#f0fdf4}
+.hr{height:1px;background:#dee2e6;margin:12px 0}
+.fw6{font-weight:600}.tm{color:#6c757d}
+.empty{text-align:center;padding:50px;color:#adb5bd}
+@media(max-width:768px){.r2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nlg" id="btnHome">&#127968;</div>
+  <div class="nits">
+    <div class="nit on" id="nit-db">&#128202; Dashboard</div>
+    <div class="nit" id="nit-dg">B&#7897; &#273;&#225;nh gi&#225; Hi&#7879;u su&#7845;t</div>
+    <div class="nit" id="nit-ns">&#128101; Nh&#226;n s&#7921; &amp; Ph&#242;ng ban</div>
+    <div class="nit" id="nit-bc">&#128203; B&#225;o c&#225;o t&#7893;ng h&#7907;p</div>
+    <div class="nit" id="nit-imp" style="border-left:1px solid rgba(255,255,255,.15)">&#128229; Import KPI</div>
+  </div>
+  <div class="nav-r"><div class="av">HC</div><span style="color:rgba(255,255,255,.8);font-size:12px">HCNS</span></div>
+</nav>
+
+<div class="pg on" id="pg-db">
+  <div class="cp">
+    <div class="bcr"><span class="btt">Dashboard &#8211; T&#7893;ng quan KPI</span></div>
+    <div class="acts">
+      <button class="btn bg" id="btn-go-imp">&#128229; Import KPI</button>
+      <button class="btn bw" id="btn-go-bc">&#128203; B&#225;o c&#225;o</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="db-stats" class="stats"></div>
+    <div id="db-grid" class="ugrid"></div>
+  </div>
+</div>
+
+<div class="pg" id="pg-dg">
+  <div class="cp">
+    <div class="bcr">
+      <span class="bl" id="btn-dg-back">B&#7897; &#273;&#225;nh gi&#225;</span>
+      <span id="dg-sep" class="bsep" style="display:none">&#8250;</span>
+      <span id="dg-title" class="btt"></span>
+    </div>
+    <div class="acts" id="dg-acts"></div>
+  </div>
+  <div id="dg-wfbar" class="wfbar" style="display:none"></div>
+  <div class="ptabs" id="dg-ptabs" style="display:none"></div>
+  <div id="dg-body"></div>
+</div>
+
+<div class="pg" id="pg-ns">
+  <div class="cp">
+    <div class="bcr"><span class="btt">Danh s&#225;ch Nh&#226;n s&#7921;</span></div>
+    <div class="acts"><button class="btn bw btn-sm" id="btn-exp-ns">Xu&#7845;t Excel</button></div>
+  </div>
+  <div class="wrap">
+    <div class="card">
+      <div class="chd">Danh s&#225;ch nh&#226;n vi&#234;n <span class="badge b1" id="ns-cnt"></span></div>
+      <div style="overflow-x:auto"><table class="dtbl"><thead id="ns-thead"></thead><tbody id="ns-body"></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<div class="pg" id="pg-bc">
+  <div class="cp">
+    <div class="bcr"><span class="btt">B&#225;o c&#225;o t&#7893;ng h&#7907;p K&#7871;t qu&#7843; KPI</span></div>
+    <div class="acts">
+      <select id="bc-ky" class="fi" style="border:1px solid #ced4da;border-radius:4px;padding:4px 10px;width:auto;background:#fff;min-width:140px"></select>
+      <select id="bc-dept" class="fi" style="border:1px solid #ced4da;border-radius:4px;padding:4px 10px;width:auto;background:#fff;min-width:160px"></select>
+      <button class="btn bw" id="btn-print">In b&#225;o c&#225;o</button>
+      <button class="btn bw" id="btn-exp-bc">Xu&#7845;t Excel</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div id="bc-stats" class="stats"></div>
+    <div class="card">
+      <div class="chd" id="bc-title">B&#225;o c&#225;o KPI</div>
+      <div style="overflow-x:auto"><table class="rpt"><thead id="bc-thead"></thead><tbody id="bc-body"></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<div class="pg" id="pg-imp">
+  <div class="cp">
+    <div class="bcr">
+      <span class="bl" id="btn-imp-back">Dashboard</span>
+      <span class="bsep">&#8250;</span><span class="btt">Import file KPI</span>
+    </div>
+  </div>
+  <div class="wrap" style="max-width:900px">
+    <div class="card">
+      <div class="chd">Th&#244;ng tin k&#7923; &amp; Upload file</div>
+      <div style="padding:16px">
+        <div class="al ai"><span>&#8505;&#65039;</span><div>1 file Excel = 1 &#273;&#417;n v&#7883; &#183; N sheet = N ng&#432;&#7901;i. M&#7895;i ng&#432;&#7901;i c&#243; b&#7843;ng KPI 21 c&#7897;t + <strong>workflow 8 b&#432;&#7899;c ph&#234; duy&#7879;t</strong>.</div></div>
+        <div class="r2">
+          <div>
+            <div class="frow"><label class="fl">T&#234;n &#273;&#417;n v&#7883;</label><input id="imp-unit" class="fi" placeholder="VD: NAA"></div>
+            <div class="frow"><label class="fl">Nh&#243;m</label><input id="imp-nhom" class="fi" placeholder="VD: MI&#7�;N B&#7854;C"></div>
+            <div class="frow"><label class="fl">K&#7923; &#273;&#225;nh gi&#225;</label>
+              <select id="imp-ky" class="fsel">
+                <option value="Jan-26">Th&#225;ng 01/2026</option>
+                <option value="Feb-26">Th&#225;ng 02/2026</option>
+                <option value="Mar-26">Th&#225;ng 03/2026</option>
+                <option value="Apr-26" selected>Th&#225;ng 04/2026</option>
+                <option value="Q1-26">Qu&#253; 1/2026</option>
+                <option value="2026">N&#259;m 2026</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="upbox" id="upbox">
+              <div style="font-size:42px;margin-bottom:10px">&#128202;</div>
+              <div style="font-size:15px;font-weight:600;margin-bottom:6px">K&#233;o th&#7843; ho&#7863;c click ch&#7885;n file .xlsx</div>
+              <div class="tm" style="margin-bottom:12px">1 file = 1 &#273;&#417;n v&#7883; &#183; M&#7895;i sheet = 1 ng&#432;&#7901;i</div>
+              <button class="btn bw btn-sm" id="btn-choose-file">Ch&#7885;n file</button>
+              <input type="file" id="fin" style="display:none" accept=".xlsx,.xls">
+            </div>
+            <div id="file-info" style="display:none;margin-top:8px;padding:9px 12px;background:#f0fdf4;border:1px solid #badbcc;border-radius:4px;font-size:12.5px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="prev-card" style="display:none">
+      <div class="chd" id="prev-title">Xem tr&#432;&#7899;c</div>
+      <div style="padding:16px">
+        <div id="prev-list"></div>
+        <div style="margin-top:14px;display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn bw" id="btn-cancel-imp">H&#7911;y</button>
+          <button class="btn bg" id="btn-confirm-imp">X&#225;c nh&#7853;n Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal WF -->
+<div class="mbg" id="m-wf">
+  <div class="mbox" style="width:460px">
+    <div class="mh"><div class="mt2" id="mwf-t">X&#225;c nh&#7853;n b&#432;&#7899;c</div><span class="mx2" id="mwf-close">&#10005;</span></div>
+    <div class="mb">
+      <div id="mwf-info" style="padding:12px;border-radius:4px;margin-bottom:12px;font-size:13px"></div>
+      <div class="frow"><label class="fl">Ghi ch&#250;</label><textarea id="mwf-note" style="width:100%;border:1px solid #dee2e6;border-radius:4px;padding:6px;font-size:13px;font-family:inherit;resize:none" rows="3"></textarea></div>
+    </div>
+    <div class="mf">
+      <button class="btn bw" id="mwf-close2">H&#7911;y</button>
+      <button class="btn" id="mwf-back-btn" style="display:none;background:#ffc107;border-color:#ffc107;color:#000">Tr&#7843; l&#7841;i</button>
+      <button class="btn bg" id="mwf-ok">X&#225;c nh&#7853;n</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Toast -->
+<div class="mbg" id="m-toast">
+  <div class="mbox" style="width:400px">
+    <div class="mh"><div class="mt2" id="toast-t">Th&#244;ng b&#225;o</div><span class="mx2" id="toast-close">&#10005;</span></div>
+    <div class="mb"><p id="toast-b" style="font-size:13.5px;line-height:1.7"></p></div>
+    <div class="mf"><button class="btn bg" id="toast-ok">OK</button></div>
+  </div>
+</div>
+
+<script type="application/json" id="naa-data">[{"id": "GĐ - Đình", "name": "Vũ Văn Đình", "position": "Giám đốc Đơn vị", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.9333333333333333, "tt_quy": 0.7000000000000001, "tt_nam": 0.7000000000000001, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 162.62, "heso_a": 1.63, "tt_thang": 0.5333333333333333, "tt_quy": 0.4, "tt_nam": 0.4, "kq": 0.8693333333333333, "def": "Doanh thu thuần từ hoạt động kinh doanh. Trường hợp vượt ngưỡng 1.2 => ghi nhận", "ct": "Công thức tính trong các trường hợp: KH >0 : TH/KH *100 KH< 0 : (1-(TH-KH)/KH))*", "chu_ky": "Tháng", "dv": "TCKT", "kh": "36178360436.466125", "th": "58832460407"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành lợi nhuận gộp theo kế hoạch", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 230.88, "heso_a": 1.2, "tt_thang": 0.3333333333333333, "tt_quy": 0.25, "tt_nam": 0.25, "kq": 0.39999999999999997, "def": "Lợi nhuận gộp từ kết quả kinh doanh", "ct": "", "chu_ky": "", "dv": "", "kh": "551267506", "th": "1272784784"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành số ngày tồn kho bình quân", "dvt": "%", "n08": 120.0, "n09": 110.0, "n10": 100.0, "n105": 95.0, "n11": 90.0, "n12": 80.0, "thuc_te": 65.49, "heso_a": 1.2, "tt_thang": 0.06666666666666667, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.08, "def": "Số ngày tồn kho bình quân của hàng hóa", "ct": "Thực hiện/Kế hoạch*100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "118", "th": "77.28"}]}, {"label": "Khách hàng", "tt_thang": 0.06666666666666667, "tt_quy": 0.15000000000000002, "tt_nam": 0.15000000000000002, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành chỉ tiêu viếng thăm điểm bán C1,C2", "dvt": "%", "n08": 80.0, "n09": 85.0, "n10": 90.0, "n105": 95.0, "n11": 97.0, "n12": 100.0, "thuc_te": 88.89, "heso_a": 0.9, "tt_thang": 0.06666666666666667, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06, "def": "Là tỷ lệ CBNV hoàn thành chỉ tiêu viếng thăm điểm bán C1, C2, dữ liệu được đo tr", "ct": "Số CBNV hoàn thành/ Tổng số CBNV Đo năm: Trung bình quý", "chu_ky": "Tháng", "dv": "ĐVKD", "kh": "9", "th": "8"}, {"tt": 5, "kpi": "Mức độ hiểu biết của khách hàng điều hoà điểm bán C2 về các chương trình bán hàng", "dvt": "%", "n08": 70.0, "n09": 75.0, "n10": 80.0, "n105": 85.0, "n11": 90.0, "n12": 100.0, "thuc_te": null, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.0, "def": "- Thực hiện đánh giá mức độ hiểu biết của C2 về các chương trình bán hàng - NV C", "ct": "Số khách hàng hiểu biết/ Tổng số khách hàng đánh giá*100", "chu_ky": "Quý", "dv": "DVKH", "kh": "", "th": ""}]}, {"label": "Vận hành & Quy trình nội bộ", "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "items": [{"tt": 6, "kpi": "Tỷ lệ CBNV hoàn thành ý tưởng sáng tạo", "dvt": "%", "n08": 60.0, "n09": 70.0, "n10": 80.0, "n105": 90.0, "n11": 100.0, "n12": null, "thuc_te": null, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "- Các ý tưởng sáng tạo tập trung vào giải pháp nâng cao chất lượng công việc của", "ct": "Số CBNV hoàn thành/ Tổng số CBNV cuối kỳ * 100 Đo năm: YTD", "chu_ky": "Quý", "dv": "ĐMST", "kh": "", "th": ""}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 7, "kpi": "Số giờ giảng dạy", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": null, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ trực tiếp đứng lớp đào tạo của cá nhân", "ct": "Tổng số giờ giảng dạy của cá nhân trong kỳ Đo năm: Trung bình Quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 8, "kpi": "Tỷ lệ CBNV hoàn thành chỉ tiêu đào tạo theo quy định", "dvt": "%", "n08": 70.0, "n09": 80.0, "n10": 90.0, "n105": 93.0, "n11": 97.0, "n12": 100.0, "thuc_te": null, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là tỷ lệ NV hoàn thành chỉ tiêu đạt TB 8đ bài kiểm tra trở lên", "ct": "Số nhân sự hoàn thành/ Tổng số nhân sự thuộc phạm vi quản lý (số cuối kỳ) Đo năm", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-001"}, {"id": "Nguyễn Đức Minh", "name": "Nguyễn Đức Minh", "position": "GĐ BH khu vực Sell-in", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.8666666666666667, "tt_quy": 0.8, "tt_nam": 0.8, "items": [{"tt": 1, "kpi": "Tỉ lệ hoàn thành doanh số Sell - in theo kế hoạch", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 121.4986590872147, "heso_a": 1.21, "tt_thang": 0.8, "tt_quy": 0.6, "tt_nam": 0.6, "kq": 0.968, "def": "Doanh số bán hàng thực tế so với kế hoạch.  Trường hợp vượt ngưỡng 1.2 => ghi nh", "ct": "Tổng doanh số TH/Tổng doanh số KH * 100 Đo năm: Trung bình tháng", "chu_ky": "Tháng", "dv": "TCKT", "kh": "80384000000", "th": "97665482120.66667"}, {"tt": 2, "kpi": "Tỷ lệ công nợ quá hạn", "dvt": "%", "n08": 36.0, "n09": 33.0, "n10": 30.0, "n105": 28.0, "n11": 27.0, "n12": 24.0, "thuc_te": 3.115838128982986, "heso_a": 1.2, "tt_thang": 0.06666666666666668, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.08000000000000002, "def": "Công nợ quá hạn thanh toán trên 30 ngày", "ct": "Tổng nợ quá hạn/Tổng dư nợ * 100 Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "225194166049", "th": "7016685690"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": null, "heso_a": null, "tt_thang": null, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.0, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (NPP) trong kỳ, ko bao gồm trư", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "0", "th": "0"}]}, {"label": "Khách hàng", "tt_thang": 0.13333333333333336, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 4, "kpi": "Tỷ lệ CBNV thuộc khu vực quản lý hoàn thành chỉ tiêu viếng thăm (bao gồm cả ASM)", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": null, "n11": null, "n12": null, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.13333333333333336, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333336, "def": "Là tỷ lệ CBNV hoàn thành chỉ tiêu viếng thăm C1, bao gồm cả ASM, dữ liệu được đo", "ct": "Số NV hoàn thành/ Tổng số NV Đo năm: Trung bình tháng", "chu_ky": "Tháng", "dv": "DMS", "kh": "2", "th": "2"}]}, {"label": "Đào tạo & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 5, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 6, "kpi": "Tỷ lệ CBNV hoàn thành chỉ tiêu đào tạo theo quy định", "dvt": "%", "n08": 70.0, "n09": 80.0, "n10": 90.0, "n105": 93.0, "n11": 97.0, "n12": 100.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là tỷ lệ CBNV hoàn thành chỉ tiêu điểm kiểm tra trung bình đạt từ 8.0 trở lên", "ct": "Số NV hoàn thành/ Tổng số NV thuộc phạm vi quản lý (số cuối kỳ) Đo năm: Trung bì", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-002"}, {"id": "Nguyễn Hoàng Ngân", "name": "Nguyễn Hoàng Ngân", "position": "Giám sát BH Sell-in", "dept": "NAA", "period": "2026", "groups": [{"label": "Tài chính", "tt_thang": 0.8666666666666667, "tt_quy": 0.8, "tt_nam": 0.8, "items": [{"tt": 2, "kpi": "Tỉ lệ hoàn thành doanh số Sell - in theo kế hoạch", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 121.4986590872147, "heso_a": 1.21, "tt_thang": 0.8, "tt_quy": 0.6, "tt_nam": 0.6, "kq": 0.968, "def": "Doanh số bán hàng thực tế so với kế hoạch.  Trường hợp vượt ngưỡng 1.2 => ghi nh", "ct": "", "chu_ky": "Tháng", "dv": "TCKT", "kh": "80384000000", "th": "97665482120.66667"}, {"tt": 3, "kpi": "Tỷ lệ công nợ quá hạn", "dvt": "%", "n08": 36.0, "n09": 33.0, "n10": 30.0, "n105": 28.0, "n11": 27.0, "n12": 24.0, "thuc_te": 3.115838128982986, "heso_a": 1.2, "tt_thang": 0.06666666666666668, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.08000000000000002, "def": "Công nợ quá hạn thanh toán trên 30 ngày", "ct": "Tổng nợ quá hạn/Tổng dư nợ * 100 Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "225194166049", "th": "7016685690"}, {"tt": 4, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": null, "heso_a": null, "tt_thang": null, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.0, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (NPP) trong kỳ, ko bao gồm trư", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "0", "th": "0"}]}, {"label": "Khách hàng", "tt_thang": 0.13333333333333336, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 5, "kpi": "Tỷ lệ hoàn thành viếng thăm NPP", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 108.0, "heso_a": 1.1, "tt_thang": 0.13333333333333336, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.1466666666666667, "def": "Là tỷ lệ viếng thăm C1 của cá nhân, dữ liệu được đo trên DMS. Viếng thăm trong p", "ct": "Thực hiện/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "25", "th": "27"}]}, {"label": "Đào tạo & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-003"}, {"id": "Nguyễn Việt Dũng ", "name": "Nguyễn Việt Dũng", "position": "GĐ BH khu vực Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.8823529411764707, "tt_quy": 0.75, "tt_nam": 0.75, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.0, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.3, "tt_thang": 0.7058823529411765, "tt_quy": 0.6, "tt_nam": 0.6, "kq": 0.9176470588235295, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "MKT  TCKT", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.17647058823529413, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.17647058823529413, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "TCKT", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.11764705882352942, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 3, "kpi": "Tỷ lệ CBNV thuộc khu vực quản lý hoàn thành chỉ tiêu viếng thăm (bao gồm cả ASM)", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": null, "n11": null, "n12": null, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11764705882352942, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11764705882352942, "def": "Là tỷ lệ CBNV hoàn thành chỉ tiêu viếng thăm C2 bao gồm cả ASM, dữ liệu được đo", "ct": "Số NV hoàn thành/ Tổng số NV Đo năm: Trung bình tháng", "chu_ky": "Tháng", "dv": "DMS", "kh": "9", "th": "9"}]}, {"label": "Đào tạo & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.15000000000000002, "tt_nam": 0.15000000000000002, "items": [{"tt": 4, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 5, "kpi": "Tỷ lệ CBNV hoàn thành chỉ tiêu đào tạo theo quy định", "dvt": "%", "n08": 70.0, "n09": 80.0, "n10": 90.0, "n105": 93.0, "n11": 97.0, "n12": 100.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.0, "def": "Là tỷ lệ CBNV hoàn thành chỉ tiêu điểm kiểm tra trung bình đạt từ 8.0 trở lên", "ct": "Số NV hoàn thành/ Tổng số NV thuộc phạm vi quản lý (số cuối kỳ) Đo năm: Trung bì", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-004"}, {"id": "Dương Anh Tuấn", "name": "Dương Anh Tuấn", "position": "Giám sát BH Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.8333333333333333, "tt_quy": 0.75, "tt_nam": 0.75, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.3, "tt_thang": 0.6666666666666666, "tt_quy": 0.6, "tt_nam": 0.6, "kq": 0.8666666666666667, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "ĐVKD/ MKT/ TCKT", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.16666666666666666, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "TCKT", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "items": [{"tt": 3, "kpi": "Tỷ lệ hoàn thành viếng thăm  Đại lý", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 120.0, "heso_a": 1.2, "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.19999999999999998, "def": "Là tỷ lệ viếng thăm  C2 của cá nhân, dữ liệu được đo trên DMS. Viếng thăm trong", "ct": "Thực hiện/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "30", "th": "36"}]}, {"label": "Đào tạo & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 4, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 5, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-005"}, {"id": "Nguyễn Việt Tiệp", "name": "Nguyễn Việt Tiệp", "position": "Giám sát BH Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.8333333333333333, "tt_quy": 0.75, "tt_nam": 0.75, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.3, "tt_thang": 0.6666666666666666, "tt_quy": 0.6, "tt_nam": 0.6, "kq": 0.8666666666666667, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.16666666666666666, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "items": [{"tt": 3, "kpi": "Tỷ lệ hoàn thành viếng thăm  Đại lý", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 133.33333333333331, "heso_a": 1.2, "tt_thang": 0.16666666666666666, "tt_quy": 0.15, "tt_nam": 0.15, "kq": 0.19999999999999998, "def": "Là tỷ lệ viếng thăm  C2 của cá nhân, dữ liệu được đo trên DMS. Viếng thăm trong", "ct": "Thực hiện/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "30", "th": "40"}]}, {"label": "Đào tạo & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 4, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 5, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-006"}, {"id": "Bùi Quang Vinh", "name": "Bùi Quang Vinh", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.0, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": ""}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 134.0, "heso_a": 1.1, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.55, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "134"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-007"}, {"id": "Hoàng Văn Phượng", "name": "Hoàng Văn Phượng", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 133.33333333333331, "heso_a": 1.2, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.26666666666666666, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": "4"}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 141.0, "heso_a": 1.2, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.6, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "141"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-008"}, {"id": "Nguyễn Thanh Tùng", "name": "Nguyễn Thanh Tùng", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.22222222222222224, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": "3"}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 120.0, "heso_a": 1.0, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.5, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "120"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-009"}, {"id": "Lê Ngọc Anh", "name": "Lê Ngọc Anh", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 133.33333333333331, "heso_a": 1.2, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.26666666666666666, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": "4"}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 125.0, "heso_a": 1.05, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.525, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "125"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-010"}, {"id": "Nguyễn Hồng Hà", "name": "Nguyễn Hồng Hà", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 4333.333333333334, "heso_a": 1.2, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.26666666666666666, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": "130"}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 129.0, "heso_a": 1.05, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.525, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "129"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-011"}, {"id": "Ngô Mạnh Cường", "name": "Ngô Mạnh Cường", "position": "NV Thị trường Sell-out", "dept": "NAA", "period": "T4/2026", "groups": [{"label": "Tài chính", "tt_thang": 0.2777777777777778, "tt_quy": 0.25, "tt_nam": 0.25, "items": [{"tt": 1, "kpi": "Tỷ lệ hoàn thành doanh thu thuần của đơn vị", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 124.59256743865315, "heso_a": 1.2, "tt_thang": 0.05555555555555555, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.06666666666666667, "def": "Doanh thu thuần từ hoạt động kinh doanh", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "TCKT", "kh": "75124866534.34343", "th": "93600000000"}, {"tt": 2, "kpi": "Tỷ lệ hoàn thành sản lượng Sell-out", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 130.0, "heso_a": 1.2, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.13333333333333333, "def": "- Sản lượng từ hoạt động bán hàng cho ĐL (C2) được ghi nhận trên app My Nagakawa", "ct": "Số liệu thực tế/số liệu kế hoạch Đo năm: YTD", "chu_ky": "", "dv": "", "kh": "10215.8", "th": "13280.539999999999"}, {"tt": 3, "kpi": "Tỷ lệ hoàn thành hàng trả thưởng cho khách hàng", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 100.0, "heso_a": 1.0, "tt_thang": 0.11111111111111112, "tt_quy": 0.1, "tt_nam": 0.1, "kq": 0.11111111111111112, "def": "- Là tỷ lệ hàng hóa cần trả thưởng cho khách hàng (ĐL) trong kỳ, ko bao gồm trườ", "ct": "Số hàng thực tế trả/ Tổng số hàng phải trả *100 Đo quý/năm: YTD", "chu_ky": "", "dv": "", "kh": "55", "th": "55"}]}, {"label": "Khách hàng", "tt_thang": 0.7222222222222222, "tt_quy": 0.65, "tt_nam": 0.65, "items": [{"tt": 4, "kpi": "Tỷ lệ hoàn thành kế hoạch mở mới điểm bán C2", "dvt": "%", "n08": 80.0, "n09": 90.0, "n10": 100.0, "n105": 105.0, "n11": 110.00000000000001, "n12": 120.0, "thuc_te": 133.33333333333331, "heso_a": 1.2, "tt_thang": 0.22222222222222224, "tt_quy": 0.2, "tt_nam": 0.2, "kq": 0.26666666666666666, "def": "Điểm bán gồm: keyshop, điểm bán thường (C2)", "ct": "Số điểm bán mở mới/kế hoạch Đo năm: YTD", "chu_ky": "Tháng", "dv": "DMS", "kh": "3", "th": "4"}, {"tt": 5, "kpi": "Số lượt viếng thăm điểm bán C2", "dvt": "Lượt", "n08": 100.0, "n09": 110.0, "n10": 120.0, "n105": 130.0, "n11": 140.0, "n12": 150.0, "thuc_te": 135.0, "heso_a": 1.1, "tt_thang": 0.5, "tt_quy": 0.45, "tt_nam": 0.45, "kq": 0.55, "def": "Viếng thăm điểm bán trong phạm vi quản lý theo quy định công ty. Có chụp ảnh cửa", "ct": "Số lượt thực tế Đo năm: Trung bình tháng", "chu_ky": "", "dv": "", "kh": "120", "th": "135"}]}, {"label": "Học hỏi & Phát triển nhân sự", "tt_thang": 0.0, "tt_quy": 0.1, "tt_nam": 0.1, "items": [{"tt": 6, "kpi": "Số giờ tham gia đào tạo", "dvt": "Giờ", "n08": 2.0, "n09": 3.0, "n10": 4.0, "n105": 5.0, "n11": 6.0, "n12": 7.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số giờ cá nhân CBNV tham gia đào tạo, được ghi nhận từ các nguồn: chương trìn", "ct": "Tổng số giờ tham gia đào tạo của cá nhân CBNV trong kỳ Đo năm: Trung bình quý", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}, {"tt": 7, "kpi": "Điểm trung bình các bài kiểm tra trong kỳ", "dvt": "Điểm", "n08": 7.0, "n09": 7.5, "n10": 8.0, "n105": 9.0, "n11": 9.5, "n12": 10.0, "thuc_te": 0.0, "heso_a": 0.0, "tt_thang": 0.0, "tt_quy": 0.05, "tt_nam": 0.05, "kq": 0.0, "def": "Là số điểm trung bình của các bài kiểm tra, bài thi cuối khóa học trong kỳ", "ct": "Tổng số điểm/ Tổng số bài kiểm tra trong kỳ Đo quý, năm: Trung bình tháng", "chu_ky": "Quý", "dv": "HCNS", "kh": "", "th": ""}]}], "wf_step": 1, "wf_log": [], "ma_nv": "NAA-012"}]</script>
+<script>
+/* ===================================================
+   DATA: 12 người thực từ file Excel NAA T4/2026
+   =================================================== */
+var NAA_REAL = JSON.parse(document.getElementById('naa-data').textContent);
+
+/* ===================================================
+   GLOBAL STATE
+   =================================================== */
+var units = [];
+var curUid = null;
+var wfCtx = null;
+var pend = null;
+
+var KY = {
+  'Jan-26':'Tháng 01/2026','Feb-26':'Tháng 02/2026','Mar-26':'Tháng 03/2026',
+  'Apr-26':'Tháng 04/2026','T4/2026':'Tháng 04/2026','T4-26':'Tháng 04/2026',
+  'Q1-26':'Quý 1/2026','Q2-26':'Quý 2/2026','2026':'Năm 2026'
+};
+
+var WF = [
+  {lbl:'B1: Import KH',     role:'HCNS',     desc:'HCNS import bộ chỉ tiêu KPI kế hoạch'},
+  {lbl:'B2: Upload SL',     role:'ĐVCCDL',   desc:'Đơn vị cung cấp DL upload số liệu thực hiện'},
+  {lbl:'B3: TCKT xác nhận', role:'TCKT',     desc:'TCKT xác nhận số liệu tài chính'},
+  {lbl:'B4: Trưởng ĐV PD',  role:'GĐ ĐV',   desc:'Giám đốc/Trưởng đơn vị phê duyệt'},
+  {lbl:'B5: Thẩm định',     role:'HCNS',     desc:'HCNS thẩm định, kiểm tra tính chính xác'},
+  {lbl:'B6: HCNS xác nhận', role:'HCNS',     desc:'HCNS xác nhận kết quả cuối'},
+  {lbl:'B7: Phê duyệt',     role:'Ban LĐ',   desc:'Ban Lãnh đạo phê duyệt chính thức'},
+  {lbl:'B8: Hoàn thành',    role:'Hệ thống', desc:'KPI được chốt, đưa vào báo cáo tổng hợp'}
+];
+
+/* ===================================================
+   CALC
+   =================================================== */
+function calcItem(item) {
+  var kh = parseFloat(item.kh), th = parseFloat(item.th);
+  if (isNaN(kh) || isNaN(th) || String(item.kh || '').trim() === '') return null;
+  var tt = kh > 0 ? th/kh*100 : kh < 0 ? (1-(th-kh)/kh)*100 : th;
+  function n(v) { var x=parseFloat(v); return isNaN(x)?null:x; }
+  var n08=n(item.n08),n09=n(item.n09),n10=n(item.n10),n105=n(item.n105),n11=n(item.n11),n12=n(item.n12);
+  if (n10===null) return {tt:tt,ha:0,qt:0,qq:0,qn:0};
+  var rev = n08!==null && n08>n10, ha;
+  if (!rev) {
+    ha = n12!==null&&tt>=n12 ? Math.min(1.5,tt/100) :
+         n11!==null&&n11>0&&tt>=n11 ? 1.1 :
+         n105!==null&&n105>0&&tt>=n105 ? 1.05 :
+         tt>=n10 ? 1.0 :
+         n09!==null&&tt>=n09 ? 0.9 :
+         n08!==null&&tt>=n08 ? 0.8 : 0;
+  } else {
+    ha = n12!==null&&tt<=n12 ? 1.2 :
+         n11!==null&&n11>0&&tt<=n11 ? 1.1 :
+         n105!==null&&n105>0&&tt<=n105 ? 1.05 :
+         tt<=n10 ? 1.0 :
+         n09!==null&&tt<=n09 ? 0.9 :
+         n08!==null&&tt<=n08 ? 0.8 : 0;
+  }
+  var tk=parseFloat(item.tt_thang)||0, tq=parseFloat(item.tt_quy)||0, tn=parseFloat(item.tt_nam)||0;
+  return {tt:tt, ha:ha, qt:ha*tk, qq:ha*tq, qn:ha*tn};
+}
+
+function calcP(p) {
+  var t=0,q=0,n=0,fill=0,tot=0;
+  p.groups.forEach(function(g) {
+    g.items.forEach(function(item) {
+      tot++;
+      var r = calcItem(item); item._r = r;
+      if (r) { fill++; t+=r.qt; q+=r.qq; n+=r.qn; }
+    });
+  });
+  p.score_t=t; p.score_q=q; p.score_n=n;
+  p._fill=fill; p._tot=tot; p._pct=tot?Math.round(fill/tot*100):0;
+  p.xeploai = t>=1.1?'Xuất sắc':t>=1.0?'Đạt':t>=0.8?'Gần đạt':t>0?'Không đạt':'Chưa tính';
+  var d0 = p.groups[0] && p.groups[0].items[0];
+  p.kh_dt = d0&&d0.kh ? parseFloat(d0.kh)||0 : 0;
+  p.th_dt = d0&&d0.th ? parseFloat(d0.th)||0 : 0;
+}
+
+function calcU(u) {
+  u.persons.forEach(calcP);
+  var sc = u.persons.filter(function(p){return p.score_t>0;});
+  u._avg = sc.length ? sc.reduce(function(a,p){return a+p.score_t;},0)/sc.length : 0;
+}
+
+/* ===================================================
+   NAV (event-based, no inline onclick with quotes)
+   =================================================== */
+function goPg(id) {
+  document.querySelectorAll('.pg').forEach(function(e){e.classList.remove('on');});
+  var el = document.getElementById('pg-'+id);
+  if (el) { el.classList.add('on'); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+function setNav(id) {
+  document.querySelectorAll('.nit').forEach(function(n){n.classList.remove('on');});
+  var el = document.getElementById('nit-'+id);
+  if (el) el.classList.add('on');
+}
+function goPage(id, skipRender) {
+  setNav(id); goPg(id);
+  if (!skipRender) {
+    if (id==='db') renderDB();
+    else if (id==='dg') showDGList();
+    else if (id==='ns') renderNS();
+    else if (id==='bc') renderBC();
+  }
+}
+
+document.getElementById('btnHome').onclick = function(){goPage('db');};
+document.getElementById('nit-db').onclick  = function(){goPage('db');};
+document.getElementById('nit-dg').onclick  = function(){goPage('dg');};
+document.getElementById('nit-ns').onclick  = function(){goPage('ns');};
+document.getElementById('nit-bc').onclick  = function(){goPage('bc');};
+document.getElementById('nit-imp').onclick = function(){goPage('imp');};
+document.getElementById('btn-go-imp').onclick = function(){goPage('imp');};
+document.getElementById('btn-go-bc').onclick  = function(){goPage('bc');};
+document.getElementById('btn-imp-back').onclick = function(){goPage('db');};
+document.getElementById('btn-dg-back').onclick  = function(){showDGList();};
+document.getElementById('btn-print').onclick = function(){window.print();};
+document.getElementById('btn-exp-bc').onclick = function(){exportBC();};
+document.getElementById('btn-exp-ns').onclick = function(){exportNS();};
+document.getElementById('btn-cancel-imp').onclick = function(){cancelImp();};
+document.getElementById('btn-confirm-imp').onclick = function(){confirmImp();};
+document.getElementById('btn-choose-file').onclick = function(){document.getElementById('fin').click();};
+document.getElementById('upbox').onclick = function(){document.getElementById('fin').click();};
+document.getElementById('fin').onchange = function(){if(this.files[0])handleFile(this.files[0]);};
+document.getElementById('mwf-close').onclick  = function(){closeM('m-wf');};
+document.getElementById('mwf-close2').onclick = function(){closeM('m-wf');};
+document.getElementById('mwf-ok').onclick  = function(){doWF(true);};
+document.getElementById('mwf-back-btn').onclick = function(){doWF(false);};
+document.getElementById('toast-close').onclick = function(){closeM('m-toast');};
+document.getElementById('toast-ok').onclick    = function(){closeM('m-toast');};
+document.getElementById('bc-ky').onchange   = function(){renderBC();};
+document.getElementById('bc-dept').onchange = function(){renderBC();};
+document.querySelectorAll('.mbg').forEach(function(m){
+  m.addEventListener('click', function(e){if(e.target===m)m.classList.remove('show');});
+});
+
+/* ===================================================
+   HELPERS
+   =================================================== */
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmt(v) {
+  if (v===null||v===undefined||v==='') return '';
+  var n=parseFloat(v); return isNaN(n)?String(v):(n===Math.floor(n)?String(n):parseFloat(n.toFixed(3)).toString());
+}
+function fmtPct(v) { return v.toFixed(2)+'%'; }
+function fmtNum(v) { return v ? v.toLocaleString('vi-VN') : '—'; }
+function scCls(s) { return s>=1.1?'sg':s>=1.0?'sg':s>=0.8?'sw':s>0?'sr':'sm'; }
+function xlBadge(x) { return x==='Xuất sắc'?'b2':x==='Đạt'?'b1':x==='Gần đạt'?'b3':x==='Không đạt'?'b4':'b0'; }
+function toast(t,b) {
+  document.getElementById('toast-t').textContent = t;
+  document.getElementById('toast-b').innerHTML = b;
+  document.getElementById('m-toast').classList.add('show');
+}
+function closeM(id) { document.getElementById(id).classList.remove('show'); }
+
+/* ===================================================
+   DASHBOARD
+   =================================================== */
+function renderDB() {
+  units.forEach(calcU);
+  var totP=0,allS=[],xl=0,fin=0;
+  units.forEach(function(u){
+    totP+=u.persons.length;
+    u.persons.forEach(function(p){
+      if(p.score_t>0)allS.push(p.score_t);
+      if(p.score_t>=1.1)xl++;
+      if((p.wf_step||1)>=8)fin++;
+    });
+  });
+  var avg = allS.length?(allS.reduce(function(a,s){return a+s;},0)/allS.length).toFixed(3):'—';
+
+  document.getElementById('db-stats').innerHTML =
+    '<div class="sc" style="border-top-color:#1a6b41"><div class="sn" style="color:#1a6b41">'+units.length+'</div><div class="sl">Đơn vị đã import</div></div>'+
+    '<div class="sc" style="border-top-color:#6f42c1"><div class="sn" style="color:#6f42c1">'+totP+'</div><div class="sl">Tổng số người</div></div>'+
+    '<div class="sc" style="border-top-color:#198754"><div class="sn sg">'+avg+'</div><div class="sl">Điểm TB tháng</div></div>'+
+    '<div class="sc" style="border-top-color:#ffc107"><div class="sn sw">'+xl+'</div><div class="sl">Xuất sắc ≥1.1</div></div>'+
+    '<div class="sc" style="border-top-color:#0dcaf0"><div class="sn" style="color:#0dcaf0">'+fin+'/'+totP+'</div><div class="sl">Hoàn thành B8</div></div>';
+
+  var grid = document.getElementById('db-grid');
+  if (!units.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:#adb5bd"><div style="font-size:48px;margin-bottom:12px">📂</div><div style="font-size:15px;font-weight:600;margin-bottom:6px">Chưa có mẫu KPI</div></div>';
+    return;
+  }
+
+  var html = '';
+  units.forEach(function(u) {
+    var s=u._avg, sc=scCls(s);
+    var done=u.persons.filter(function(p){return (p.wf_step||1)>=8;}).length;
+    var pct=u.persons.length?Math.round(done/u.persons.length*100):0;
+    var chips='';
+    u.persons.slice(0,9).forEach(function(p){
+      var ps=p.score_t, c=ps>=1.1?'#198754':ps>=1.0?'#1a6b41':ps>=0.8?'#e67e00':ps>0?'#dc3545':'#adb5bd';
+      var nm=p.name.split(' '); nm=nm[nm.length-1];
+      chips+='<span title="'+esc(p.name)+': '+(ps>0?ps.toFixed(3):'—')+'" style="font-size:10px;background:#f0f0f0;border-radius:10px;padding:2px 7px;border-left:3px solid '+c+'">'+esc(nm)+'</span>';
+    });
+    html+='<div class="ucard" data-uid="'+esc(u.id)+'"><div class="uch" style="border-top:3px solid #1a6b41"><div><div class="fw6" style="font-size:13.5px">'+esc(u.name)+'</div><div class="tm" style="font-size:11.5px;margin-top:2px">'+(KY[u.ky]||u.ky)+' · '+u.persons.length+' người</div></div><div class="'+sc+'" style="font-size:20px;font-weight:700">'+(s>0?s.toFixed(3):'—')+'</div></div><div class="ucb"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span class="tm">Tiến độ WF</span><span class="fw6">'+pct+'%</span></div><div class="pbar"><div class="pbf" style="width:'+pct+'%;background:#1a6b41"></div></div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:10px">'+chips+'</div></div></div>';
+  });
+  grid.innerHTML = html;
+
+  // Attach click to cards
+  document.querySelectorAll('.ucard').forEach(function(card){
+    card.addEventListener('click', function(){openUnit(this.dataset.uid);});
+  });
+}
+
+/* ===================================================
+   BỘ ĐÁNH GIÁ LIST
+   =================================================== */
+function showDGList() {
+  curUid = null;
+  document.getElementById('dg-sep').style.display='none';
+  document.getElementById('dg-title').textContent='';
+  document.getElementById('dg-wfbar').style.display='none';
+  document.getElementById('dg-ptabs').style.display='none';
+  document.getElementById('dg-acts').innerHTML='';
+  var btn=document.createElement('button');
+  btn.className='btn bg'; btn.textContent='📥 Import KPI';
+  btn.onclick=function(){goPage('imp');};
+  document.getElementById('dg-acts').appendChild(btn);
+  units.forEach(calcU);
+
+  if (!units.length) {
+    document.getElementById('dg-body').innerHTML='<div class="wrap"><div class="empty"><div style="font-size:48px">📂</div><div style="font-size:15px;font-weight:600;margin:10px 0">Chưa có dữ liệu</div></div></div>';
+    return;
+  }
+
+  var wrap = document.createElement('div');
+  wrap.className = 'wrap';
+  units.forEach(function(u) {
+    var s=u._avg, sc=scCls(s);
+    var card=document.createElement('div'); card.className='card'; card.style.marginBottom='14px';
+    // Header
+    var hd=document.createElement('div'); hd.className='chd'; hd.style.cursor='pointer';
+    hd.innerHTML='<span>'+esc(u.name)+' – '+(KY[u.ky]||u.ky)+' <span class="badge b1" style="margin-left:8px">'+u.persons.length+' người</span></span><span class="'+sc+'" style="font-size:16px">'+(s>0?s.toFixed(3):'—')+'</span>';
+    hd.addEventListener('click',function(){openUnit(u.id);});
+    card.appendChild(hd);
+    // Table
+    var tbl=document.createElement('table'); tbl.style.cssText='width:100%;border-collapse:collapse';
+    var thead=document.createElement('thead');
+    thead.innerHTML='<tr style="background:#f8f9fa"><th style="padding:7px 10px;text-align:left;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Họ &amp; Tên</th><th style="padding:7px 10px;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Vị trí</th><th style="padding:7px 10px;text-align:center;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Bước WF</th><th style="padding:7px 10px;text-align:center;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Nhập SL</th><th style="padding:7px 10px;text-align:center;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Điểm</th><th style="padding:7px 10px;text-align:center;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">Xếp loại</th><th style="padding:7px 10px;text-align:center;font-size:12px;border-bottom:2px solid #dee2e6;font-weight:600">WF</th><th style="padding:7px 10px;border-bottom:2px solid #dee2e6"></th></tr>';
+    tbl.appendChild(thead);
+    var tbody=document.createElement('tbody');
+    u.persons.forEach(function(p,pi){
+      var s2=p.score_t,wf=p.wf_step||1;
+      var tr=document.createElement('tr'); tr.style.cssText='border-bottom:1px solid #f0f0f0;cursor:pointer';
+      tr.innerHTML='<td style="padding:7px 10px;font-weight:600">'+esc(p.name)+'</td><td style="padding:7px 10px;color:#6c757d;font-size:12px">'+esc(p.position)+'</td><td style="padding:7px 10px;text-align:center"><div class="pbar" style="width:70px;margin:0 auto 2px"><div class="pbf" style="width:'+(wf-1)/7*100+'%;background:'+(wf>=8?'#198754':'#1a6b41')+'"></div></div><span style="font-size:10px;color:#6c757d">B'+wf+'/8</span></td><td style="padding:7px 10px;text-align:center"><div class="pbar" style="width:50px;margin:0 auto 2px"><div class="pbf" style="width:'+p._pct+'%;background:#1a6b41"></div></div><span style="font-size:10px;color:#6c757d">'+p._fill+'/'+p._tot+'</span></td><td style="padding:7px 10px;text-align:center"><span class="'+scCls(s2)+'" style="font-size:15px">'+(s2>0?s2.toFixed(3):'—')+'</span></td><td style="padding:7px 10px;text-align:center"><span class="badge '+xlBadge(p.xeploai)+'">'+esc(p.xeploai)+'</span></td><td style="padding:7px 10px;text-align:center"><span class="badge '+(wf>=8?'b2':wf>=5?'b1':'b3')+'">'+(wf>=8?'✅ Hoàn thành':'⏳ B'+wf+'/8')+'</span></td><td style="padding:7px 10px"></td>';
+      (function(uid,ppi){
+        tr.addEventListener('click',function(){openUnit(uid,ppi);});
+        tr.lastElementChild.innerHTML='<button class="btn bw btn-sm">Nhập liệu →</button>';
+        tr.lastElementChild.firstChild.addEventListener('click',function(e){e.stopPropagation();openUnit(uid,ppi);});
+      })(u.id, pi);
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);
+    var tdiv=document.createElement('div'); tdiv.style.overflowX='auto';
+    tdiv.appendChild(tbl); card.appendChild(tdiv);
+    wrap.appendChild(card);
+  });
+  document.getElementById('dg-body').innerHTML='';
+  document.getElementById('dg-body').appendChild(wrap);
+}
+
+/* ===================================================
+   MỞ ĐƠN VỊ
+   =================================================== */
+function openUnit(uid, goPi) {
+  var u=units.find(function(u){return u.id===uid;}); if(!u)return;
+  curUid=uid; if(goPi===undefined)goPi=0; calcU(u);
+  document.getElementById('dg-sep').style.display='';
+  document.getElementById('dg-title').textContent=u.name+' · '+(KY[u.ky]||u.ky);
+  document.getElementById('dg-wfbar').style.display='';
+  document.getElementById('dg-ptabs').style.display='';
+  var acts=document.getElementById('dg-acts');
+  acts.innerHTML='';
+  function mkBtn(txt,cls,fn){var b=document.createElement('button');b.className='btn '+cls;b.textContent=txt;b.onclick=fn;acts.appendChild(b);}
+  mkBtn('← Danh sách','bw',function(){showDGList();});
+  mkBtn('💾 Tính điểm tất cả','bg',function(){saveAll();});
+  mkBtn('📥 Xuất CSV','bw',function(){exportU();});
+  buildTabs(u,goPi);
+  setNav('dg'); goPg('dg');
+}
+
+function buildTabs(u, actPi) {
+  renderWFBar(u,actPi);
+  var bar=document.getElementById('dg-ptabs'); bar.innerHTML='';
+  u.persons.forEach(function(p,i){
+    var s=p.score_t;
+    var bg=s>=1.1?'#d1e7dd':s>=1.0?'#d1e7dd':s>=0.8?'#fff3cd':s>0?'#f8d7da':'#e9ecef';
+    var cl=s>=1.1?'#0a3622':s>=1.0?'#0a3622':s>=0.8?'#664d03':s>0?'#842029':'#495057';
+    var tab=document.createElement('div');
+    tab.className='ptab'+(i===actPi?' on':'');
+    tab.setAttribute('data-pi',i);
+    tab.innerHTML='<span>'+esc(p.name)+'</span><span class="ptsc" style="background:'+bg+';color:'+cl+'">'+(s>0?s.toFixed(2):'B'+(p.wf_step||1))+'</span>';
+    (function(idx){
+      tab.addEventListener('click',function(){
+        document.querySelectorAll('#dg-ptabs .ptab').forEach(function(t){t.classList.remove('on');});
+        tab.classList.add('on');
+        document.querySelectorAll('.ptc').forEach(function(c){c.classList.remove('on');});
+        var cid=document.getElementById('ptc-'+u.id.replace(/\W/g,'_')+'-'+idx);
+        if(cid) cid.classList.add('on');
+        renderWFBar(u,idx);
+      });
+    })(i);
+    bar.appendChild(tab);
+  });
+
+  var cont=document.getElementById('dg-body'); cont.innerHTML='';
+  u.persons.forEach(function(p,i){
+    var cid='ptc-'+u.id.replace(/\W/g,'_')+'-'+i;
+    var div=document.createElement('div');
+    div.className='ptc'+(i===actPi?' on':'');
+    div.id=cid;
+    div.innerHTML=buildForm(u,p,i);
+    cont.appendChild(div);
+    // Attach input listeners
+    div.querySelectorAll('input.kxi').forEach(function(inp){
+      inp.addEventListener('input',function(){onInp(inp);});
+    });
+  });
+}
+
+function renderWFBar(u,pi) {
+  var p=u.persons[pi], wf=p?(p.wf_step||1):1;
+  var html='';
+  WF.forEach(function(s,i){
+    var cls=i+1<wf?'wf-done':i+1===wf?'wf-cur':'wf-pend';
+    var ico=i+1<wf?'✓':i+1===wf?'●':(i+1);
+    html+='<div class="wfs '+cls+'"><span class="wfn">'+ico+'</span><span>'+esc(s.lbl)+'</span></div>';
+    if(i<7)html+='<span class="wfarr">›</span>';
+  });
+  document.getElementById('dg-wfbar').innerHTML=html;
+}
+
+/* ===================================================
+   FORM MẪU KPI 21 CỘT
+   =================================================== */
+function buildForm(u,p,pi) {
+  var s=p.score_t, sc=scCls(s), wf=p.wf_step||1, ws=WF[wf-1];
+  var uid_=u.id.replace(/\W/g,'_');
+  var out='';
+
+  // WF action bar
+  out+='<div class="wfact"><span>⏳ <strong>'+esc(ws.lbl)+'</strong> – <em>'+esc(ws.desc)+'</em></span>';
+  out+='<span class="tm">Phụ trách: <strong>'+esc(ws.role)+'</strong></span>';
+  out+='<div style="margin-left:auto;display:flex;gap:8px" id="wfbtns-'+uid_+'-'+pi+'"></div></div>';
+
+  // Meta bar
+  out+='<div class="pmeta">';
+  out+='<span><span class="tm">Mã NV: </span><span class="fw6">'+esc(p.ma_nv||'—')+'</span></span>';
+  out+='<span><span class="tm">Vị trí: </span><span class="fw6">'+esc(p.position)+'</span></span>';
+  out+='<span><span class="tm">ĐV/BP: </span>'+esc(p.dept||u.name)+'</span>';
+  out+='<span><span class="tm">Kỳ: </span>'+esc(p.period||KY[u.ky]||u.ky)+'</span>';
+  out+='<div class="pm-r">';
+  out+='<div style="text-align:center"><div class="'+sc+'" style="font-size:22px;font-weight:700" id="sd-'+uid_+'-'+pi+'">'+(s>0?s.toFixed(3):'—')+'</div>';
+  out+='<div style="font-size:10px;color:#6c757d;text-transform:uppercase">Tổng điểm tháng</div></div>';
+  out+='<span class="badge '+xlBadge(p.xeploai)+'" style="font-size:12px;padding:4px 12px" id="xd-'+uid_+'-'+pi+'">'+esc(p.xeploai)+'</span>';
+  out+='<button class="btn bg btn-sm" id="btn-calc-'+uid_+'-'+pi+'">⚡ Tính điểm</button>';
+  out+='</div></div>';
+
+  out+='<div class="hint">✏️ <strong>Nhập số liệu:</strong> Điền vào cột <span style="background:#fffde7;border:1px solid #ccc;padding:1px 6px;border-radius:3px;font-weight:600">Kế hoạch</span> và <span style="background:#fff3e0;border:1px solid #ccc;padding:1px 6px;border-radius:3px;font-weight:600">Thực hiện</span> – hệ thống tự tính điểm ngay.</div>';
+
+  // KPI Table
+  out+='<div style="overflow-x:auto"><table class="kxt"><thead>';
+  out+='<tr><th style="width:28px" rowspan="2">TT</th><th class="thn" rowspan="2">KPI</th><th style="width:40px" rowspan="2">ĐVT</th>';
+  out+='<th class="c08">0.8x</th><th class="c09">0.9x</th><th class="c10">1x</th><th class="c105">1.05x</th><th class="c11">1.1x</th><th class="c12">1.2x</th>';
+  out+='<th class="ctt" rowspan="2" style="min-width:62px">Thực tế</th><th class="cha" rowspan="2" style="min-width:52px">Hệ số A</th>';
+  out+='<th class="ctk" rowspan="2">TT tháng</th><th class="ctq" rowspan="2">TT quý</th><th class="ctn" rowspan="2">TT năm</th>';
+  out+='<th class="ckq" rowspan="2" style="min-width:64px">Kết quả (A×B)</th>';
+  out+='<th style="min-width:110px" rowspan="2">Định nghĩa</th><th style="min-width:110px" rowspan="2">Cách tính</th>';
+  out+='<th style="width:60px" rowspan="2">Chu kỳ</th><th style="width:65px" rowspan="2">ĐV DL</th>';
+  out+='<th class="ckh" style="min-width:115px;color:#664d03;font-weight:700" rowspan="2">✎ Kế hoạch / Mẫu số</th>';
+  out+='<th class="cth" style="min-width:115px;color:#664d03;font-weight:700" rowspan="2">✎ Thực hiện / Tử số</th>';
+  out+='</tr><tr><th class="c08"></th><th class="c09"></th><th class="c10"></th><th class="c105"></th><th class="c11"></th><th class="c12"></th></tr>';
+  out+='</thead><tbody>';
+
+  p.groups.forEach(function(g,gi){
+    out+='<tr class="gr"><td colspan="22" style="text-align:left;padding:6px 10px">'+esc(g.label)+'</td></tr>';
+    g.items.forEach(function(item,ii){
+      var r=item._r, hc=r?(r.ha>=1.0?'#198754':r.ha>=0.8?'#e67e00':'#dc3545'):'#adb5bd';
+      out+='<tr>';
+      out+='<td style="text-align:center">'+item.tt+'</td>';
+      out+='<td>'+esc(item.kpi)+'</td>';
+      out+='<td style="text-align:center">'+esc(item.dvt||'%')+'</td>';
+      out+='<td class="c08">'+fmt(item.n08)+'</td><td class="c09">'+fmt(item.n09)+'</td><td class="c10">'+fmt(item.n10)+'</td>';
+      out+='<td class="c105">'+fmt(item.n105)+'</td><td class="c11">'+fmt(item.n11)+'</td><td class="c12">'+fmt(item.n12)+'</td>';
+      out+='<td class="ctt" id="ctt-'+uid_+'-'+pi+'-'+gi+'-'+ii+'" style="color:'+hc+'">'+(r?fmtPct(r.tt):'—')+'</td>';
+      out+='<td class="cha" id="cha-'+uid_+'-'+pi+'-'+gi+'-'+ii+'" style="color:'+hc+'">'+(r?r.ha.toFixed(3):'—')+'</td>';
+      out+='<td class="ctk">'+(item.tt_thang!=null?((parseFloat(item.tt_thang)||0)*100).toFixed(1)+'%':'—')+'</td>';
+      out+='<td class="ctq">'+(item.tt_quy!=null?((parseFloat(item.tt_quy)||0)*100).toFixed(1)+'%':'—')+'</td>';
+      out+='<td class="ctn">'+(item.tt_nam!=null?((parseFloat(item.tt_nam)||0)*100).toFixed(1)+'%':'—')+'</td>';
+      out+='<td class="ckq" id="ckq-'+uid_+'-'+pi+'-'+gi+'-'+ii+'" style="color:'+hc+'">'+(r?r.qt.toFixed(4):'—')+'</td>';
+      out+='<td style="font-size:10px">'+esc(item.def||'')+'</td>';
+      out+='<td style="font-size:10px">'+esc(item.ct||'')+'</td>';
+      out+='<td style="text-align:center;font-size:10.5px">'+esc(item.chu_ky||'')+'</td>';
+      out+='<td style="font-size:10.5px">'+esc(item.dv||'')+'</td>';
+      out+='<td class="ckh"><input class="kxi" type="number" step="any" data-uid="'+esc(u.id)+'" data-pi="'+pi+'" data-gi="'+gi+'" data-ii="'+ii+'" data-f="kh" value="'+esc(item.kh||'')+'"></td>';
+      out+='<td class="cth"><input class="kxi" type="number" step="any" data-uid="'+esc(u.id)+'" data-pi="'+pi+'" data-gi="'+gi+'" data-ii="'+ii+'" data-f="th" value="'+esc(item.th||'')+'"></td>';
+      out+='</tr>';
+    });
+  });
+
+  out+='</tbody><tfoot><tr class="tot">';
+  out+='<td colspan="14" style="text-align:right;padding:8px 12px">🏆 TỔNG ĐIỂM KPI</td>';
+  out+='<td id="ct-'+uid_+'-'+pi+'" style="font-size:16px">'+(s>0?s.toFixed(3):'—')+'</td>';
+  out+='<td id="cq-'+uid_+'-'+pi+'" style="color:#90ee90;font-size:13px">'+(p.score_q>0?p.score_q.toFixed(3):'—')+'</td>';
+  out+='<td id="cn-'+uid_+'-'+pi+'" style="color:#90ee90;font-size:13px">'+(p.score_n>0?p.score_n.toFixed(3):'—')+'</td>';
+  out+='<td colspan="5"></td></tr></tfoot></table></div>';
+
+  // WF Log
+  out+='<div style="padding:12px 16px;background:#f8f9fa;border-top:1px solid #dee2e6"><div class="fw6" style="margin-bottom:8px;font-size:12px;color:#6c757d">📋 Nhật ký Workflow</div>';
+  if (!p.wf_log||!p.wf_log.length) {
+    out+='<div class="tm" style="font-size:12px">Chưa có lịch sử.</div>';
+  } else {
+    out+='<table style="width:100%;border-collapse:collapse;font-size:11.5px"><thead><tr style="background:#e8f5f0"><th style="padding:5px 8px;text-align:left;border-bottom:1px solid #dee2e6">Thời gian</th><th style="padding:5px 8px;border-bottom:1px solid #dee2e6">Bước</th><th style="padding:5px 8px;border-bottom:1px solid #dee2e6">Người xử lý</th><th style="padding:5px 8px;border-bottom:1px solid #dee2e6">Hành động</th><th style="padding:5px 8px;text-align:left;border-bottom:1px solid #dee2e6">Ghi chú</th></tr></thead><tbody>';
+    p.wf_log.forEach(function(l){
+      out+='<tr style="border-bottom:1px solid #f0f0f0"><td style="padding:4px 8px;color:#6c757d">'+esc(l.time)+'</td><td style="padding:4px 8px;text-align:center"><span class="badge b1">'+esc(WF[l.step-1].lbl)+'</span></td><td style="padding:4px 8px">'+esc(l.user)+'</td><td style="padding:4px 8px"><span class="badge '+(l.ok?'b2':'b3')+'">'+(l.ok?'✅ Xác nhận':'↩ Trả lại')+'</span></td><td style="padding:4px 8px">'+esc(l.note||'')+'</td></tr>';
+    });
+    out+='</tbody></table>';
+  }
+  out+='</div>';
+  return out;
+}
+
+/* After rendering, attach button events */
+function attachFormEvents(u,p,pi) {
+  var uid_=u.id.replace(/\W/g,'_');
+  var calcBtn=document.getElementById('btn-calc-'+uid_+'-'+pi);
+  if (calcBtn) calcBtn.onclick=function(){saveP(u.id,pi);};
+  var wfBtns=document.getElementById('wfbtns-'+uid_+'-'+pi);
+  if (wfBtns) {
+    wfBtns.innerHTML='';
+    var wf=p.wf_step||1;
+    if (wf>1) {
+      var b1=document.createElement('button'); b1.className='btn bw btn-sm';
+      b1.textContent='↩ Trả lại B'+(wf-1);
+      b1.onclick=function(){showWF(u.id,pi,false);}; wfBtns.appendChild(b1);
+    }
+    if (wf<8) {
+      var b2=document.createElement('button'); b2.className='btn bg btn-sm';
+      b2.textContent='✅ Xác nhận → B'+(wf+1);
+      b2.onclick=function(){showWF(u.id,pi,true);}; wfBtns.appendChild(b2);
+    } else {
+      var sp=document.createElement('span'); sp.className='badge b2';
+      sp.textContent='✅ Đã hoàn thành 8/8 bước'; wfBtns.appendChild(sp);
+    }
+  }
+}
+
+/* Override buildTabs to attach events after render */
+var _origBuildTabs = buildTabs;
+buildTabs = function(u,actPi) {
+  _origBuildTabs(u,actPi);
+  u.persons.forEach(function(p,i){attachFormEvents(u,p,i);});
+};
+
+/* ===================================================
+   INPUT REALTIME
+   =================================================== */
+function onInp(inp) {
+  var d=inp.dataset, uid=d.uid, pi=+d.pi, gi=+d.gi, ii=+d.ii, f=d.f;
+  var u=units.find(function(u){return u.id===uid;}); if(!u)return;
+  var p=u.persons[pi];
+  p.groups[gi].items[ii][f]=inp.value;
+  var item=p.groups[gi].items[ii];
+  var r=calcItem(item); item._r=r;
+  var hc=r?(r.ha>=1.0?'#198754':r.ha>=0.8?'#e67e00':'#dc3545'):'#adb5bd';
+  var uid_=uid.replace(/\W/g,'_');
+  function set(id,v,c){var e=document.getElementById(id);if(e){e.textContent=v;if(c)e.style.color=c;}}
+  set('ctt-'+uid_+'-'+pi+'-'+gi+'-'+ii, r?fmtPct(r.tt):'—', hc);
+  set('cha-'+uid_+'-'+pi+'-'+gi+'-'+ii, r?r.ha.toFixed(3):'—', hc);
+  set('ckq-'+uid_+'-'+pi+'-'+gi+'-'+ii, r?r.qt.toFixed(4):'—', hc);
+  calcP(p);
+  var hc2=p.score_t>=1?'#198754':p.score_t>=0.8?'#e67e00':'#dc3545';
+  set('ct-'+uid_+'-'+pi, p.score_t>0?p.score_t.toFixed(3):'—', hc2);
+  set('cq-'+uid_+'-'+pi, p.score_q>0?p.score_q.toFixed(3):'—');
+  set('cn-'+uid_+'-'+pi, p.score_n>0?p.score_n.toFixed(3):'—');
+  var sd=document.getElementById('sd-'+uid_+'-'+pi);
+  if(sd){sd.textContent=p.score_t>0?p.score_t.toFixed(3):'—';sd.className=scCls(p.score_t);sd.style.fontSize='22px';sd.style.fontWeight='700';}
+  updTab(uid,pi,p);
+}
+
+function updTab(uid,pi,p) {
+  var t=document.querySelector('#dg-ptabs .ptab[data-pi="'+pi+'"]'); if(!t)return;
+  var b=t.querySelector('.ptsc'); if(!b)return;
+  var s=p.score_t;
+  b.textContent=s>0?s.toFixed(2):'B'+(p.wf_step||1);
+  b.style.background=s>=1.1?'#d1e7dd':s>=1.0?'#d1e7dd':s>=0.8?'#fff3cd':s>0?'#f8d7da':'#e9ecef';
+  b.style.color=s>=1.1?'#0a3622':s>=1.0?'#0a3622':s>=0.8?'#664d03':s>0?'#842029':'#495057';
+}
+
+function saveP(uid,pi) {
+  var u=units.find(function(u){return u.id===uid;}); if(!u)return;
+  var p=u.persons[pi]; calcP(p); updTab(uid,pi,p);
+  var uid_=uid.replace(/\W/g,'_');
+  var xd=document.getElementById('xd-'+uid_+'-'+pi);
+  if(xd){xd.textContent=p.xeploai;xd.className='badge '+xlBadge(p.xeploai);}
+  toast('✅ Đã tính điểm','<strong>'+esc(p.name)+'</strong><br>Điểm tháng: <span style="font-size:18px;font-weight:700;color:'+(p.score_t>=1?'#198754':p.score_t>=0.8?'#e67e00':'#dc3545')+'">'+p.score_t.toFixed(3)+'</span><br>Xếp loại: <strong>'+esc(p.xeploai)+'</strong>');
+}
+
+function saveAll() {
+  var u=units.find(function(u){return u.id===curUid;}); if(!u)return;
+  u.persons.forEach(function(p,pi){calcP(p);updTab(u.id,pi,p);});
+  toast('✅ Đã tính điểm tất cả',u.persons.length+' người trong <strong>'+esc(u.name)+'</strong> đã được tính điểm.');
+}
+
+/* ===================================================
+   WORKFLOW
+   =================================================== */
+function showWF(uid,pi,isOk) {
+  var u=units.find(function(u){return u.id===uid;}); if(!u)return;
+  var p=u.persons[pi]; var wf=p.wf_step||1; var ws=WF[wf-1];
+  wfCtx={uid:uid,pi:pi,isOk:isOk};
+  document.getElementById('mwf-t').textContent=(isOk?'Xác nhận: ':'Trả lại: ')+ws.lbl;
+  document.getElementById('mwf-info').innerHTML='<strong>'+esc(p.name)+'</strong><br>'+esc(ws.lbl)+' – '+esc(ws.desc)+'<br>Phụ trách: <strong>'+esc(ws.role)+'</strong>'+(isOk?'<br>→ Chuyển sang: <strong>'+esc(WF[wf]?WF[wf].lbl:'Hoàn thành')+'</strong>':'');
+  document.getElementById('mwf-info').style.cssText='padding:12px;border-radius:4px;margin-bottom:12px;font-size:13px;background:'+(isOk?'#d1e7dd':'#fff3cd');
+  document.getElementById('mwf-back-btn').style.display=(!isOk&&wf>1)?'':'none';
+  document.getElementById('mwf-ok').textContent=isOk?'✅ Xác nhận → B'+(wf+1):'↩ Trả lại';
+  document.getElementById('mwf-note').value='';
+  document.getElementById('m-wf').classList.add('show');
+}
+
+function doWF(confirm) {
+  closeM('m-wf'); if(!wfCtx)return;
+  var uid=wfCtx.uid, pi=wfCtx.pi, isOk=wfCtx.isOk;
+  var u=units.find(function(u){return u.id===uid;}); if(!u)return;
+  var p=u.persons[pi]; var wf=p.wf_step||1;
+  var note=document.getElementById('mwf-note').value.trim();
+  var now=new Date().toLocaleString('vi-VN');
+  if(!p.wf_log)p.wf_log=[];
+  if(isOk&&confirm){p.wf_log.push({time:now,step:wf,user:'Người dùng',ok:true,note:note});p.wf_step=Math.min(wf+1,8);}
+  else{p.wf_log.push({time:now,step:wf,user:'Người dùng',ok:false,note:note});p.wf_step=Math.max(wf-1,1);}
+  renderWFBar(u,pi);
+  var uid_=uid.replace(/\W/g,'_');
+  var ptc=document.getElementById('ptc-'+uid_+'-'+pi);
+  if(ptc){ptc.innerHTML=buildForm(u,p,pi);ptc.querySelectorAll('input.kxi').forEach(function(inp){inp.addEventListener('input',function(){onInp(inp);});});attachFormEvents(u,p,pi);}
+  updTab(uid,pi,p);
+  toast(isOk?'✅ Đã xác nhận':'↩ Đã trả lại','<strong>'+esc(p.name)+'</strong>: Hiện tại <strong>'+esc(WF[(p.wf_step||1)-1].lbl)+'</strong>');
+}
+
+/* ===================================================
+   NHÂN SỰ
+   =================================================== */
+function renderNS() {
+  units.forEach(calcU);
+  var allP=[];
+  units.forEach(function(u){u.persons.forEach(function(p){allP.push({p:p,u:u});});});
+  document.getElementById('ns-cnt').textContent=allP.length+' nhân viên';
+  var thead=document.getElementById('ns-thead');
+  thead.innerHTML='<tr><th style="min-width:80px;text-align:left">MÃ NV</th><th style="min-width:160px;text-align:left">HỌ VÀ TÊN</th><th style="min-width:170px;text-align:left">CHỨC DANH</th><th>CẤP BẬC</th><th>ĐV/BP</th><th>NGÀY BĐ LV</th><th>NGÀY NGHỈ</th><th>KỲ</th><th>KH DT</th><th>TH DT</th><th>% HT DT</th><th>ĐIỂM THÁNG</th><th>XẾP LOẠI</th><th>BƯỚC WF</th><th></th></tr>';
+  var tbody=document.getElementById('ns-body');
+  tbody.innerHTML='';
+  units.forEach(function(u){
+    var tr=document.createElement('tr');
+    tr.className='ug';
+    tr.innerHTML='<td colspan="15">🏢 '+esc(u.name)+'&nbsp;<span style="color:#6c757d;font-weight:400;font-size:11.5px">'+(KY[u.ky]||u.ky)+' · '+u.persons.length+' người</span></td>';
+    tbody.appendChild(tr);
+    u.persons.forEach(function(p,pi){
+      var s=p.score_t,wf=p.wf_step||1;
+      var pctDT=p.kh_dt&&p.th_dt?(p.th_dt/p.kh_dt*100).toFixed(2)+'%':'—';
+      var dtOk=p.kh_dt&&p.th_dt&&p.th_dt/p.kh_dt>=1;
+      var tr2=document.createElement('tr'); tr2.className='or';
+      tr2.innerHTML='<td style="font-size:11.5px;color:#6c757d">'+esc(p.ma_nv||'—')+'</td><td class="fw6">'+esc(p.name)+'</td><td style="font-size:12px">'+esc(p.position)+'</td><td style="text-align:center">'+esc(p.cap_bac||'—')+'</td><td style="text-align:center">'+esc(p.dept||u.name)+'</td><td style="text-align:center;font-size:11.5px">'+esc(p.ngay_bd||'—')+'</td><td style="text-align:center;font-size:11.5px;color:#dc3545">'+esc(p.ngay_nghi||'')+'</td><td style="text-align:center;font-size:11.5px">'+esc(p.period||KY[u.ky]||u.ky)+'</td><td style="text-align:right;font-size:11.5px">'+fmtNum(p.kh_dt)+'</td><td style="text-align:right;font-size:11.5px">'+fmtNum(p.th_dt)+'</td><td style="text-align:center" class="'+(dtOk?'rg2':p.kh_dt&&p.th_dt?'rb2':'')+'">'+pctDT+'</td><td style="text-align:center"><span class="'+scCls(s)+'" style="font-size:14px">'+(s>0?s.toFixed(3):'—')+'</span></td><td style="text-align:center"><span class="badge '+xlBadge(p.xeploai)+'">'+esc(p.xeploai)+'</span></td><td style="text-align:center"><div class="pbar" style="width:50px;margin:0 auto 2px"><div class="pbf" style="width:'+(wf-1)/7*100+'%;background:'+(wf>=8?'#198754':'#1a6b41')+'"></div></div><span style="font-size:10px;color:#6c757d">B'+wf+'/8</span></td><td style="text-align:center"><button class="btn bw btn-sm">→</button></td>';
+      (function(uid2,ppi2){
+        tr2.addEventListener('click',function(){openUnit(uid2,ppi2);});
+        tr2.lastElementChild.firstChild.addEventListener('click',function(e){e.stopPropagation();openUnit(uid2,ppi2);});
+      })(u.id,pi);
+      tbody.appendChild(tr2);
+    });
+  });
+}
+
+/* ===================================================
+   BÁO CÁO TỔNG HỢP
+   =================================================== */
+function renderBC() {
+  units.forEach(calcU);
+  var fKy=document.getElementById('bc-ky').value;
+  var fDept=document.getElementById('bc-dept').value;
+  var kySet={}, curK=fKy, curD=fDept;
+  units.forEach(function(u){kySet[u.ky]=1;});
+  var kySel=document.getElementById('bc-ky');
+  var kyOpts='<option value="">-- Tất cả kỳ --</option>';
+  Object.keys(kySet).forEach(function(k){kyOpts+='<option value="'+esc(k)+'"'+(curK===k?' selected':'')+'>'+esc(KY[k]||k)+'</option>';});
+  kySel.innerHTML=kyOpts;
+  var dSel=document.getElementById('bc-dept');
+  var dOpts='<option value="">-- Tất cả đơn vị --</option>';
+  units.forEach(function(u){dOpts+='<option value="'+esc(u.id)+'"'+(curD===u.id?' selected':'')+'>'+esc(u.name)+'</option>';});
+  dSel.innerHTML=dOpts;
+
+  var filtUnits=fDept?units.filter(function(u){return u.id===fDept;}):units;
+  var allP=[];
+  filtUnits.forEach(function(u){u.persons.forEach(function(p){allP.push({p:p,u:u});});});
+  var dispKy=fKy?[fKy]:Object.keys(kySet);
+
+  var scores=allP.filter(function(x){return x.p.score_t>0;}).map(function(x){return x.p.score_t;});
+  var avg=scores.length?(scores.reduce(function(a,s){return a+s;},0)/scores.length).toFixed(3):'—';
+  var xl={XS:0,D:0,GD:0,KD:0};
+  allP.forEach(function(x){var s=x.p.score_t;if(s>=1.1)xl.XS++;else if(s>=1.0)xl.D++;else if(s>=0.8)xl.GD++;else if(s>0)xl.KD++;});
+  document.getElementById('bc-stats').innerHTML=
+    '<div class="sc" style="border-top-color:#1a6b41"><div class="sn" style="color:#1a6b41">'+allP.length+'</div><div class="sl">Tổng nhân viên</div></div>'+
+    '<div class="sc" style="border-top-color:#198754"><div class="sn sg">'+avg+'</div><div class="sl">Điểm TB tháng</div></div>'+
+    '<div class="sc" style="border-top-color:#0dcaf0"><div class="sn" style="color:#0dcaf0">'+xl.XS+'</div><div class="sl">Xuất sắc ≥1.1</div></div>'+
+    '<div class="sc" style="border-top-color:#6f42c1"><div class="sn" style="color:#6f42c1">'+xl.D+'</div><div class="sl">Đạt ≥1.0</div></div>'+
+    '<div class="sc" style="border-top-color:#ffc107"><div class="sn sw">'+xl.GD+'</div><div class="sl">Gần đạt ≥0.8</div></div>'+
+    '<div class="sc" style="border-top-color:#dc3545"><div class="sn sr">'+xl.KD+'</div><div class="sl">Không đạt</div></div>';
+  document.getElementById('bc-title').textContent='Báo cáo KPI – '+(dispKy.map(function(k){return KY[k]||k;}).join(', ')||'Tất cả kỳ');
+
+  var colSpan=7+dispKy.length*4;
+  var thead_html='<tr><th class="left" rowspan="3" style="min-width:70px">MÃ NV</th><th class="left" rowspan="3" style="min-width:170px">HỌ VÀ TÊN</th><th class="left" rowspan="3" style="min-width:170px">CHỨC DANH</th><th rowspan="3" style="width:60px">CẤP BẬC</th><th rowspan="3" style="width:70px">ĐV/BP</th><th rowspan="3" style="width:90px">NGÀY BĐ LV</th><th rowspan="3" style="width:90px">NGÀY NGHỈ</th>';
+  dispKy.forEach(function(k){thead_html+='<th colspan="4">'+esc(KY[k]||k)+'</th>';});
+  thead_html+='</tr><tr>';
+  dispKy.forEach(function(){thead_html+='<th>Kế hoạch</th><th>Thực hiện</th><th>% HT DT</th><th>% HT KPI</th>';});
+  thead_html+='</tr><tr>';
+  dispKy.forEach(function(){thead_html+='<th style="font-size:9px">(VNĐ)</th><th style="font-size:9px">(VNĐ)</th><th></th><th></th>';});
+  thead_html+='</tr>';
+  document.getElementById('bc-thead').innerHTML=thead_html;
+
+  var byNhom={};
+  filtUnits.forEach(function(u){
+    var nhom=u.nhom||u.name;
+    if(!byNhom[nhom])byNhom[nhom]={lbl:nhom,units:[]};
+    byNhom[nhom].units.push(u);
+  });
+
+  var tbody=document.getElementById('bc-body'); tbody.innerHTML='';
+  var gtKH=0,gtTH=0,gtSc=[];
+
+  Object.keys(byNhom).forEach(function(nhom){
+    var grp=byNhom[nhom];
+    var gtr=document.createElement('tr'); gtr.className='rg-row';
+    gtr.innerHTML='<td colspan="'+colSpan+'">'+esc(grp.lbl)+'</td>';
+    tbody.appendChild(gtr);
+    var grpKH=0,grpTH=0,grpSc=[];
+    grp.units.forEach(function(u){
+      u.persons.forEach(function(p,pi){
+        var s=p.score_t;
+        var pctDT=p.kh_dt&&p.th_dt?(p.th_dt/p.kh_dt*100).toFixed(2)+'%':'—';
+        var pctKPI=s>0?(s*100).toFixed(2)+'%':'—';
+        var dtOk=p.kh_dt&&p.th_dt&&p.th_dt/p.kh_dt>=1;
+        grpKH+=p.kh_dt||0; grpTH+=p.th_dt||0; if(s>0)grpSc.push(s);
+        gtKH+=p.kh_dt||0; gtTH+=p.th_dt||0; if(s>0)gtSc.push(s);
+        var tr=document.createElement('tr'); tr.className='rdata';
+        var cells='<td class="left" style="font-size:11.5px;color:#6c757d">'+esc(p.ma_nv||'—')+'</td><td class="left fw6">'+esc(p.name)+'</td><td class="left" style="font-size:11.5px">'+esc(p.position)+'</td><td>'+esc(p.cap_bac||'—')+'</td><td>'+esc(p.dept||u.name)+'</td><td style="font-size:11.5px">'+esc(p.ngay_bd||'—')+'</td><td style="font-size:11.5px;color:#dc3545">'+esc(p.ngay_nghi||'')+'</td>';
+        dispKy.forEach(function(){
+          cells+='<td style="text-align:right;font-size:11.5px">'+fmtNum(p.kh_dt)+'</td>';
+          cells+='<td style="text-align:right;font-size:11.5px">'+fmtNum(p.th_dt)+'</td>';
+          cells+='<td class="'+(dtOk?'rg2':p.kh_dt&&p.th_dt?'rb2':'')+'">'+pctDT+'</td>';
+          cells+='<td class="'+(s>=1.0?'rg2':s>0&&s<0.8?'rb2':'')+'">'+pctKPI+'</td>';
+        });
+        tr.innerHTML=cells;
+        (function(uid2,ppi2){tr.addEventListener('click',function(){openUnit(uid2,ppi2);});})(u.id,pi);
+        tbody.appendChild(tr);
+      });
+    });
+    var gpct=grpKH?(grpTH/grpKH*100).toFixed(2)+'%':'—';
+    var gavg=grpSc.length?(grpSc.reduce(function(a,s){return a+s;},0)/grpSc.length*100).toFixed(2)+'%':'—';
+    var ttr=document.createElement('tr'); ttr.className='rtot';
+    var tcells='<td colspan="7" style="text-align:right;padding:6px 10px">Tổng / TB – '+esc(grp.lbl)+'</td>';
+    dispKy.forEach(function(){tcells+='<td style="text-align:right">'+fmtNum(grpKH)+'</td><td style="text-align:right">'+fmtNum(grpTH)+'</td><td>'+gpct+'</td><td>'+gavg+'</td>';});
+    ttr.innerHTML=tcells; tbody.appendChild(ttr);
+  });
+
+  var gpct2=gtKH?(gtTH/gtKH*100).toFixed(2)+'%':'—';
+  var gavg2=gtSc.length?(gtSc.reduce(function(a,s){return a+s;},0)/gtSc.length*100).toFixed(2)+'%':'—';
+  var gtr2=document.createElement('tr'); gtr2.className='rgtot';
+  var gc='<td colspan="7" style="text-align:right;padding:8px 12px;font-size:13px">TỔNG CỘNG TOÀN CÔNG TY</td>';
+  dispKy.forEach(function(){gc+='<td style="text-align:right">'+fmtNum(gtKH)+'</td><td style="text-align:right">'+fmtNum(gtTH)+'</td><td>'+gpct2+'</td><td>'+gavg2+'</td>';});
+  gtr2.innerHTML=gc; tbody.appendChild(gtr2);
+}
+
+/* ===================================================
+   IMPORT FILE EXCEL
+   =================================================== */
+function handleFile(file) {
+  var fi=document.getElementById('file-info');
+  fi.style.display='block';
+  fi.textContent='📄 '+file.name+' · '+(file.size/1024).toFixed(1)+'KB · Đang đọc...';
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try {
+      if(typeof XLSX==='undefined'){fi.textContent='❌ SheetJS chưa load. Vui lòng thử lại.';return;}
+      var wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});
+      var persons=parseWB(wb);
+      fi.innerHTML='📄 <strong>'+esc(file.name)+'</strong> · ✅ Đọc được '+persons.length+' mẫu KPI';
+      pend={name:file.name.replace(/\.[^.]+$/,''),persons:persons};
+      showPrev(pend);
+    } catch(err){fi.textContent='❌ Lỗi: '+err.message;}
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function parseWB(wb) {
+  var persons=[]; var ROMAN={I:1,II:1,III:1,IV:1,V:1,VI:1,VII:1,VIII:1,IX:1,X:1,XI:1};
+  wb.SheetNames.forEach(function(sname){
+    var ws=wb.Sheets[sname];
+    var rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:null});
+    if(!rows||rows.length<6)return;
+    var hRow=-1;
+    for(var i=0;i<Math.min(rows.length,12);i++){
+      var r=rows[i];
+      if(r&&String(r[0]||'').trim()==='TT'&&String(r[1]||'').toLowerCase().indexOf('kpi')>=0){hRow=i;break;}
+    }
+    if(hRow===-1)return;
+    var dept=String((rows[2]&&rows[2][2])||'').trim();
+    var position=String((rows[3]&&rows[3][2])||'').trim();
+    var periodRaw=String((rows[4]&&rows[4][2])||'').trim();
+    var groups=[], cg=null;
+    for(var i2=hRow+1;i2<rows.length;i2++){
+      var r2=rows[i2];
+      if(!r2||r2.every(function(v){return v===null||v==='';}))continue;
+      var tt=String(r2[0]||'').trim(), kpi=String(r2[1]||'').trim();
+      if(!tt&&!kpi)continue;
+      if(kpi.toLowerCase()==='tổng'||tt.toLowerCase().indexOf('ghi')===0)break;
+      function nv2(v){var n=parseFloat(v);return isNaN(n)?String(v):n;}
+      function fv2(v){var n=parseFloat(v);return isNaN(n)?null:n;}
+      if(ROMAN[tt]){cg={label:kpi||tt,items:[]};groups.push(cg);}
+      else if(/^\d+$/.test(tt)&&cg){
+        cg.items.push({tt:parseInt(tt),kpi:(kpi||'').slice(0,120),dvt:String(r2[2]||'%').trim(),
+          n08:nv2(r2[3]),n09:nv2(r2[4]),n10:nv2(r2[5]),n105:nv2(r2[6]),n11:nv2(r2[7]),n12:nv2(r2[8]),
+          tt_thang:fv2(r2[11]),tt_quy:fv2(r2[12]),tt_nam:fv2(r2[13]),
+          def:String(r2[15]||'').replace(/\n/g,' ').slice(0,100),
+          ct:String(r2[16]||'').replace(/\n/g,' ').slice(0,100),
+          chu_ky:String(r2[17]||'').trim(),dv:String(r2[18]||'').trim(),
+          kh:r2[19]!=null&&r2[19]!==''?String(r2[19]):'',
+          th:r2[20]!=null&&r2[20]!==''?String(r2[20]):''});
+      }
+    }
+    if(!groups.length||!groups.some(function(g){return g.items.length>0;}))return;
+    var p={id:sname,name:sname.trim(),position:position,dept:dept,period:periodRaw,
+      ma_nv:'',cap_bac:'',ngay_bd:'',ngay_nghi:'',
+      groups:groups,wf_step:1,wf_log:[],
+      score_t:0,score_q:0,score_n:0,xeploai:'Chưa tính',_fill:0,_tot:0,_pct:0,kh_dt:0,th_dt:0};
+    calcP(p); persons.push(p);
+  });
+  return persons;
+}
+
+function showPrev(data) {
+  var card=document.getElementById('prev-card'); card.style.display='block';
+  document.getElementById('prev-title').textContent='Xem trước: '+data.name+' · '+data.persons.length+' mẫu KPI';
+  var tbl=document.createElement('table'); tbl.style.cssText='width:100%;border-collapse:collapse;font-size:12px';
+  tbl.innerHTML='<thead><tr style="background:#f8f9fa"><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:left">#</th><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:left">Tên</th><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:left">Vị trí</th><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:left">Đơn vị</th><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:center">Số KPI</th><th style="padding:6px 10px;border-bottom:2px solid #dee2e6;text-align:center">Có số liệu</th></tr></thead><tbody>'+data.persons.map(function(p,i){return '<tr style="border-bottom:1px solid #f0f0f0"><td style="padding:5px 10px;color:#6c757d">'+(i+1)+'</td><td style="padding:5px 10px;font-weight:600">'+esc(p.name)+'</td><td style="padding:5px 10px">'+esc(p.position)+'</td><td style="padding:5px 10px">'+esc(p.dept)+'</td><td style="padding:5px 10px;text-align:center">'+p._tot+'</td><td style="padding:5px 10px;text-align:center">'+(p._fill>0?'<span class="badge b2">'+p._fill+'/'+p._tot+'</span>':'<span class="badge b0">Cần nhập</span>')+'</td></tr>';}).join('')+'</tbody>';
+  var list=document.getElementById('prev-list'); list.innerHTML=''; list.appendChild(tbl);
+  card.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cancelImp(){pend=null;document.getElementById('prev-card').style.display='none';}
+function confirmImp(){
+  if(!pend)return;
+  var uname=document.getElementById('imp-unit').value.trim()||pend.name;
+  var nhom=document.getElementById('imp-nhom').value.trim()||uname;
+  var ky=document.getElementById('imp-ky').value;
+  if(!uname){toast('Thiếu thông tin','Vui lòng điền Tên đơn vị.');return;}
+  var uid='U'+Date.now();
+  var unit={id:uid,name:uname,nhom:nhom,ky:ky,persons:pend.persons};
+  unit.persons.forEach(function(p){
+    if(!p.wf_step)p.wf_step=1;
+    if(!p.wf_log)p.wf_log=[];
+    if(!p.wf_log.length)p.wf_log.push({time:new Date().toLocaleString('vi-VN'),step:1,user:'HCNS',ok:true,note:'Import KPI '+(KY[ky]||ky)});
+  });
+  calcU(unit); units.push(unit);
+  pend=null;
+  document.getElementById('prev-card').style.display='none';
+  document.getElementById('imp-unit').value='';
+  document.getElementById('file-info').style.display='none';
+  toast('✅ Import thành công','Đã tạo <strong>'+unit.persons.length+'</strong> mẫu KPI cho <strong>'+esc(uname)+'</strong>.');
+  renderDB(); goPage('db',true);
+}
+
+/* ===================================================
+   EXPORT
+   =================================================== */
+function dlCSV(rows,fname){
+  var csv='\uFEFF'+rows.map(function(r){return r.map(function(c){return '"'+String(c||'').replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download=fname;a.click();
+}
+function exportU(){
+  var u=units.find(function(u){return u.id===curUid;});if(!u)return;
+  var rows=[['MÃ NV','HỌ TÊN','CHỨC DANH','CẤP BẬC','ĐV/BP','KỲ','KH DT','TH DT','%HT DT','ĐIỂM THÁNG','ĐIỂM QUÝ','ĐIỂM NĂM','XẾP LOẠI','BƯỚC WF']];
+  u.persons.forEach(function(p){var pdt=p.kh_dt&&p.th_dt?(p.th_dt/p.kh_dt*100).toFixed(2)+'%':'';rows.push([p.ma_nv||'',p.name,p.position,p.cap_bac||'',p.dept||u.name,p.period||u.ky,p.kh_dt||'',p.th_dt||'',pdt,p.score_t>0?p.score_t.toFixed(3):'',p.score_q>0?p.score_q.toFixed(3):'',p.score_n>0?p.score_n.toFixed(3):'',p.xeploai,'B'+(p.wf_step||1)+'/8']);});
+  dlCSV(rows,'KPI_'+u.name+'_'+u.ky+'.csv');
+}
+function exportNS(){
+  var rows=[['MÃ NV','HỌ VÀ TÊN','CHỨC DANH','CẤP BẬC','ĐV/BP','NGÀY BĐ','NGÀY NGHỈ','KỲ','KH DT','TH DT','%HT DT','ĐIỂM THÁNG','XẾP LOẠI','BƯỚC WF']];
+  units.forEach(function(u){u.persons.forEach(function(p){var pdt=p.kh_dt&&p.th_dt?(p.th_dt/p.kh_dt*100).toFixed(2)+'%':'';rows.push([p.ma_nv||'',p.name,p.position,p.cap_bac||'',p.dept||u.name,p.ngay_bd||'',p.ngay_nghi||'',p.period||KY[u.ky]||u.ky,p.kh_dt||'',p.th_dt||'',pdt,p.score_t>0?p.score_t.toFixed(3):'',p.xeploai,'B'+(p.wf_step||1)+'/8']);});});
+  dlCSV(rows,'NhanSu_KPI.csv');
+}
+function exportBC(){
+  var rows=[['MÃ NV','HỌ VÀ TÊN','CHỨC DANH','CẤP BẬC','ĐV/BP','NGÀY BĐ','NGÀY NGHỈ','KỲ','KH','TH','%HT DT','%HT KPI','XẾP LOẠI']];
+  units.forEach(function(u){u.persons.forEach(function(p){var pdt=p.kh_dt&&p.th_dt?(p.th_dt/p.kh_dt*100).toFixed(2)+'%':'';rows.push([p.ma_nv||'',p.name,p.position,p.cap_bac||'',p.dept||u.name,p.ngay_bd||'',p.ngay_nghi||'',KY[u.ky]||u.ky,p.kh_dt||'',p.th_dt||'',pdt,p.score_t>0?(p.score_t*100).toFixed(2)+'%':'',p.xeploai]);});});
+  dlCSV(rows,'BaoCao_KPI.csv');
+}
+
+/* ===================================================
+   KHỞI TẠO – Load dữ liệu thực NAA T4/2026
+   =================================================== */
+var naaPersons = JSON.parse(JSON.stringify(NAA_REAL));
+naaPersons.forEach(function(p) {
+  p.wf_step = 2;
+  p.wf_log = [{time:'01/04/2026 08:00',step:1,user:'HCNS',ok:true,note:'Import KPI T4/2026 từ file Excel'}];
+  calcP(p);
+});
+var uNAA = {
+  id: 'U_NAA',
+  name: 'NAA \u2013 Nagakawa Mi\u1ec1n B\u1eafc (C\u1ea5p 3)',
+  nhom: 'MI\u1ec0N B\u1eaeC',
+  ky: 'T4/2026',
+  persons: naaPersons
+};
+calcU(uNAA);
+units.push(uNAA);
+renderDB();
+
+// Load SheetJS for import feature
+var _xs = document.createElement('script');
+_xs.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+document.head.appendChild(_xs);
+</script>
+</body>
+</html>
